@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>操作系统概述 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="为什么要学习操作系统 目的你体内的 “编程力量” 尚未完全觉醒  每天都在用的东西，你还没搞明白 窗口是怎么创建的？为什么 Ctrl-C 有时不能退出程序？   组里的服务器有 128 个处理器，但你的程序却只能用一个 😂 你每天都在用的东西，你却实现不出来 浏览器、编译器、IDE、游戏&#x2F;外挂、任务管理器、杀毒软件、病毒……    什么是操作系统 操作系统：事实上，是一个软件体系，负责">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统概述">
+<meta property="og:url" content="http://example.com/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么要学习操作系统 目的你体内的 “编程力量” 尚未完全觉醒  每天都在用的东西，你还没搞明白 窗口是怎么创建的？为什么 Ctrl-C 有时不能退出程序？   组里的服务器有 128 个处理器，但你的程序却只能用一个 😂 你每天都在用的东西，你却实现不出来 浏览器、编译器、IDE、游戏&#x2F;外挂、任务管理器、杀毒软件、病毒……    什么是操作系统 操作系统：事实上，是一个软件体系，负责">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-20T06:13:34.000Z">
+<meta property="article:modified_time" content="2022-03-20T14:08:36.978Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-操作系统概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T06:13:34.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      操作系统概述
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="为什么要学习操作系统-目的"><a href="#为什么要学习操作系统-目的" class="headerlink" title="为什么要学习操作系统 目的"></a>为什么要学习操作系统 目的</h1><p>你体内的 “编程力量” 尚未完全觉醒</p>
+<ul>
+<li>每天都在用的东西，你还没搞明白<ul>
+<li>窗口是怎么创建的？<a target="_blank" rel="noopener" href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">为什么 Ctrl-C 有时不能退出程序</a>？</li>
+</ul>
+</li>
+<li>组里的服务器有 128 个处理器，但你的程序却只能用一个 😂</li>
+<li>你每天都在用的东西，你却实现不出来<ul>
+<li>浏览器、编译器、IDE、游戏&#x2F;外挂、任务管理器、杀毒软件、病毒……</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是操作系统"><a href="#什么是操作系统" class="headerlink" title="什么是操作系统"></a>什么是操作系统</h2><ul>
+<li>操作系统：事实上，是一个软件体系，负责使程序易于运行（甚至让你看起来可以同时运行多个程序），允许程序共享内存，允许程序与设备交互，以及其他类似的有趣事情。</li>
+<li>管理软&#x2F;硬件资源、为程序提供服务” 的程序</li>
+</ul>
+<h2 id="理解操作系统"><a href="#理解操作系统" class="headerlink" title="理解操作系统"></a>理解操作系统</h2><ul>
+<li>问出正确的问题：操作系统如何从一开始变成现在这样的？</li>
+<li>三个重要的线索<ul>
+<li>计算机 (硬件)</li>
+<li>程序 (软件)</li>
+<li>操作系统 (管理软件的软件)</li>
+</ul>
+</li>
+<li>本课程狭义的操作系统 例：win liunx</li>
+</ul>
+<h2 id="1940s的计算机"><a href="#1940s的计算机" class="headerlink" title="1940s的计算机"></a>1940s的计算机</h2><p>电子计算机的实现</p>
+<ul>
+<li>逻辑门：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av59005720">真空电子管</a></li>
+<li>存储器：延迟线 (delay lines)</li>
+<li>输入&#x2F;输出：打孔纸带&#x2F;指示灯</li>
+</ul>
+<p>没有操作系统</p>
+<p>能把程序放上去就很了不起了</p>
+<ul>
+<li>程序直接用指令操作硬件</li>
+<li>不需要画蛇添足的程序来管理它</li>
+</ul>
+<h2 id="1950s计算机"><a href="#1950s计算机" class="headerlink" title="1950s计算机"></a>1950s计算机</h2><p>更快更小的逻辑门 (晶体管)、更大的内存 (磁芯)、丰富的 I&#x2F;O 设备</p>
+<ul>
+<li>I&#x2F;O 设备的速度已经严重低于处理器的速度，中断机制出现 (1953)</li>
+</ul>
+<h2 id="1960s计算机"><a href="#1960s计算机" class="headerlink" title="1960s计算机"></a>1960s计算机</h2><p>集成电路、总线出现</p>
+<ul>
+<li>更快的处理器</li>
+<li>更快、更大的内存；虚拟存储出现<ul>
+<li>可以同时载入多个程序而不用 “换卡” 了</li>
+</ul>
+</li>
+<li>更丰富的 I&#x2F;O 设备；完善的中断&#x2F;异常机制</li>
+</ul>
+<h2 id="1960s操作系统"><a href="#1960s操作系统" class="headerlink" title="1960s操作系统"></a>1960s操作系统</h2><p>能载入多个程序到内存且灵活调度它们的管理程序，包括程序可以调用的 API。</p>
+<p>同时将多个程序载入内存是一项巨大的能力</p>
+<ul>
+<li>有了进程 (process) 的概念</li>
+<li>进程在执行 I&#x2F;O 时，可以将 CPU 让给另一个进程<ul>
+<li>在多个地址空间隔离的程序之间切换</li>
+<li>虚拟存储使一个程序出 bug 不会 crash 整个系统</li>
+</ul>
+</li>
+</ul>
+<p>操作系统中自然地增加进程管理 API</p>
+<p>基于中断 (例如时钟) 机制</p>
+<ul>
+<li>时钟中断：使程序在执行时，异步地插入函数调用</li>
+<li>由操作系统 (调度策略) 决定是否要切换到另一个程序执行</li>
+<li>Multics (MIT, 1965)<ul>
+<li>现代操作系统诞生</li>
+</ul>
+</li>
+</ul>
+<h2 id="1970s-计算机和操作系统"><a href="#1970s-计算机和操作系统" class="headerlink" title="1970s+计算机和操作系统"></a>1970s+计算机和操作系统</h2><p>和现代大差不差</p>
+<h2 id="今天的操作系统"><a href="#今天的操作系统" class="headerlink" title="今天的操作系统"></a>今天的操作系统</h2><p>通过 “虚拟化” 硬件资源为程序运行提供服务的软件。</p>
+<p>空前复杂的系统之一</p>
+<ul>
+<li>更复杂的处理器和内存<ul>
+<li>非对称多处理器 (ARM big.LITTLE; Intel P&#x2F;E-cores)</li>
+<li>Non-uniform Memory Access (NUMA)</li>
+<li>更多的硬件机制 Intel-VT&#x2F;AMD-V, TrustZone&#x2F;<del>SGX</del>, TSX, …</li>
+</ul>
+</li>
+<li>更多的设备和资源<ul>
+<li>网卡、SSD、GPU、FPGA…</li>
+</ul>
+</li>
+<li>复杂的应用需求和应用环境<ul>
+<li>服务器、个人电脑、智能手机、手表、手环、IoT&#x2F;微控制器……</li>
+</ul>
+</li>
+</ul>
+<h2 id="理解操作系统：三个根本问题"><a href="#理解操作系统：三个根本问题" class="headerlink" title="理解操作系统：三个根本问题"></a>理解操作系统：三个根本问题</h2><p>操作系统服务谁？</p>
+<ul>
+<li>程序 &#x3D; 状态机</li>
+<li>课程涉及：多线程 Linux 应用程序</li>
+</ul>
+<hr>
+<p>(设计&#x2F;应用视角) 操作系统为程序提供什么服务？</p>
+<ul>
+<li>操作系统 &#x3D; 对象 + API</li>
+<li>课程涉及：POSIX + 部分 Linux 特性</li>
+</ul>
+<hr>
+<p>(实现&#x2F;硬件视角) 如何实现操作系统提供的服务？</p>
+<ul>
+<li>操作系统 &#x3D; C 程序<ul>
+<li>完成初始化后就成为 interrupt&#x2F;trap&#x2F;fault handler</li>
+</ul>
+</li>
+<li>课程涉及：xv6, 自制迷你操作系统</li>
+</ul>
+<h1 id="如何学习操作系统"><a href="#如何学习操作系统" class="headerlink" title="如何学习操作系统"></a>如何学习操作系统</h1><p>计算机专业学生必须具备的核心素质。</p>
+<ol>
+<li>是一个合格的操作系统用户<ul>
+<li>会 STFW&#x2F;RTFM 自己动手解决问题</li>
+<li>不怕使用任何命令行工具<ul>
+<li>vim, tmux, grep, gcc, binutils, …</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不惧怕写代码<ul>
+<li>能管理一定规模 (数千行) 的代码</li>
+<li>能在出 bug 时默念 “机器永远是对的、我肯定能调出来的”<ul>
+<li>然后开始用正确的工具&#x2F;方法调试</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>给 “学渣” 们的贴心提示：补基础、补基础、补基础</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" data-id="cl0zmp57l000ibo5w59iqbrcq" data-title="操作系统概述" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Junit和反射和注解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">模块化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java-web/" style="font-size: 10px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 10px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.33px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 16.67px;">酒</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/">MQTT基础协议（上）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/">Junit和反射和注解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">操作系统概述</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/19/%E9%87%8E%E6%A0%BC/">野格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

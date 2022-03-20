@@ -14,7 +14,7 @@
 <meta property="og:description" content="1 Stream流1.1 体验Stream流使用Stream流的方式完成过滤操作 1list.stream().filter(s -&gt; s.startsWith(&quot;张&quot;)).filter(s -&gt; s.length()&#x3D;&#x3D;3).forEach(System.out::println);   直接阅读代码的字面意思就可理解语意：生成流，过滤姓张，过滤长度为3，逐一打印">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-16T08:42:39.000Z">
-<meta property="article:modified_time" content="2022-03-16T10:40:39.867Z">
+<meta property="article:modified_time" content="2022-03-17T07:28:48.781Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -154,11 +154,66 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.concat(s1,s2).distinct().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>Stream<T> sorted(): 返回由此流的元素组成的流，根据自然顺序排序</T></li>
+<li>Stream<T> sorted(Comparator comparator): 返回由该流的元素组成的流，根据提供的Comparator进行排序<ul>
+<li>根据比较器来排序</li>
+</ul>
+</T></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().sorted().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list.stream().sorted((s1,s2) -&gt; &#123;</span><br><span class="line">		int num = s1.length()-s2.langth();</span><br><span class="line">		int num2 = num==0?s1.compareTo(s2):num;</span><br><span class="line">		return num2;</span><br><span class="line">&#125;).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><R> Stream<R> map(Function mapper): 返回由给定函数应用于此流的元素的结果组成的流<ul>
+<li>Function接口中的方法</li>
+<li>R apply(T t)</li>
+</ul>
+</R></R></li>
+<li>IntStream mapToInt(TonIntFunction mapper): 返回一个Instream其中包含将给定函数应用用于此流的元素结果<ul>
+<li>InStream：表示原始int流</li>
+<li>ToIntFunction接口中的方法      int applyAsInt(T value)</li>
+<li>int sum(): 返回此流中元素总和</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().map(Integer::parseInt).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int result = list.stream().mapTiInt(Intrger::parseInt).sum();</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-Stream流的常见终结操作方法"><a href="#1-4-Stream流的常见终结操作方法" class="headerlink" title="1.4 Stream流的常见终结操作方法"></a>1.4 Stream流的常见终结操作方法</h3><p>Stream流的常见终结操作方法</p>
+<ul>
+<li>void forEach(Consumer action): 对此流的每一个元素执行操作<ul>
+<li>Consumer接口中的方法</li>
+<li>void accept(T t): 对给定的参数执行此操作</li>
+</ul>
+</li>
+<li>ling count(): 返回此流中的元素数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">long count = list.stream().filter(s -&gt; s.startsWith(&quot;张&quot;)).count();</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-Stream流的收集操作"><a href="#1-5-Stream流的收集操作" class="headerlink" title="1.5 Stream流的收集操作"></a>1.5 Stream流的收集操作</h3><p>Stream流的收集方法</p>
+<ul>
+<li>R collect(Collector collector)</li>
+<li>但是这个收集方法的参数是一个Collector接口</li>
+</ul>
+<p>工具类Collectors提供了具体的收集方法</p>
+<ul>
+<li>public static <T> Collector toList(): 把元素收集到List集合中</T></li>
+<li>public static <T> Collector toSet(): 把元素收集到Set集合中</T></li>
+<li>public static Collector toMap(Function keyMapper,Function valueMapper): 把元素收集到Map集合中</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list&lt;String&gt; names = listStream.collect(Collectors.tolist());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,Integer&gt; map = arrsyStream.collect(Collectors.toMap(s -&gt; s.split(&quot;,&quot;)[0]),s -&gt; Integer.parseInt(s.split(&quot;,&quot;)[1]) );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/16/Stream%E6%B5%81/" data-id="cl0th5n230003b35w1w2r78jv" data-title="Stream流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/16/Stream%E6%B5%81/" data-id="cl0zmp57i0005bo5w905ehgp5" data-title="Stream流" class="article-share-link">Share</a>
       
       
       
@@ -202,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
     </div>
   </div>
 
@@ -212,7 +267,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 15px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 10px;">酒</a>
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java-web/" style="font-size: 10px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 10px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.33px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 16.67px;">酒</a>
     </div>
   </div>
 
@@ -234,23 +289,23 @@
       <ul>
         
           <li>
-            <a href="/2022/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/">计算机的基本组成</a>
+            <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/">MQTT基础协议（上）</a>
           </li>
         
           <li>
-            <a href="/2022/03/16/Stream%E6%B5%81/">Stream流</a>
+            <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/">Junit和反射和注解</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E7%99%BE%E5%88%A9%E7%94%9C/">百利甜</a>
+            <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">操作系统概述</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/">计算机系统简介</a>
+            <a href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">函数式接口</a>
+            <a href="/2022/03/19/%E9%87%8E%E6%A0%BC/">野格</a>
           </li>
         
       </ul>

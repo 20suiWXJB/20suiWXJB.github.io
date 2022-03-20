@@ -71,6 +71,779 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MQTT基础协议（上）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T18:37:12.000Z" itemprop="datePublished">2022-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/">MQTT基础协议（上）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-1-MQTT是什么"><a href="#1-1-MQTT是什么" class="headerlink" title="1.1 MQTT是什么"></a>1.1 MQTT是什么</h1><p><em>MQTT是一个客户端服务端架构的发布&#x2F;订阅模式的消息传输协议。它的设计思想是轻巧、开放、简单、规范，易于实现。这些特点使得它对很多场景来说都是很好的选择，特别是对于受限的环境如机器与机器的通信（M2M）以及物联网环境（IoT）。</em></p>
+<ul>
+<li>易于实现</li>
+<li>数据传输的服务质量可控</li>
+<li>占用带宽小</li>
+<li>传输数据内容不可预知</li>
+<li>设备连接状态可知</li>
+</ul>
+<p>目前MQTT主流版本有两个，分别是MQTT3.1.1和MQTT5。MQTT3.1.1是在2014年10月发布的，而MQTT5是在2019年3月发布的。由于MQTT3.1.1与MQTT5的时间相差了将近五年，且MQTT5的发布时间距今不久，因此在本文书写时（2020年10月），MQTT3.1.1仍然主流版本。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/" data-id="cl0zmp57h0003bo5w9t2q83af" data-title="MQTT基础协议（上）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Junit和反射和注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T08:54:35.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/">Junit和反射和注解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Junit单元测试："><a href="#Junit单元测试：" class="headerlink" title="Junit单元测试："></a>Junit单元测试：</h1><p>测试分类：</p>
+<ul>
+<li><p>黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望的值。</p>
+</li>
+<li><p>白盒测试：需要写代码的。关注程序具体的执行流程。</p>
+</li>
+</ul>
+<p>Junit使用：白盒测试</p>
+<p>步骤</p>
+<p>1.定义一个测试类(测试用例)</p>
+<pre><code>* 建议：
+        * 测试类名：被测试的类名Test        CalculatorTest
+        * 包名：xxx.xxx.xx.test        cn.itcast.test
+</code></pre>
+<p>2.定义测试方法：可以独立运行</p>
+<pre><code>* 建议：
+        * 方法名：test测试的方法名        testAdd()  
+        * 返回值：void
+        * 参数列表：空参
+</code></pre>
+<p>3.给方法加@Test</p>
+<p>4.导入junit依赖环境</p>
+<ul>
+<li>判定结果：<br>  * 红色：失败<br>  * 绿色：成功<br><br>  * 一般我们会使用断言操作来处理结果<br>      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assert.assertEquals(期望的结果,运算的结果);</span><br></pre></td></tr></table></figure><ul>
+<li>补充：<ul>
+<li>@Before:<ul>
+<li>修饰的方法会在测试方法之前被自动执行</li>
+<li>用于资源的申请</li>
+</ul>
+</li>
+<li>@After:<ul>
+<li>修饰的方法会在测试方法执行之后自动被执行</li>
+<li>用于资源的释放</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="反射：框架设计的灵魂"><a href="#反射：框架设计的灵魂" class="headerlink" title="反射：框架设计的灵魂"></a>反射：框架设计的灵魂</h1><p>框架：半成品软件。可以在框架的基础上进行软件开发，简化编码</p>
+<p>反射：将类的各个组成部分封装为其他对象，这就是反射机制</p>
+<p>​    好处</p>
+<ul>
+<li>可以在程序运行过程中，操作这些对象。代码提示也是利用特性</li>
+<li>可以解耦，提高程序的可扩展性。</li>
+</ul>
+<p>获取Class对象的方法：</p>
+<ul>
+<li>Class.forName(“全类名”)：将字节码文件加载进内存，返回Class对象<ul>
+<li>多用于配置文件，将类名定义在配置文件中。读取文件，加载类</li>
+</ul>
+</li>
+<li>类名.class：通过类名的属性class获取<ul>
+<li>多用于参数的传递</li>
+</ul>
+</li>
+<li>对象.getClass()：getClass()方法在Object类中定义着。<ul>
+<li>多用于对象的获取字节码的方式</li>
+</ul>
+</li>
+</ul>
+<p>结论</p>
+<ul>
+<li>同一个字节码文件(*.class)在一次程序运行过程中，只会被加载一次，不论通过哪一种方式获取的Class对象都是同一个。</li>
+</ul>
+<p>Class对象功能：</p>
+<p>​    获取功能：</p>
+<pre><code>1. 获取成员变量们
+</code></pre>
+<ul>
+<li><p>Field[] getFields() ：获取所有public修饰的成员变量</p>
+</li>
+<li><p>Field getField(String name)   获取指定名称的 public修饰的成员变量</p>
+</li>
+<li><p>Field[] getDeclaredFields()  获取所有的成员变量，不考虑修饰符</p>
+</li>
+<li><p>Field getDeclaredField(String name)</p>
+</li>
+</ul>
+<ol start="2">
+<li>获取构造方法们</li>
+</ol>
+<ul>
+<li><p>Constructor&lt;?&gt;[] getConstructors()  </p>
+</li>
+<li><p>Constructor<T> getConstructor(类&lt;?&gt;… parameterTypes)</T></p>
+</li>
+<li><p>Constructor<T> getDeclaredConstructor(类&lt;?&gt;… parameterTypes) </T></p>
+</li>
+<li><p>Constructor&lt;?&gt;[] getDeclaredConstructors()</p>
+</li>
+</ul>
+<ol start="3">
+<li>获取成员方法们：</li>
+</ol>
+<ul>
+<li><p>Method[] getMethods()  </p>
+</li>
+<li><p>Method getMethod(String name, 类&lt;?&gt;… parameterTypes)  </p>
+</li>
+<li><p>Method[] getDeclaredMethods()  </p>
+</li>
+<li><p>Method getDeclaredMethod(String name, 类&lt;?&gt;… parameterTypes)</p>
+</li>
+</ul>
+<ol start="4">
+<li>获取全类名</li>
+</ol>
+<ul>
+<li>String getName()</li>
+</ul>
+<p>1.获取成员变量方法参数</p>
+<p>Field：成员变量</p>
+<p>​    操作：</p>
+<ol>
+<li>设置值</li>
+</ol>
+<ul>
+<li>void set(Object obj, Object value)</li>
+</ul>
+<ol start="2">
+<li>获取值</li>
+</ol>
+<ul>
+<li>get(Object obj)</li>
+</ul>
+<ol start="3">
+<li>忽略访问权限修饰符的安全检查</li>
+</ol>
+<ul>
+<li>setAccessible(true):暴力反射</li>
+</ul>
+<p>2.获取构造方法参数</p>
+<p>Constructor:构造方法</p>
+<p>​    创建对象：</p>
+<ul>
+<li>T newInstance(Object… initargs)  </li>
+<li>如果使用空参数构造方法创建对象，操作可以简化：Class对象的newInstance方法</li>
+</ul>
+<p>3.获取成员方法参数</p>
+<p>Method：方法对象</p>
+<p>​    执行方法：</p>
+<ul>
+<li>Object invoke(Object obj, Object… args)  （参数，实参列表）</li>
+</ul>
+<p>获取方法名称：</p>
+<ul>
+<li>String getName:获取方法名</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/" data-id="cl0zmp57e0000bo5we98j6us8" data-title="Junit和反射和注解" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-操作系统概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T06:13:34.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">操作系统概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="为什么要学习操作系统-目的"><a href="#为什么要学习操作系统-目的" class="headerlink" title="为什么要学习操作系统 目的"></a>为什么要学习操作系统 目的</h1><p>你体内的 “编程力量” 尚未完全觉醒</p>
+<ul>
+<li>每天都在用的东西，你还没搞明白<ul>
+<li>窗口是怎么创建的？<a target="_blank" rel="noopener" href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">为什么 Ctrl-C 有时不能退出程序</a>？</li>
+</ul>
+</li>
+<li>组里的服务器有 128 个处理器，但你的程序却只能用一个 😂</li>
+<li>你每天都在用的东西，你却实现不出来<ul>
+<li>浏览器、编译器、IDE、游戏&#x2F;外挂、任务管理器、杀毒软件、病毒……</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是操作系统"><a href="#什么是操作系统" class="headerlink" title="什么是操作系统"></a>什么是操作系统</h2><ul>
+<li>操作系统：事实上，是一个软件体系，负责使程序易于运行（甚至让你看起来可以同时运行多个程序），允许程序共享内存，允许程序与设备交互，以及其他类似的有趣事情。</li>
+<li>管理软&#x2F;硬件资源、为程序提供服务” 的程序</li>
+</ul>
+<h2 id="理解操作系统"><a href="#理解操作系统" class="headerlink" title="理解操作系统"></a>理解操作系统</h2><ul>
+<li>问出正确的问题：操作系统如何从一开始变成现在这样的？</li>
+<li>三个重要的线索<ul>
+<li>计算机 (硬件)</li>
+<li>程序 (软件)</li>
+<li>操作系统 (管理软件的软件)</li>
+</ul>
+</li>
+<li>本课程狭义的操作系统 例：win liunx</li>
+</ul>
+<h2 id="1940s的计算机"><a href="#1940s的计算机" class="headerlink" title="1940s的计算机"></a>1940s的计算机</h2><p>电子计算机的实现</p>
+<ul>
+<li>逻辑门：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av59005720">真空电子管</a></li>
+<li>存储器：延迟线 (delay lines)</li>
+<li>输入&#x2F;输出：打孔纸带&#x2F;指示灯</li>
+</ul>
+<p>没有操作系统</p>
+<p>能把程序放上去就很了不起了</p>
+<ul>
+<li>程序直接用指令操作硬件</li>
+<li>不需要画蛇添足的程序来管理它</li>
+</ul>
+<h2 id="1950s计算机"><a href="#1950s计算机" class="headerlink" title="1950s计算机"></a>1950s计算机</h2><p>更快更小的逻辑门 (晶体管)、更大的内存 (磁芯)、丰富的 I&#x2F;O 设备</p>
+<ul>
+<li>I&#x2F;O 设备的速度已经严重低于处理器的速度，中断机制出现 (1953)</li>
+</ul>
+<h2 id="1960s计算机"><a href="#1960s计算机" class="headerlink" title="1960s计算机"></a>1960s计算机</h2><p>集成电路、总线出现</p>
+<ul>
+<li>更快的处理器</li>
+<li>更快、更大的内存；虚拟存储出现<ul>
+<li>可以同时载入多个程序而不用 “换卡” 了</li>
+</ul>
+</li>
+<li>更丰富的 I&#x2F;O 设备；完善的中断&#x2F;异常机制</li>
+</ul>
+<h2 id="1960s操作系统"><a href="#1960s操作系统" class="headerlink" title="1960s操作系统"></a>1960s操作系统</h2><p>能载入多个程序到内存且灵活调度它们的管理程序，包括程序可以调用的 API。</p>
+<p>同时将多个程序载入内存是一项巨大的能力</p>
+<ul>
+<li>有了进程 (process) 的概念</li>
+<li>进程在执行 I&#x2F;O 时，可以将 CPU 让给另一个进程<ul>
+<li>在多个地址空间隔离的程序之间切换</li>
+<li>虚拟存储使一个程序出 bug 不会 crash 整个系统</li>
+</ul>
+</li>
+</ul>
+<p>操作系统中自然地增加进程管理 API</p>
+<p>基于中断 (例如时钟) 机制</p>
+<ul>
+<li>时钟中断：使程序在执行时，异步地插入函数调用</li>
+<li>由操作系统 (调度策略) 决定是否要切换到另一个程序执行</li>
+<li>Multics (MIT, 1965)<ul>
+<li>现代操作系统诞生</li>
+</ul>
+</li>
+</ul>
+<h2 id="1970s-计算机和操作系统"><a href="#1970s-计算机和操作系统" class="headerlink" title="1970s+计算机和操作系统"></a>1970s+计算机和操作系统</h2><p>和现代大差不差</p>
+<h2 id="今天的操作系统"><a href="#今天的操作系统" class="headerlink" title="今天的操作系统"></a>今天的操作系统</h2><p>通过 “虚拟化” 硬件资源为程序运行提供服务的软件。</p>
+<p>空前复杂的系统之一</p>
+<ul>
+<li>更复杂的处理器和内存<ul>
+<li>非对称多处理器 (ARM big.LITTLE; Intel P&#x2F;E-cores)</li>
+<li>Non-uniform Memory Access (NUMA)</li>
+<li>更多的硬件机制 Intel-VT&#x2F;AMD-V, TrustZone&#x2F;<del>SGX</del>, TSX, …</li>
+</ul>
+</li>
+<li>更多的设备和资源<ul>
+<li>网卡、SSD、GPU、FPGA…</li>
+</ul>
+</li>
+<li>复杂的应用需求和应用环境<ul>
+<li>服务器、个人电脑、智能手机、手表、手环、IoT&#x2F;微控制器……</li>
+</ul>
+</li>
+</ul>
+<h2 id="理解操作系统：三个根本问题"><a href="#理解操作系统：三个根本问题" class="headerlink" title="理解操作系统：三个根本问题"></a>理解操作系统：三个根本问题</h2><p>操作系统服务谁？</p>
+<ul>
+<li>程序 &#x3D; 状态机</li>
+<li>课程涉及：多线程 Linux 应用程序</li>
+</ul>
+<hr>
+<p>(设计&#x2F;应用视角) 操作系统为程序提供什么服务？</p>
+<ul>
+<li>操作系统 &#x3D; 对象 + API</li>
+<li>课程涉及：POSIX + 部分 Linux 特性</li>
+</ul>
+<hr>
+<p>(实现&#x2F;硬件视角) 如何实现操作系统提供的服务？</p>
+<ul>
+<li>操作系统 &#x3D; C 程序<ul>
+<li>完成初始化后就成为 interrupt&#x2F;trap&#x2F;fault handler</li>
+</ul>
+</li>
+<li>课程涉及：xv6, 自制迷你操作系统</li>
+</ul>
+<h1 id="如何学习操作系统"><a href="#如何学习操作系统" class="headerlink" title="如何学习操作系统"></a>如何学习操作系统</h1><p>计算机专业学生必须具备的核心素质。</p>
+<ol>
+<li>是一个合格的操作系统用户<ul>
+<li>会 STFW&#x2F;RTFM 自己动手解决问题</li>
+<li>不怕使用任何命令行工具<ul>
+<li>vim, tmux, grep, gcc, binutils, …</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不惧怕写代码<ul>
+<li>能管理一定规模 (数千行) 的代码</li>
+<li>能在出 bug 时默念 “机器永远是对的、我肯定能调出来的”<ul>
+<li>然后开始用正确的工具&#x2F;方法调试</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>给 “学渣” 们的贴心提示：补基础、补基础、补基础</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" data-id="cl0zmp57l000ibo5w59iqbrcq" data-title="操作系统概述" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-模块化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2022-03-19T08:51:45.000Z" itemprop="datePublished">2022-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-模块化"><a href="#1-模块化" class="headerlink" title="1.模块化"></a>1.模块化</h2><h3 id="1-1-模块化概述"><a href="#1-1-模块化概述" class="headerlink" title="1.1 模块化概述"></a>1.1 模块化概述</h3><p>Java语言随着这些年的发展已经成为了一门影响深远的编程语言，无数平台，系统都采用Java语言编写。但是，伴随着发展，Java也越来越庞大，逐渐发展成为一门“臃肿”的语言。而且，无论是运行一个大型的软件系统，还是运行一个小的程序，即使程序只需要使用Java的部分核心功能，JVM也要加载整个JRE环境。为了给Java“瘦身”，让Java实现轻量化，Java 9正式的推出了模块化系统。Java被拆分为N多个模块，并允许Java程序可以根据需要选择加载程序必须的Java模块，这样就可以让Java以轻量化的方式来运行其实，Java 7的时候已经提出了模块化的概念，但由于其过于复杂，Java 7，Java 8都一直未能真正推出，直到Java9才真正成熟起来。对于Java语言来说，模块化系统是一次真正的自我革新，这种革新使得“古老而庞大”的Java语言重新焕发年轻的活力</p>
+<h3 id="1-2-模块的基本使用步骤"><a href="#1-2-模块的基本使用步骤" class="headerlink" title="1.2 模块的基本使用步骤"></a>1.2 模块的基本使用步骤</h3><p>模块的使用步骤</p>
+<ol>
+<li>在项目中创建两个模块。一个是myOne,一个是myTwo</li>
+<li>在myOne模块中创建以下包和以下类，并在类中添加方法</li>
+<li>在myTwo模块中创建以下包和以下类，并在类中创建别的模块对象并使用</li>
+<li>在myOne模块中src目录下，创建module-info.java，并写入exports+包名</li>
+<li>在myTwo模块中src目录下，创建module-info.java，并写入require+模块名</li>
+<li>如果出错，按下alt+enter 选择依赖</li>
+</ol>
+<h3 id="1-3-模块服务的使用"><a href="#1-3-模块服务的使用" class="headerlink" title="1.3 模块服务的使用"></a>1.3 模块服务的使用</h3><p>模块服务使用使用步骤</p>
+<ol>
+<li>在myOne模块中新建一个包，提供一个接口和两个实现类</li>
+<li>在myOne模块中修改module-info.java文件，添加以下内容<ol>
+<li>导出模块：export com.itheima_03;</li>
+<li>服务提供：provides MyService with itheima;<ol>
+<li>指定MyService的服务实现类是itheima</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在myTwo这个文件的描述文件中添加如下配置<ol>
+<li>声明服务接口：uses MyService</li>
+</ol>
+</li>
+<li>在myTwo这个模块的类中使用MySerrive结构提供的服务<ol>
+<li>ServiceLoader：一种加载服务实现的工具</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/" data-id="cl0zmp57m000nbo5w5nj69sjz" data-title="模块化" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-野格" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/19/%E9%87%8E%E6%A0%BC/" class="article-date">
+  <time class="dt-published" datetime="2022-03-19T02:12:34.000Z" itemprop="datePublished">2022-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/19/%E9%87%8E%E6%A0%BC/">野格</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="野格"><a href="#野格" class="headerlink" title="野格"></a>野格</h1><p>酒标上的单词来自德语单词 jager代表猎人 meister代表大师的意思</p>
+<h2 id="酿酒历史"><a href="#酿酒历史" class="headerlink" title="酿酒历史"></a>酿酒历史</h2><p>第一代酿酒人柯特*迈斯特是一位英勇的猎手，野格的前生并不是酒，而是印有鹿头的止咳药水，德国冬天异常寒冷，猎人在行动时容易染上风寒，为了解决这个问题，野格一代目在止咳水的基础上，添加了酒精，配上一些帮助消化，缓解呼吸道症状的草药来帮助猎手，猎手在行动中容易掉装备，所有选择这种最抗摔的墨绿色方瓶子，到1934年，纳粹德国颁布了帝国狩猎法，在这个法律中规定只有最杰出的猎手，才可以冠名“猎人大师“的名号，野格一代目也是在这是创建了商标，赚了一波热度</p>
+<h2 id="鹿头来源"><a href="#鹿头来源" class="headerlink" title="鹿头来源"></a>鹿头来源</h2><p>基督教中的两位猎人守护神，传闻中他们皈依耶稣时，看到了圣鹿出现在十字架中央</p>
+<h2 id="成分"><a href="#成分" class="headerlink" title="成分"></a>成分</h2><p>德国本土草本利口酒，其中成分含有56种不同的药材，水果，植物根茎以及辛香料 已公开的有杜松子，人参，甘草，肉桂，茴香，生姜，柑橘类果皮等等</p>
+<h2 id="制作工艺"><a href="#制作工艺" class="headerlink" title="制作工艺"></a>制作工艺</h2><p>野格采用风干材料，把晒干的草本在中性酒精里浸泡三天，得到基础的香气以及颜色，整个浸泡工序要反反复复进行多次，大概要持续五个月，才进行首次过滤，放到橡木桶里进行陈年，经过365天的窖藏，药草酒得到了进一步成熟，酒液里杂醇类物质也会被逐渐分解，提高整体的口感，特别是经过橡木桶的润色之后，这个野格的酒体颜色会变更加深邃，同时减少草本植物带来的青涩味道，增强酒体结构，更加突出橡木的香气与果香</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/19/%E9%87%8E%E6%A0%BC/" data-id="cl0zmp57q0012bo5w7yhk41e4" data-title="野格" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-类加载器和反射" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/17/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8D%E5%B0%84/" class="article-date">
+  <time class="dt-published" datetime="2022-03-17T07:32:30.000Z" itemprop="datePublished">2022-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/17/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8D%E5%B0%84/">类加载器和反射</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-类加载器"><a href="#1-类加载器" class="headerlink" title="1.类加载器"></a>1.类加载器</h2><h3 id="1-1-类加载"><a href="#1-1-类加载" class="headerlink" title="1.1 类加载"></a>1.1 类加载</h3><p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过类的加载，类的连接，类的初始化这三个步骤来对类进行初始化。如果不出现意外情况，JVM将会连续完成这三个步骤，所以有时也把这三个步骤统称为类加载或者类初始化</p>
+<h4 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h4><ul>
+<li>就是指将class文件读入内存，并为之创建一个java.lang.Class对象</li>
+<li>任何类被使用时，系统都会为之建立一个java.lang.Class对象</li>
+</ul>
+<h4 id="类的连接"><a href="#类的连接" class="headerlink" title="类的连接"></a>类的连接</h4><ul>
+<li>验证阶段：用于检验被加载的类是否有正确的内部结构，并和其他类协调一致</li>
+<li>准备阶段：负责为类的类变量分配内存，并设置默认初始化值</li>
+<li>解析阶段：将类的二进制数据中的符号引用替换为直接引用</li>
+</ul>
+<h4 id="类的初始化"><a href="#类的初始化" class="headerlink" title="类的初始化"></a>类的初始化</h4><ul>
+<li>在该阶段，主要就是对类变量进行初始化</li>
+</ul>
+<h4 id="类的初始化步骤"><a href="#类的初始化步骤" class="headerlink" title="类的初始化步骤"></a>类的初始化步骤</h4><ul>
+<li>假如类还未被加载和连接，则程序先加载并连接该类</li>
+<li>假如该类的直接父类还未被初始化，则先初始化其直接父类</li>
+<li>假如类中有初始化语句，则系统依次执行这些初始化语句</li>
+<li>注意：在执行第2个步骤的时候，系统对直接父类的初始化步骤也遵循初始化步骤1-3</li>
+</ul>
+<h4 id="类的初始化时机"><a href="#类的初始化时机" class="headerlink" title="类的初始化时机"></a>类的初始化时机</h4><ul>
+<li>创建类的实例</li>
+<li>调用类的类方法</li>
+<li>访问类或者接口的类变量，或者为该类变量赋值</li>
+<li>使用反射方式来强制创建某个类或接口对应的java.lang.Class对象</li>
+<li>初始化某个类的子类</li>
+<li>直接使用java.exe命令来运行某个主类</li>
+</ul>
+<h3 id="1-2-类加载器"><a href="#1-2-类加载器" class="headerlink" title="1.2 类加载器"></a>1.2 类加载器</h3><h4 id="类加载器作用"><a href="#类加载器作用" class="headerlink" title="类加载器作用"></a>类加载器作用</h4><ul>
+<li>负责将.class文件加载到内存中，并为之生成对应的java.lang.Class对象。</li>
+<li>虽然我们不用过分关心类加载机制，但是了解这个机制我们就能更好的理解程序的运行！</li>
+</ul>
+<h4 id="JVM的类加载机制"><a href="#JVM的类加载机制" class="headerlink" title="JVM的类加载机制"></a>JVM的类加载机制</h4><ul>
+<li>全盘负责：就是当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显示使用另外一个类加载器来载入</li>
+<li>父类委托：就是当一个类加载器负责加载某个Class时，先让父类加载器试图加载该Class，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类</li>
+<li>缓存机制：保证所有加载过的Class都会被缓存，当程序需要使用某个Class对象时，类加载器先从缓存区中搜索该Class，只有当缓存区中不存在该Class对象时，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存储到缓存区</li>
+</ul>
+<h4 id="Java中内置类加载器"><a href="#Java中内置类加载器" class="headerlink" title="Java中内置类加载器"></a>Java中内置类加载器</h4><ul>
+<li>Bootstrap class loader：它是虚拟机的内置类加载器，通常表示为null，并且没有父null</li>
+<li>Platform class loader：平台类加载器可以看到所有平台类，平台类包括由平台类加载器或其祖先定义的JavaSE平台API，其实现类和JDK特定的运行时类</li>
+<li>System class loader：它也被称为应用程序类加载器，与平台类加载器不同。系统类加载器通常用于定义应用程序类路径，模块路径和JDK特定工具上的类</li>
+<li>类加载器的继承关系：System的父加载器为Platform，而Platform的父加载器为Bootstrap</li>
+</ul>
+<h4 id="ClassLoader中的两个方法"><a href="#ClassLoader中的两个方法" class="headerlink" title="ClassLoader中的两个方法"></a>ClassLoader中的两个方法</h4><ul>
+<li>static ClassLoader getSystemClassLoader()   返回用于委派的系统类加载器</li>
+<li>ClassLoader getParent()   返回父类加载器进行委派</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class ClassLoaderDemo&#123;</span><br><span class="line">public static void main(String[]args)&#123;</span><br><span class="line">		//static ClassLoader getSystemClassLoader():返回用于委派的系统类加载器</span><br><span class="line">		ClassLoader c = ClassLoader.getSystemClassLoader();</span><br><span class="line">		System.out.println(c);//AppClassLoader</span><br><span class="line">		</span><br><span class="line">		//ClassLoader getParent():返回父类加载器进行委派</span><br><span class="line">		ClassLoader c2 = c.getParent();</span><br><span class="line">		System.out.println(c2); //PlatformClassLoader</span><br><span class="line">		</span><br><span class="line">		ClassLoader c3 = c2.getParent();</span><br><span class="line">		System.out.println(c3);//null</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-反射"><a href="#2-反射" class="headerlink" title="2.反射"></a>2.反射</h2><h3 id="2-1-反射的概述"><a href="#2-1-反射的概述" class="headerlink" title="2.1 反射的概述"></a>2.1 反射的概述</h3><ul>
+<li>是指在运行时去获取一个类的变量和方法信息。然后通过获取到的信息来创建对象，调用方法的一种机制。由于这种动态性，可以极大的增强程序的灵活性，程序不用在编译期就完成确定，在运行期仍然可以扩展</li>
+<li>可以访问一些类的私有成员</li>
+</ul>
+<h3 id="2-2-获取class类的对象"><a href="#2-2-获取class类的对象" class="headerlink" title="2.2 获取class类的对象"></a>2.2 获取class类的对象</h3><p>三种方法</p>
+<ul>
+<li>类名.class属性 </li>
+<li>对象名.getClass()方法 该方法是Object类中方法，所有Java对象都可以调用此方法</li>
+<li>Class.forName(全类名)方法，需要传入字符串参数，该字符串参数是某个类的全路径，也是完整包名的路径</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo&#123;</span><br><span class="line">		public static void main(String[] args)throwsClassNotFoundException&#123;</span><br><span class="line">//使用类的class属性来获取该类对应的Class对象</span><br><span class="line">		Class&lt;Student&gt;c1=Student.class;</span><br><span class="line">		System.out.println(c1);</span><br><span class="line">		Class&lt;Student&gt;c2=Student.class;</span><br><span class="line">		System.out.println(c1==c2);</span><br><span class="line">		System.out.println(&quot;--------&quot;);</span><br><span class="line">		</span><br><span class="line">		//调用对象的getClass()方法，返回该对象所属类对应的Class对象</span><br><span class="line">		Student s = new Student();</span><br><span class="line">		Class&lt;? extends Student&gt; c3 = s.getClass();</span><br><span class="line">		System.out.println(c1==c3);</span><br><span class="line">		System.out.println(&quot;--------&quot;);</span><br><span class="line">		</span><br><span class="line">		//使用Class类中的静态方法</span><br><span class="line">		forName(String className)</span><br><span class="line">		Class&lt;?&gt; c4 = Class.forName(&quot;com.itheima_02.Student&quot;);</span><br><span class="line">		System.out.println(c1 == c4);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-反射获取构造方法并使用"><a href="#2-3-反射获取构造方法并使用" class="headerlink" title="2.3 反射获取构造方法并使用"></a>2.3 反射获取构造方法并使用</h3><p>Class类获取构造方法对象的方法</p>
+<ul>
+<li>Constructor&lt;?&gt;[] getConstructors()<ul>
+<li>返回所有公共构造方法对象的数组</li>
+</ul>
+</li>
+<li>Constructor&lt;?&gt;[] getDeclaredConstructors()<ul>
+<li>返回所有构造方法对象的数组</li>
+</ul>
+</li>
+<li>Constructor getConstructor(Class&lt;?&gt;… parameterTypes)<ul>
+<li>返回单个公共构造方法对象</li>
+</ul>
+</li>
+<li>Constructor getDeclaredConstructor(Class&lt;?&gt;…parameterTypes)<ul>
+<li>返回单个构造方法对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//获取Class对象</span><br><span class="line">	Class&lt;?&gt;c=Class.forName(&quot;com.itheima_02.Student&quot;);</span><br><span class="line"></span><br><span class="line">//Constructor&lt;?&gt;[] getConstructors() 返回一个包含 Constructor对象的数组，Constructor对象反映了由该Class对象表示的类的所有公共构造函数、</span><br><span class="line">	Constructor&lt;?&gt;[]cons=c.getConstructors();</span><br><span class="line"></span><br><span class="line">//Constructor&lt;?&gt;[]getDeclaredConstructors()返回反映由该Class对象表示的类声明的所有构造函数的Constructor对象的数组</span><br><span class="line">	Constructor&lt;?&gt;[] cons = c.getDeclaredConstructors();</span><br><span class="line">	for(Constructor con : cons)&#123;</span><br><span class="line">	System.out.println(con);</span><br><span class="line">&#125;</span><br><span class="line">	System.out.println(&quot;--------&quot;);</span><br><span class="line"></span><br><span class="line">//Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;...parameterTypes) 返回一个Constructor对象，该对象反映由该Class对象表示的类的指定公共构造函数</span><br><span class="line">//参数：你要获取的构造方法的参数的个数和数据类型对应的字节码文件对象</span><br><span class="line"></span><br><span class="line">	Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line"></span><br><span class="line">//Constructor提供了一个类的单个构造函数的信息和访问权限</span><br><span class="line">//T newInstance(Object...i nitargs) 使用由此 Constructor 对象表示的构造函数，使用指定的初始化参数来创建和初始化构造函数的声明类的新实例</span><br><span class="line"></span><br><span class="line">	Object obj = con.newInstance();</span><br><span class="line">	System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Constructor类用于创建对象的方法</p>
+<ul>
+<li>T newInstance(Object…initargs)<ul>
+<li>根据指定的构造方法创建对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-反射获取构造方法并使用练习"><a href="#2-4-反射获取构造方法并使用练习" class="headerlink" title="2.4 反射获取构造方法并使用练习"></a>2.4 反射获取构造方法并使用练习</h3><p>通过反射获取构造方法并创建对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo02 &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException &#123;</span><br><span class="line">        //获取Class类型</span><br><span class="line">        Class&lt;?&gt; c = Class.forName(&quot;com.itheima_01.Student&quot;);</span><br><span class="line"></span><br><span class="line">        //获取带三个参数带构造方法</span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor(String.class, int.class, String.class);</span><br><span class="line"></span><br><span class="line">        //创造新的对象</span><br><span class="line">        Object obj = con.newInstance(&quot;马宏跃&quot;,&quot;20&quot;,&quot;内蒙古&quot;);</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>练习2</p>
+<p>获取私有构造方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	Class&lt;?&gt; c = Class.forName(&quot;com.itheima_02.Student&quot;);</span><br><span class="line"></span><br><span class="line">	Constructor&lt;?&gt; con =c.getDeclaredConstructor(String.class);</span><br><span class="line">	</span><br><span class="line">//暴力反射</span><br><span class="line">//public void setAccessible(booleanflag):值为true，取消访问检查</span><br><span class="line"></span><br><span class="line">	con.setAccessible(true);</span><br><span class="line">	Object obj = con.newInstance(&quot;林青霞&quot;);</span><br><span class="line">	Systeam.out.println(obj);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-反射获取成员变量并使用"><a href="#2-5-反射获取成员变量并使用" class="headerlink" title="2.5 反射获取成员变量并使用"></a>2.5 反射获取成员变量并使用</h3><p>方法</p>
+<ul>
+<li>Field[] getFields()<ul>
+<li>返回所有公共成员变量对象的数组</li>
+</ul>
+</li>
+<li>Field[] getDeclaredFields()<ul>
+<li>返回所有成员变量对象的数组</li>
+</ul>
+</li>
+<li>Field getField(String name)<ul>
+<li>返回单个公共成员变量对象</li>
+</ul>
+</li>
+<li>Field getDeclaredField(String name)<ul>
+<li>返回单个成员变量对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo01 &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException &#123;</span><br><span class="line">        //获取对象</span><br><span class="line">        Class&lt;?&gt; c = Class.forName(&quot;com.itheima_01.Student&quot;);</span><br><span class="line"></span><br><span class="line">        Field[] fields = c.getDeclaredFields();</span><br><span class="line">        for(Field field : fields)&#123;</span><br><span class="line">            System.out.println(field);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;-----------&quot;);</span><br><span class="line">        Field addressField = c.getField(&quot;address&quot;);</span><br><span class="line"></span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line">        Object obj = con.newInstance();</span><br><span class="line"></span><br><span class="line">        addressField.set(obj,&quot;西安&quot;);</span><br><span class="line"></span><br><span class="line">        System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Field类中用于给成员变量赋值的方法</p>
+<ul>
+<li>void set(Object obj,Object value)<ul>
+<li>给obj对象的成员变量赋值为value</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-6-反射获取成员变量并且使用练习"><a href="#2-6-反射获取成员变量并且使用练习" class="headerlink" title="2.6 反射获取成员变量并且使用练习"></a>2.6 反射获取成员变量并且使用练习</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo02 &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException &#123;</span><br><span class="line">        Class&lt;?&gt; c = Class.forName(&quot;com.itheima_01.Student&quot;);</span><br><span class="line"></span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line">        Object obj = con.newInstance();</span><br><span class="line"></span><br><span class="line">        Field nameField = c.getDeclaredField(&quot;name&quot;);</span><br><span class="line">        //取消限制</span><br><span class="line">        nameField.setAccessible(true);</span><br><span class="line">        nameField.set(obj,&quot;马宏跃&quot;);</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-反射获取成员方法并使用"><a href="#2-7-反射获取成员方法并使用" class="headerlink" title="2.7 反射获取成员方法并使用"></a>2.7 反射获取成员方法并使用</h3><p>方法</p>
+<ul>
+<li>Method[] getMethods()<ul>
+<li>返回所有公共成员方法对象的数组，包括继承的</li>
+</ul>
+</li>
+<li>Method[] getDeclaredMethods()<ul>
+<li>返回所有成员方法对象的数组，不包括继承的</li>
+</ul>
+</li>
+<li>Method getMethod(String name, Class&lt;?&gt;…parameterTypes)<ul>
+<li>返回单个公共成员方法对象</li>
+</ul>
+</li>
+<li>Method getDeclaredMethod(String name, Class&lt;?&gt;…parameterTypes)<ul>
+<li>返回单个成员方法对象</li>
+</ul>
+</li>
+</ul>
+<p>用于执行方法的方法</p>
+<ul>
+<li>Objectinvoke(Object obj,Object… args)<ul>
+<li>调用obj对象的成员方法，参数是args,返回值是Object类型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo01 &#123;</span><br><span class="line">    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ClassNotFoundException &#123;</span><br><span class="line">        Class&lt;?&gt; c = Class.forName(&quot;com.itheima_01.Student&quot;);</span><br><span class="line"></span><br><span class="line">        Method m = c.getMethod(&quot;method1&quot;);</span><br><span class="line"></span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line">        Object obj = con.newInstance();</span><br><span class="line"></span><br><span class="line">        m.invoke(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-反射获取成员方法并且使用练习"><a href="#2-8-反射获取成员方法并且使用练习" class="headerlink" title="2.8 反射获取成员方法并且使用练习"></a>2.8 反射获取成员方法并且使用练习</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ReflectDemo02 &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException &#123;</span><br><span class="line">        Class&lt;?&gt; c = Class.forName(&quot;com.itheima_01.Student&quot;);</span><br><span class="line"></span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line">        Object obj = con.newInstance();</span><br><span class="line"></span><br><span class="line">        Method m2 = c.getMethod(&quot;method2&quot; , String.class);</span><br><span class="line">        Object i2 = m2.invoke(obj,&quot;马宏跃&quot;);</span><br><span class="line"></span><br><span class="line">        Method m3 = c.getMethod(&quot;method3&quot; , String.class, int.class);</span><br><span class="line">        Object i3 = m3.invoke(obj,&quot;马宏跃&quot;,30);</span><br><span class="line">        System.out.println(i3);</span><br><span class="line"></span><br><span class="line">        Method f1 = c.getDeclaredMethod(&quot;function&quot;);</span><br><span class="line">        f1.setAccessible(true);</span><br><span class="line">        System.out.println(f1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9-反射练习"><a href="#2-9-反射练习" class="headerlink" title="2.9 反射练习"></a>2.9 反射练习</h3><p>在Integer的集合中，加入字符串数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class RelectTest_01 &#123;</span><br><span class="line">    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">        array.add(10);</span><br><span class="line">        array.add(20);</span><br><span class="line"></span><br><span class="line">        Class&lt;? extends ArrayList&gt; c = array.getClass();</span><br><span class="line">        Method m = c.getMethod(&quot;add&quot; , Object.class);</span><br><span class="line"></span><br><span class="line">        m.invoke(array,&quot;hello&quot;);</span><br><span class="line">        m.invoke(array,&quot;world&quot;);</span><br><span class="line">        m.invoke(array,&quot;Java&quot;);</span><br><span class="line"></span><br><span class="line">        System.out.println(array);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>练习2 通过配置文件来创建任何类，并且使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class RelectTest_02 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Properties prop = new Properties();</span><br><span class="line">        FileReader fr = new FileReader(&quot;MyReflect\\class.txt&quot;);</span><br><span class="line">        prop.load(fr);</span><br><span class="line">        fr.close();</span><br><span class="line"></span><br><span class="line">        String className = prop.getProperty(&quot;className&quot;);</span><br><span class="line">        String methodName = prop.getProperty(&quot;methodName&quot;);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">                className=com.itheima_05.Student</span><br><span class="line">                methodName=study</span><br><span class="line">         */</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; c = Class.forName(className);</span><br><span class="line">        Constructor&lt;?&gt; con = c.getConstructor();</span><br><span class="line">        Object obj = con.newInstance();</span><br><span class="line"></span><br><span class="line">        Method m = c.getMethod(methodName);</span><br><span class="line">        m.invoke(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/17/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8D%E5%B0%84/" data-id="cl0zmp57p000xbo5wd0txczzq" data-title="类加载器和反射" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SUZE龙胆酒" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/16/SUZE%E9%BE%99%E8%83%86%E9%85%92/" class="article-date">
+  <time class="dt-published" datetime="2022-03-16T15:22:58.000Z" itemprop="datePublished">2022-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/16/SUZE%E9%BE%99%E8%83%86%E9%85%92/">SUZE龙胆酒</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="SUZE龙胆酒"><a href="#SUZE龙胆酒" class="headerlink" title="SUZE龙胆酒"></a>SUZE龙胆酒</h1><h2 id="一句话概括"><a href="#一句话概括" class="headerlink" title="一句话概括"></a>一句话概括</h2><p>这是一种以龙胆植物作为主要原料，搭配了像香草，橙子，以及其他多种草药作为辅料的法国利口酒</p>
+<h2 id="味道"><a href="#味道" class="headerlink" title="味道"></a>味道</h2><p>苦中带甜，闻上去草本气息非常突出，还会有浓郁的花香，有甘草橙皮，姜黄的味道</p>
+<h2 id="原料"><a href="#原料" class="headerlink" title="原料"></a>原料</h2><p>龙胆植物，十年左右壮年龙胆</p>
+<h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>采摘后的龙胆需要切割，完了后放在食用酒精浸泡一年，然后取一部分龙胆根，挤成汁放进去一起蒸馏，最后和浸泡液一起调配，我们需要加水，加糖，大概稀释到20度左右进行装瓶</p>
+<h2 id="品牌故事"><a href="#品牌故事" class="headerlink" title="品牌故事"></a>品牌故事</h2><p>费尔南德穆勒发明 起初接受家族酒厂生意不景气，遇到酿酒黑天鹅事件，根瘤蚜虫病，让很多葡萄酒白兰地行业受到很大打击，他和儿子进行发明，大胆使用龙胆发明 冰镇开胃，1889获得了世博会金奖，官网讲说他跟嫂子关系好，使用用嫂子的名字</p>
+<h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><p>白尼格罗尼</p>
+<h2 id="喝法"><a href="#喝法" class="headerlink" title="喝法"></a>喝法</h2><p>少数可以直接饮用，加冰块</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/16/SUZE%E9%BE%99%E8%83%86%E9%85%92/" data-id="cl0zmp57j0008bo5w757o821p" data-title="SUZE龙胆酒" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-计算机的基本组成" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" class="article-date">
@@ -153,7 +926,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" data-id="cl0th5n27000hb35w9xk3dmb0" data-title="计算机的基本组成" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" data-id="cl0zmp57p000ybo5w9xvlazhi" data-title="计算机的基本组成" class="article-share-link">Share</a>
       
       
       
@@ -247,11 +1020,66 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.concat(s1,s2).distinct().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>Stream<T> sorted(): 返回由此流的元素组成的流，根据自然顺序排序</T></li>
+<li>Stream<T> sorted(Comparator comparator): 返回由该流的元素组成的流，根据提供的Comparator进行排序<ul>
+<li>根据比较器来排序</li>
+</ul>
+</T></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().sorted().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list.stream().sorted((s1,s2) -&gt; &#123;</span><br><span class="line">		int num = s1.length()-s2.langth();</span><br><span class="line">		int num2 = num==0?s1.compareTo(s2):num;</span><br><span class="line">		return num2;</span><br><span class="line">&#125;).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><R> Stream<R> map(Function mapper): 返回由给定函数应用于此流的元素的结果组成的流<ul>
+<li>Function接口中的方法</li>
+<li>R apply(T t)</li>
+</ul>
+</R></R></li>
+<li>IntStream mapToInt(TonIntFunction mapper): 返回一个Instream其中包含将给定函数应用用于此流的元素结果<ul>
+<li>InStream：表示原始int流</li>
+<li>ToIntFunction接口中的方法      int applyAsInt(T value)</li>
+<li>int sum(): 返回此流中元素总和</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().map(Integer::parseInt).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int result = list.stream().mapTiInt(Intrger::parseInt).sum();</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-Stream流的常见终结操作方法"><a href="#1-4-Stream流的常见终结操作方法" class="headerlink" title="1.4 Stream流的常见终结操作方法"></a>1.4 Stream流的常见终结操作方法</h3><p>Stream流的常见终结操作方法</p>
+<ul>
+<li>void forEach(Consumer action): 对此流的每一个元素执行操作<ul>
+<li>Consumer接口中的方法</li>
+<li>void accept(T t): 对给定的参数执行此操作</li>
+</ul>
+</li>
+<li>ling count(): 返回此流中的元素数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">long count = list.stream().filter(s -&gt; s.startsWith(&quot;张&quot;)).count();</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-Stream流的收集操作"><a href="#1-5-Stream流的收集操作" class="headerlink" title="1.5 Stream流的收集操作"></a>1.5 Stream流的收集操作</h3><p>Stream流的收集方法</p>
+<ul>
+<li>R collect(Collector collector)</li>
+<li>但是这个收集方法的参数是一个Collector接口</li>
+</ul>
+<p>工具类Collectors提供了具体的收集方法</p>
+<ul>
+<li>public static <T> Collector toList(): 把元素收集到List集合中</T></li>
+<li>public static <T> Collector toSet(): 把元素收集到Set集合中</T></li>
+<li>public static Collector toMap(Function keyMapper,Function valueMapper): 把元素收集到Map集合中</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list&lt;String&gt; names = listStream.collect(Collectors.tolist());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,Integer&gt; map = arrsyStream.collect(Collectors.toMap(s -&gt; s.split(&quot;,&quot;)[0]),s -&gt; Integer.parseInt(s.split(&quot;,&quot;)[1]) );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/16/Stream%E6%B5%81/" data-id="cl0th5n230003b35w1w2r78jv" data-title="Stream流" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/16/Stream%E6%B5%81/" data-id="cl0zmp57i0005bo5w905ehgp5" data-title="Stream流" class="article-share-link">Share</a>
       
       
       
@@ -330,745 +1158,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/15/%E7%99%BE%E5%88%A9%E7%94%9C/" data-id="cl0th5n26000fb35w6jqo31t9" data-title="百利甜" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/15/%E7%99%BE%E5%88%A9%E7%94%9C/" data-id="cl0zmp57m000qbo5wflckewj7" data-title="百利甜" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-计算机系统简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/" class="article-date">
-  <time class="dt-published" datetime="2022-03-15T09:23:04.000Z" itemprop="datePublished">2022-03-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/">计算机系统简介</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="第一章计算机系统概论"><a href="#第一章计算机系统概论" class="headerlink" title="第一章计算机系统概论"></a>第一章计算机系统概论</h2><h3 id="1-1计算机系统简介"><a href="#1-1计算机系统简介" class="headerlink" title="1.1计算机系统简介"></a>1.1计算机系统简介</h3><p>现代计算机系统是由哪两部分组成？</p>
-<ul>
-<li>硬件<ul>
-<li>计算机实体，如主机，外设</li>
-</ul>
-</li>
-<li>软件<ul>
-<li>由具有各类特殊功能的信息(程序)组成</li>
-</ul>
-</li>
-</ul>
-<h4 id="软件分类"><a href="#软件分类" class="headerlink" title="软件分类"></a>软件分类</h4><ul>
-<li><p>软件：用来管理整个计算机系统</p>
-<ul>
-<li>语言处理程序</li>
-<li>操作系统</li>
-<li>服务性程序</li>
-<li>数据库管理系统</li>
-<li>网络软件</li>
-</ul>
-</li>
-<li><p>应用软件</p>
-<ul>
-<li><p>按任务需要编制成各种程序 </p>
-<p>![截屏2022-03-15 17.42.26](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;计算机系统简介&#x2F;截屏2022-03-15 17.42.26.png)</p>
-</li>
-</ul>
-</li>
-<li><p>系统复杂性管理的方法—–抽象：指高级的模型，和低级的实体相对，隐藏系统中不重要的细节</p>
-</li>
-</ul>
-<h4 id="二-计算机系统的层次结构"><a href="#二-计算机系统的层次结构" class="headerlink" title="二 计算机系统的层次结构"></a>二 计算机系统的层次结构</h4><img src="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/mhy/blog/source/_posts/计算机系统简介/截屏2022-03-15 17.50.29.png" alt="截屏2022-03-15 17.50.29" style="zoom:25%;">
-
-<img src="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/mhy/blog/source/_posts/计算机系统简介/截屏2022-03-15 17.54.40.png" alt="截屏2022-03-15 17.54.40" style="zoom:25%;">
-
-<p>计算机体系结构：程序员所见到的计算机系统的属性概念性的结构与功能特性</p>
-<p>（指令系统，数据类型，寻找技术，I&#x2F;O机理）</p>
-<p>例：有无乘法指令</p>
-<p>计算机组成：实现计算机体系结构所体现的属性</p>
-<p>（具体指令的实现）</p>
-<p>例：如何实现乘法指令</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/" data-id="cl0th5n27000kb35wbc2q9gdl" data-title="计算机系统简介" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-函数式接口" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/15/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" class="article-date">
-  <time class="dt-published" datetime="2022-03-15T07:01:28.000Z" itemprop="datePublished">2022-03-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/15/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">函数式接口</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-函数式接口"><a href="#1-函数式接口" class="headerlink" title="1 函数式接口"></a>1 函数式接口</h2><p>有且仅有一个抽象方法接口</p>
-<p>Java中的函数式编程体现就是Lambda表达式，所以函数式接口就是可以适用于Lambda使用的接口，只有确保接口中有且只有一个抽象方法，Java中的Lambda才能顺利地进行推导</p>
-<p>command+B 可以看源码 看注解判断是否为函数式接口</p>
-<p>option+command+v 补足代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface//函数式接口注解</span><br><span class="line">public interface myInterface &#123;</span><br><span class="line">    void show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class myInterfaceDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        myInterface my = () -&gt; System.out.println(&quot;函数式接口&quot;);</span><br><span class="line">        my.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-函数式接口作为方法的参数"><a href="#1-2-函数式接口作为方法的参数" class="headerlink" title="1.2 函数式接口作为方法的参数"></a>1.2 函数式接口作为方法的参数</h3><p>如果方法的参数是一个函数式接口，我们可以使用Lambda表达式作为参数传递</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startThread(() -&gt; System.out.println(Thread.currentTgread&#123;&#125;.getname()+&quot;线程启动了&quot;))</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-函数式接口作为方法的返回值"><a href="#1-3-函数式接口作为方法的返回值" class="headerlink" title="1.3 函数式接口作为方法的返回值"></a>1.3 函数式接口作为方法的返回值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private static Comparator&lt;String&gt; getComparator()&#123;</span><br><span class="line">		//方法一</span><br><span class="line">		return new Comparator&lt;String&gt;()&#123;</span><br><span class="line">			@Override</span><br><span class="line">			public int compare(String s1,String s2)&#123;</span><br><span class="line">				return s1.length()-s2.length();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//方法二</span><br><span class="line">		return (String s1,String s2) -&gt; &#123;</span><br><span class="line">			return s1.length()-s2.length();</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">		//方法三</span><br><span class="line">		return (s1,s2) -&gt; s1.length() - s2.length();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果方法的返回值是一个函数式接口，我们可以使用Lambda表达式作为结果返回</p>
-<h3 id="1-4常用的函数式接口"><a href="#1-4常用的函数式接口" class="headerlink" title="1.4常用的函数式接口"></a>1.4常用的函数式接口</h3><h4 id="重点有以下几个"><a href="#重点有以下几个" class="headerlink" title="重点有以下几个"></a>重点有以下几个</h4><ul>
-<li>Supplier接口</li>
-<li>Consumer接口</li>
-<li>Predicate接口</li>
-<li>Function接口</li>
-</ul>
-<h3 id="1-5-Supplier"><a href="#1-5-Supplier" class="headerlink" title="1.5 Supplier"></a>1.5 Supplier</h3><p>Supplier<T>：包含一个无参的方法</T></p>
-<ul>
-<li><p>T get():获得结果</p>
-</li>
-<li><p>要导包</p>
-</li>
-<li><p>该方法不需要参数，他会按照某种实现逻辑（由Lambda表达式实现）返回一个数据</p>
-</li>
-<li><p>Supplier<T>接口也被称为生产型接口，如果我们指定了接口的泛型是什么类型，那么接口中的get方法就会生成什么类型的数据供我们使用</T></p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//定义一个方法，返回一个整数数据</span><br><span class="line">private static Integer getInteger(Supplier&lt;Integer&gt; sup)&#123;</span><br><span class="line">		return sup.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Tips：</p>
-<ul>
-<li>装箱就是自动将基本数据类型转换为包装器类型；拆箱就是自动将包装器类型转换为基本数据类型<ul>
-<li>直观的使用上的区别：基本数据类型不能为null，而包装器类可以为null</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class SupplierText &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int[] arr = &#123;19,50,28,37,46&#125;;</span><br><span class="line"></span><br><span class="line">        int Maxx = getMax(() -&gt; &#123;</span><br><span class="line">            int Max = arr[0];</span><br><span class="line">            for (int i=1;i&lt;arr.length;i++)&#123;</span><br><span class="line">                if(arr[i]&gt;Max)&#123;</span><br><span class="line">                    Max = arr[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return Max;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(Maxx);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static int getMax(Supplier&lt;Integer&gt; sub)&#123;</span><br><span class="line">        return sub.get();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-6-Consumer接口"><a href="#1-6-Consumer接口" class="headerlink" title="1.6 Consumer接口"></a>1.6 Consumer接口</h3><p>Consumer<T>：包含两个方法</T></p>
-<ul>
-<li>void accrpt<T t>：对给定的参数执行此操作</T></li>
-<li>default Consumer<T>andThen(Consumer after)：返回一个组合的Consumer，依次执行此操作，如何执行after操作</T></li>
-<li>Consumer<T>接口也被称为消费型接口，它消费的数据的数据类型由泛型指定</T></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class ConsumerDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        operatorString(&quot;马宏跃&quot;,(String s) -&gt; &#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;);</span><br><span class="line">//消费一次</span><br><span class="line">        operatorString(&quot;马宏跃&quot;,s -&gt; System.out.println(s));</span><br><span class="line">//消费两次</span><br><span class="line">        operatorString(&quot;马宏跃&quot;,s -&gt; System.out.println(s),s -&gt; System.out.println(new StringBuffer(s).reverse().toString()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void operatorString(String name,Consumer&lt;String&gt; num,Consumer&lt;String&gt; nbm)&#123;</span><br><span class="line">        //方法一</span><br><span class="line">        num.accept(name);</span><br><span class="line">        nbm.accept(name);</span><br><span class="line">        //方法二</span><br><span class="line">        num.andThen(nbm).accept(name);</span><br><span class="line">    &#125;</span><br><span class="line">//消费一次</span><br><span class="line">    private static void operatorString(String name, Consumer&lt;String&gt; sum)&#123;</span><br><span class="line">        sum.accept(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>练习</p>
-<p>将字符串分离，按照格式打开</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ConsumerTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] strArray = &#123;&quot;马宏跃,20&quot;,&quot;杜宇卓,19&quot;,&quot;卢世文,19&quot;&#125;;</span><br><span class="line"></span><br><span class="line">        printInfo(strArray,(String str) -&gt; &#123;</span><br><span class="line">            String name = str.split(&quot;,&quot;)[0];</span><br><span class="line">            System.out.print(&quot;姓名&quot;+name);</span><br><span class="line">        &#125;,(String str) -&gt; &#123;</span><br><span class="line">            int age = Integer.parseInt(str.split(&quot;,&quot;)[1]);</span><br><span class="line">            System.out.println(&quot;,年龄&quot;+age);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void printInfo(String[] Array, Consumer&lt;String&gt; sum1,Consumer&lt;String&gt; sum2)&#123;</span><br><span class="line">        for(String str : Array)&#123;</span><br><span class="line">            sum1.andThen(sum2).accept(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-7-Predicate接口"><a href="#1-7-Predicate接口" class="headerlink" title="1.7 Predicate接口"></a>1.7 Predicate接口</h3><p>Predicate<T>: 常用的四个方法</T></p>
-<ul>
-<li>boolean test(T t): 对给定的参数进行判断(判断逻辑由Lambda表达式实现)，返回一个布尔值。</li>
-<li>default Predicate<T>negate: 返回一个逻辑的否定，对应逻辑非</T></li>
-<li>default Predicate<T>and(Predicate other): 返回一个组合判断，对应短路与</T></li>
-<li>default Predicate<T>or(Predicate other): 返回一个组合判断，对应短路或</T></li>
-<li>Predicate<T>接口通常用于判断参数是否满足指定的条件</T></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class PreducateDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        boolean b1 = checkString(&quot;hello&quot;,s -&gt; s.length()&gt;5);</span><br><span class="line">        System.out.println(b1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static boolean checkString(String s, Predicate&lt;String&gt; pr)&#123;</span><br><span class="line">    		//正常逻辑</span><br><span class="line">        //return pr.test(s);</span><br><span class="line">        //逻辑非</span><br><span class="line">        return  pr.negate().test(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class PreductDemo_01 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        boolean b1 = checkString(&quot;hello&quot;,s -&gt; s.length()&gt;5,s -&gt; s.length()&lt;12);</span><br><span class="line">        System.out.println(b1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static boolean checkString(String s, Predicate&lt;String&gt; pr1,Predicate&lt;String&gt; pr2)&#123;</span><br><span class="line">       // return pr1.and(pr2).test(s);</span><br><span class="line">       return pr1.or(pr2).test(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>练习 筛选满足条件的数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class PreductTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] str0 = &#123;&quot;马宏跃,187&quot;,&quot;雷惊讶,160&quot;,&quot;龙宇凡,183&quot;,&quot;张被轮,183&quot;,&quot;李瑞,158&quot;,&quot;卢世文,184&quot;&#125;;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;String&gt; Str4 = checkString(str0,s -&gt;s.split(&quot;,&quot;)[0].length()&gt;2,</span><br><span class="line">                s -&gt; Integer.parseInt(s.split(&quot;,&quot;)[1])&gt;180);</span><br><span class="line">        System.out.println(Str4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static ArrayList&lt;String&gt; checkString(String[] strArray, Predicate&lt;String&gt; pre1,Predicate&lt;String&gt; pre2)&#123;</span><br><span class="line">        ArrayList&lt;String&gt; str1 = new ArrayList&lt;String&gt;();</span><br><span class="line">        </span><br><span class="line">        for(String str2:strArray)&#123;</span><br><span class="line">            if(pre1.and(pre2).test(str2))&#123;</span><br><span class="line">                str1.add(str2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return str1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-8-Function接口"><a href="#1-8-Function接口" class="headerlink" title="1.8 Function接口"></a>1.8 Function接口</h3><p>Funtion&lt;T,R&gt;: 常用的两种方法</p>
-<ul>
-<li>R apply(T t): 将此函数应用于给定的参数</li>
-<li>default<V> Function andThen(Function after): 返回一个组合函数，首先将该函数应用于输入，然后将after函数应用于结果</V></li>
-<li>Function&lt;T,R&gt; 函数通常用于对参数进行处理，转换(处理逻辑由Lambda表达式实现)，然后返回一个新的值</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class FunctionDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        convert(&quot;110&quot;,s -&gt; Integer.parseInt(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void convert(String A, Function&lt;String,Integer&gt; fun1)&#123;</span><br><span class="line">        int i = fun1.apply(A);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String ss = fun1.andThen(fun2).apply(s);</span><br></pre></td></tr></table></figure>
-
-<p>练习 按照要求转换 加数字</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class FunctionTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String s = &quot;马宏跃,20&quot;;</span><br><span class="line">        convert(s,ss -&gt; ss.split(&quot;,&quot;)[1],ss -&gt; Integer.parseInt(ss),i -&gt; i+80);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void convert(String s, Function&lt;String,String&gt; fun1,Function&lt;String,Integer&gt; fun2,Function&lt;Integer,Integer&gt; fun3)&#123;</span><br><span class="line">        int i = fun1.andThen(fun2).andThen(fun3).apply(s);</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/15/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" data-id="cl0th5n240005b35w696igb24" data-title="函数式接口" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-方法引用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/14/%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-03-14T11:30:40.000Z" itemprop="datePublished">2022-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/14/%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">方法引用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-方法引用"><a href="#1-方法引用" class="headerlink" title="1 方法引用"></a>1 方法引用</h2><h3 id="1-1体验方法引用"><a href="#1-1体验方法引用" class="headerlink" title="1.1体验方法引用"></a>1.1体验方法引用</h3><p>![截屏2022-03-14 下午7.33.44](&#x2F;方法引用&#x2F;截屏2022-03-14 下午7.33.44.png)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">usePrintable(s -&gt; System.out.println(s));</span><br><span class="line">//方法引用符 ：：</span><br><span class="line">usePrintable(System.out::Println);</span><br><span class="line">//可推导就是可以省略的</span><br><span class="line">//上面两条语句输出内容相同</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2方法引用符"><a href="#1-2方法引用符" class="headerlink" title="1.2方法引用符"></a>1.2方法引用符</h3><h4 id="方法引用符"><a href="#方法引用符" class="headerlink" title="方法引用符"></a>方法引用符</h4><ul>
-<li>::该符号为引用运算符，而它所在的表达式被称为方法引用</li>
-</ul>
-<h4 id="推导与省略"><a href="#推导与省略" class="headerlink" title="推导与省略"></a>推导与省略</h4><ul>
-<li>如果使用方法引用，和Lambda一样，可以进行上下文进行推导</li>
-<li>方法引用是Lambda的孪生兄弟</li>
-</ul>
-<h3 id="1-3-Lambda表达式支持的方法引用"><a href="#1-3-Lambda表达式支持的方法引用" class="headerlink" title="1.3 Lambda表达式支持的方法引用"></a>1.3 Lambda表达式支持的方法引用</h3><h4 id="常见的引用方法"><a href="#常见的引用方法" class="headerlink" title="常见的引用方法"></a>常见的引用方法</h4><ul>
-<li>引用类方法</li>
-<li>引用对象的实例方法</li>
-<li>引用类的实例方法</li>
-<li>引用构造器</li>
-</ul>
-<h3 id="1-4-引用类方法"><a href="#1-4-引用类方法" class="headerlink" title="1.4 引用类方法"></a>1.4 引用类方法</h3><h4 id="引用类方法，其实就是引用类的静态方法"><a href="#引用类方法，其实就是引用类的静态方法" class="headerlink" title="引用类方法，其实就是引用类的静态方法"></a>引用类方法，其实就是引用类的静态方法</h4><ul>
-<li>格式：类名::静态方法</li>
-<li>范例：Integer::parseInt</li>
-</ul>
-<p>​        Integer类的方法：public static int parsenInt(String s) 将String转换为int数据类型</p>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>![截屏2022-03-15 上午9.11.42](&#x2F;方法引用&#x2F;截屏2022-03-15 上午9.11.42.png)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">接口Converter</span><br><span class="line">public interface Converter &#123;</span><br><span class="line">    int convert(String s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">测试类ConverterDemo.java</span><br><span class="line">public class ConverterDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        useConverter(s -&gt; Integer.parseInt(s));</span><br><span class="line"></span><br><span class="line">        //用引用类方法</span><br><span class="line">        useConverter(Integer::parseInt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void useConverter(Converter c)&#123;</span><br><span class="line">        int number = c.convert(&quot;666&quot;);</span><br><span class="line">        System.out.println(number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Lambda表达式被类方法替代的时候，他的形式参数全部传递给静态方法作为参数</p>
-<h3 id="1-5引用对象的实例方法"><a href="#1-5引用对象的实例方法" class="headerlink" title="1.5引用对象的实例方法"></a>1.5引用对象的实例方法</h3><ul>
-<li>格式：对象::成员方法</li>
-<li>范例：“HelloWorld”::toUpperCase</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usePrinter(s -&gt; Systrm.out.println(s.toUppercase()))</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PrintString ps = new printString();</span><br><span class="line">usePrinter(ps::printUpper);</span><br></pre></td></tr></table></figure>
-
-<p>Lambda表达式被对象的实例方法替代的时候，他的形式参数全部传递给该方法作为参数</p>
-<h3 id="1-6引用类的实例方法"><a href="#1-6引用类的实例方法" class="headerlink" title="1.6引用类的实例方法"></a>1.6引用类的实例方法</h3><ul>
-<li>格式：类名::成员方法</li>
-<li>范例：String::substring<ul>
-<li>String类中的substring方法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useMyString((s,x,y) -&gt; s.substring(x,y));</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//引用类的实例方法</span><br><span class="line">useMyString(String::substring);</span><br></pre></td></tr></table></figure>
-
-<p>Lambda表达式被类的实例方法替代的时候，第一个参数作为调用者，后面的参数全部传递给该方法作为参数</p>
-<h3 id="1-7引用构造器"><a href="#1-7引用构造器" class="headerlink" title="1.7引用构造器"></a>1.7引用构造器</h3><p>引用构造方法</p>
-<ul>
-<li>格式：类名::new</li>
-<li>范例：Student::new <ul>
-<li>Student是一个类</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useStudentBuilder((name,age) -&gt; new Student(name,age));</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//引用构造器</span><br><span class="line">useStudentBuilder(Student::new);</span><br></pre></td></tr></table></figure>
-
-<p>Lambda表达式被构造器替代时，他的形式参数全部传递给构造器作为参数</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/14/%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" data-id="cl0th5n26000db35w89nf18c8" data-title="方法引用" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-接口的组成更新" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%84%E6%88%90%E6%9B%B4%E6%96%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-03-14T10:33:49.000Z" itemprop="datePublished">2022-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%84%E6%88%90%E6%9B%B4%E6%96%B0/">接口的组成更新</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-接口的组成更新"><a href="#1-接口的组成更新" class="headerlink" title="1.接口的组成更新"></a>1.接口的组成更新</h2><h3 id="1-1-接口组成更新概述"><a href="#1-1-接口组成更新概述" class="headerlink" title="1.1 接口组成更新概述"></a>1.1 接口组成更新概述</h3><h4 id="接口的组成"><a href="#接口的组成" class="headerlink" title="接口的组成"></a>接口的组成</h4><ul>
-<li>常量</li>
-</ul>
-<p>​    -public static final</p>
-<ul>
-<li>抽象方法</li>
-</ul>
-<p>​    -public abstract</p>
-<ul>
-<li>默认方法（Java 8）</li>
-<li>静态方法（Java 8）</li>
-<li>私有方法（Java 9）</li>
-</ul>
-<h3 id="1-2接口中默认方法"><a href="#1-2接口中默认方法" class="headerlink" title="1.2接口中默认方法"></a>1.2接口中默认方法</h3><h4 id="定义格式"><a href="#定义格式" class="headerlink" title="定义格式"></a>定义格式</h4><ul>
-<li>格式：public default 返回值类型 方法名(参数列表){     }</li>
-<li>范例：public default void show3(){    }</li>
-</ul>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>默认方法不是抽象方法，所有不强制被重写，但可以被重写，重写时要去掉default关键字。</li>
-<li>public可以被省略，但default不可以被省略。</li>
-</ul>
-<p>案例：实际开发中更新接口中的抽象方法，有些不用更新但如果使用此接口就必须写更新的抽象方法，如果创建新的接口来继承上一个接口，这样更新多的话就会使系统变得非常复杂，所有接口中的默认方法可以解决此问题。</p>
-<h3 id="1-3接口中的静态方法"><a href="#1-3接口中的静态方法" class="headerlink" title="1.3接口中的静态方法"></a>1.3接口中的静态方法</h3><h4 id="定义格式-1"><a href="#定义格式-1" class="headerlink" title="定义格式"></a>定义格式</h4><ul>
-<li>格式：public static 返回值类型 方法名(参数列表){        }</li>
-<li>范例：public static void show(){        }</li>
-</ul>
-<h4 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>静态方法只能通过接口名调用，不能通过实现类名或者对象名调用</li>
-<li>public可以省略，static不能省略</li>
-</ul>
-<h3 id="1-4接口中私有方法"><a href="#1-4接口中私有方法" class="headerlink" title="1.4接口中私有方法"></a>1.4接口中私有方法</h3><h4 id="定义格式-2"><a href="#定义格式-2" class="headerlink" title="定义格式"></a>定义格式</h4><ul>
-<li>格式1：private 返回值类型 方法名(参数列表){        }</li>
-<li>范例1：private void show(){        }</li>
-<li>格式2：private static 返回值类型 方法名(参数列表){        }</li>
-<li>范例2：private static void method(){        }</li>
-</ul>
-<h4 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>默认方法可以调用私有的静态方法和非静态方法</li>
-<li>静态方法只可以调用私有的静态方法</li>
-</ul>
-<p>案例：当两个默认方法或者静态方法中含有一段相同的代码，可以将这段相同的代码合成一个私有方法，但是在默认方法或静态方法中可以调用此私有方法避免重复。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%84%E6%88%90%E6%9B%B4%E6%96%B0/" data-id="cl0th5n26000ab35w1qb3diz6" data-title="接口的组成更新" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Lambda-方法引用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/13/Lambda-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-03-13T10:19:44.000Z" itemprop="datePublished">2022-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/13/Lambda-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">Lambdab表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Lambda表达式"><a href="#1-Lambda表达式" class="headerlink" title="1.Lambda表达式"></a>1.Lambda表达式</h2><h3 id="1-1-函数式编程思想概述"><a href="#1-1-函数式编程思想概述" class="headerlink" title="1.1 函数式编程思想概述"></a>1.1 函数式编程思想概述</h3><p>强调做什么，而不是以什么形式去做</p>
-<h3 id="1-2-体验Lambda表达式"><a href="#1-2-体验Lambda表达式" class="headerlink" title="1.2 体验Lambda表达式"></a>1.2 体验Lambda表达式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class LambdaDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">    //Lanbda表达式</span><br><span class="line">        new Thread(()-&gt;&#123;</span><br><span class="line">            System.out.println(&quot;多线程程序启动了&quot;);</span><br><span class="line">        &#125;).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-Lambda表达式的标准格式"><a href="#1-3-Lambda表达式的标准格式" class="headerlink" title="1.3 Lambda表达式的标准格式"></a>1.3 Lambda表达式的标准格式</h3><p>![截屏2022-03-14 上午9.48.26](&#x2F;Lambda-方法引用&#x2F;截屏2022-03-14 上午9.48.26.png)</p>
-<h3 id="1-4Lambda表达式练习"><a href="#1-4Lambda表达式练习" class="headerlink" title="1.4Lambda表达式练习"></a>1.4Lambda表达式练习</h3><h4 id="Lambda表达式使用前提"><a href="#Lambda表达式使用前提" class="headerlink" title="Lambda表达式使用前提"></a>Lambda表达式使用前提</h4><ul>
-<li>有一个接口</li>
-<li>有且只有一个抽象方法</li>
-</ul>
-<h4 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h4><p>![截屏2022-03-14 上午10.10.24](&#x2F;Lambda-方法引用&#x2F;截屏2022-03-14 上午10.10.24.png)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">接口类Eatable.java</span><br><span class="line">public interface Eatable &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">测试类EatableDemo.java</span><br><span class="line">public class EatableDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        useEatable(()-&gt;&#123;</span><br><span class="line">            System.out.println(&quot;一天一苹果，医生远离我&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void useEatable(Eatable e)&#123;</span><br><span class="line">        e.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a>练习2</h4><p>![截屏2022-03-14 上午10.29.40](&#x2F;Lambda-方法引用&#x2F;截屏2022-03-14 上午10.29.40.png)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">接口类Addable.java</span><br><span class="line">public interface Addable &#123;</span><br><span class="line">    int add(int a,int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">测试类AddableDemo.java</span><br><span class="line">public class AddableDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        useAddable((int x,int y)-&gt;&#123;</span><br><span class="line">            return x+y;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void useAddable(Addable a)&#123;</span><br><span class="line">        int sum = a.add(10,20);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>相当于在调用useAddable方法是重写的接口中add方法</p>
-<h3 id="1-5Lambda省略模式"><a href="#1-5Lambda省略模式" class="headerlink" title="1.5Lambda省略模式"></a>1.5Lambda省略模式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参考练习2</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        useAddable((int x,int y)-&gt;&#123;</span><br><span class="line">            return x+y;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>参数的类型可以省略</li>
-<li>但是有多个参数的情况下，不能只省略一个</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">参考练习2</span><br><span class="line">useAddable((x,y) -&gt; x+y)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果参数有且仅有一个，那么小括号可以省略</li>
-<li>如果代码块的语句只有一条，可以省略大括号和分号，如果有return，return也要省略掉</li>
-</ul>
-<h3 id="1-6-Lambda表达式的注意事项"><a href="#1-6-Lambda表达式的注意事项" class="headerlink" title="1.6 Lambda表达式的注意事项"></a>1.6 Lambda表达式的注意事项</h3><ul>
-<li><p>使用Lambda必须要有接口，并且要求接口中有且只有一个抽象方法</p>
-</li>
-<li><p>必须要有上下文环境，才能推导出Lambda表达式对应接口</p>
-</li>
-</ul>
-<p>​    -局部变量的赋值</p>
-<p>​    -调用方法的参数</p>
-<h3 id="1-7-Lambda表达式与匿名内部类的区别"><a href="#1-7-Lambda表达式与匿名内部类的区别" class="headerlink" title="1.7 Lambda表达式与匿名内部类的区别"></a>1.7 Lambda表达式与匿名内部类的区别</h3><h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><ul>
-<li>可以说接口，抽象类，具体了</li>
-<li>接口中有且只有一个抽象方法可以使用Lambda表达式，也可以使用匿名内部类</li>
-<li>编译之后会产生一个单独的.class文件</li>
-</ul>
-<h4 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h4><ul>
-<li>只能是接口</li>
-<li>如果接口中多了一个抽象方法就只能使用匿名内部类</li>
-<li>编译之后没有单独的.class字节码文件，对应的字节码会在运行的时候动态生成</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/13/Lambda-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" data-id="cl0th5n200000b35w0c8i6eat" data-title="Lambdab表达式" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-在mac搭建个人博客并且部署到github上" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/13/%E5%9C%A8mac%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E4%B8%94%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/" class="article-date">
-  <time class="dt-published" datetime="2022-03-13T08:37:42.000Z" itemprop="datePublished">2022-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/13/%E5%9C%A8mac%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E4%B8%94%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/">在mac搭建个人博客并且部署到github上</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="MAC搭建博客大体步骤"><a href="#MAC搭建博客大体步骤" class="headerlink" title="MAC搭建博客大体步骤"></a>MAC搭建博客大体步骤</h2><ul>
-<li>安装Node.js</li>
-<li>安装Git</li>
-<li>安装Hexo</li>
-<li>本地运行测试</li>
-<li>注册github并创建仓库</li>
-<li>部署到github中去</li>
-</ul>
-<h2 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1.安装Node.js"></a>1.安装Node.js</h2><p>在终端里运行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span><br></pre></td></tr></table></figure>
-
-<p>安装后</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
-
-<p>验证</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<p>有版本号代表成功</p>
-<p>更新</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//单独运行</span><br><span class="line">brew update</span><br><span class="line">brew upgrade node</span><br><span class="line">npm install -g npm</span><br><span class="line">//一条运行</span><br><span class="line">brew update &amp;&amp; brew upgrade node &amp;&amp; npm install -g npm</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><p>终端里输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
-
-<p>验证</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h2><p>打开终端 输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
-
-
-
-<p>看自己所在路径 在&#x2F;Userse&#x2F;你的用户名 输入 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br></pre></td></tr></table></figure>
-
-<p>在输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br></pre></td></tr></table></figure>
-
-<p>进入该文件</p>
-<p>在此输入pwd 检查路径是不是在 &#x2F;Userse&#x2F;你的用户名&#x2F;blog</p>
-<p>确定的话 输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">//每条分别输入</span><br><span class="line">hexo init</span><br><span class="line">//分别输入</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>本地启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//分别输入</span><br><span class="line">hexo g</span><br><span class="line">//分别输入</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p>访问本地链接 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
-<p>这是你会发现一个网址 恭喜你 你已经创建了一个博客了</p>
-<p>控制台这时什么都操作不了</p>
-<p>按control+c 结束</p>
-<h2 id="4-注册github并创建仓库"><a href="#4-注册github并创建仓库" class="headerlink" title="4.注册github并创建仓库"></a>4.注册github并创建仓库</h2><p>没有就现在注册一个 来得及 自己从网上查</p>
-<p>![截屏2022-03-13 下午5.02.51](&#x2F;在mac搭建个人博客并且部署到github上&#x2F;截屏2022-03-13 下午5.02.51.png)</p>
-<p>点 New reposiory</p>
-<p>![截屏2022-03-13 下午5.04.05](&#x2F;在mac搭建个人博客并且部署到github上&#x2F;截屏2022-03-13 下午5.04.05.png)</p>
-<p>名字严格按照 Name.github.io 创建 我的意见创建过了 所有有感叹号</p>
-<p>Name是你github的名字</p>
-<h2 id="5-配置SSH并且生成SSH-key"><a href="#5-配置SSH并且生成SSH-key" class="headerlink" title="5.配置SSH并且生成SSH key"></a>5.配置SSH并且生成SSH key</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C 你的邮箱</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ../../../</span><br></pre></td></tr></table></figure>
-
-<p>到跟目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd var</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-
-<p>输入密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd root</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>把里面的所有东西都复制出来 不要修改</p>
-<p>从文件出来</p>
-<p>按esc</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
-
-<p>登录Github，右上角 头像 -&gt; Settings —&gt; SSH nd GPG keys —&gt; New SSH key 。把复制的内容粘贴到key中，填好title并点击 Add SSH key</p>
-<p>验证一下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>出现hello…..     就代表成功</p>
-<p>在设置一下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name your name</span><br><span class="line">git config --global user.email your_email@youremail.com</span><br></pre></td></tr></table></figure>
-
-<p>名字是你git的名字 邮箱是你绑定git邮箱</p>
-<h2 id="6-部署到git上"><a href="#6-部署到git上" class="headerlink" title="6.部署到git上"></a>6.部署到git上</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>重启终端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
-
-<p>找到最底下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:youname/youname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>修改repo</p>
-<p>找到刚刚创建的git仓库 选择ssh 将链接复制到 repo 要有空格</p>
-<p>按a进行修改 </p>
-<p>修改完后按esc 输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
-
-<p>最后输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>部署完成后可在浏览器输入 yourname.github.io 这样就能看到自己一个属于自己的博客了，由于github是属于国外的服务器，访问起来有点慢，你也可以部署到coding中去，步骤类似，如果失败不要灰心 多试几次 多查查资料 我也忙活了一下午才整好 加油</p>
-<p>以后上传更新博客 必须要进管理员模式</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0c545b6f601a">https://www.jianshu.com/p/0c545b6f601a</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.788.recommend_more_video.-1">https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.788.recommend_more_video.-1</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111014448">https://zhuanlan.zhihu.com/p/111014448</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/13/%E5%9C%A8mac%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E4%B8%94%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/" data-id="cl0th5n250008b35w5w8oa4o9" data-title="在mac搭建个人博客并且部署到github上" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Markdown使用介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/13/Markdown%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time class="dt-published" datetime="2022-03-13T06:45:30.000Z" itemprop="datePublished">2022-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/13/Markdown%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/">Markdown使用介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="一-创建文章"><a href="#一-创建文章" class="headerlink" title="一.创建文章"></a>一.创建文章</h2><p>进入hexo的文件夹中 </p>
-<p><code>hexo n &quot;要取的文章名字&quot;</code></p>
-<p>不要用管理员进行创建 否则没有权限编辑不了文章 这个问题困扰我好久</p>
-<h2 id="二-编写文章"><a href="#二-编写文章" class="headerlink" title="二.编写文章"></a>二.编写文章</h2><h3 id="1-标题"><a href="#1-标题" class="headerlink" title="(1)标题"></a>(1)标题</h3><p>#一级标题</p>
-<p>##二级标题</p>
-<p>……</p>
-<p>######六级标题</p>
-<p><strong>Typora 快捷键：</strong></p>
-<p>一级标题：*<strong>（⌘ + 1）*</strong></p>
-<p>二级标题：*<strong>（⌘ + 2）*</strong></p>
-<p>三级标题：*<strong>（⌘ + 3）*</strong></p>
-<p>四级标题：*<strong>（⌘ + 4）*</strong></p>
-<p>…</p>
-<p>六级标题：*<strong>（⌘+6）*</strong></p>
-<h3 id="2-粗体、斜体、删除线和下划线"><a href="#2-粗体、斜体、删除线和下划线" class="headerlink" title="(2)粗体、斜体、删除线和下划线"></a>(2)粗体、斜体、删除线和下划线</h3><p><em>斜体</em><br><strong>粗体</strong><br><em><strong>加粗斜体</strong></em><br><del>删除线</del></p>
-<p><u>下划线</u></p>
-<p><code>*斜体* **粗体** ***加粗斜体*** ~~删除线~~</code></p>
-<p><strong>Typora 快捷键：</strong></p>
-<p> （⌘ + i）：斜体</p>
-<p>（⌘ + b）：粗体</p>
-<h2 id="（-⇧-96-）：删除线"><a href="#（-⇧-96-）：删除线" class="headerlink" title="（^ + ⇧ + &#96;）：删除线"></a>（^ + ⇧ + &#96;）：删除线</h2><h2 id="（⌘-u）下划线"><a href="#（⌘-u）下划线" class="headerlink" title="（⌘ + u）下划线"></a>（⌘ + u）下划线</h2><h3 id="3-引用块"><a href="#3-引用块" class="headerlink" title="(3)引用块"></a>(3)引用块</h3><p><code>&gt;文字引用</code></p>
-<blockquote>
-<p>这个就是一个引用</p>
-</blockquote>
-<p><strong>Typora 快捷键：</strong> （⌥ + ⌘ + q）</p>
-<h3 id="4-代码块"><a href="#4-代码块" class="headerlink" title="(4)代码块"></a>(4)代码块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`行内代码`</span><br><span class="line">```</span><br><span class="line">多行代码</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
-
-<p><strong>Typora 快捷键：</strong></p>
-<h2 id="（⌘-⌥-c）"><a href="#（⌘-⌥-c）" class="headerlink" title="（⌘ + ⌥ + c）"></a>（⌘ + ⌥ + c）</h2><h3 id="5-公式块"><a href="#5-公式块" class="headerlink" title="(5) 公式块"></a>(5) 公式块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">数学公式</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<h2 id="（⌘-⌥-B）"><a href="#（⌘-⌥-B）" class="headerlink" title="（⌘ + ⌥ + B）"></a><strong>（⌘ + ⌥ + B）</strong></h2><h3 id="6-分割线"><a href="#6-分割线" class="headerlink" title="(6) 分割线"></a>(6) 分割线</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.---</span><br><span class="line"></span><br><span class="line">2.+++</span><br><span class="line"></span><br><span class="line">3.***</span><br></pre></td></tr></table></figure>
-
-<h2 id="（—-enter-或-⌘-⌥-）"><a href="#（—-enter-或-⌘-⌥-）" class="headerlink" title="（— + enter 或 ⌘ + ⌥ + -）"></a><strong>（— + enter 或 ⌘ + ⌥ + -）</strong></h2><h3 id="7-列表"><a href="#7-列表" class="headerlink" title="(7) 列表"></a>(7) 列表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 有序列表项</span><br><span class="line"></span><br><span class="line">* 无序列表项</span><br><span class="line"></span><br><span class="line">+ 无序列表项</span><br><span class="line"></span><br><span class="line">- 无序列表项</span><br></pre></td></tr></table></figure>
-
-<p><strong>Typora 快捷键：</strong></p>
-<p>有序列表项：（⌥ + ⌘ + o）</p>
-<p>无序列表项：（⌥ + ⌘ + u）</p>
-<p>任务列表：（⌥ + ⌘ + x）</p>
-<h3 id="8-表格"><a href="#8-表格" class="headerlink" title="(8) 表格"></a>(8) 表格</h3><p><strong>Typora 快捷键：</strong> <strong>(⌘ + ⌥ + T）</strong></p>
-<h3 id="9-超链接"><a href="#9-超链接" class="headerlink" title="(9)超链接"></a>(9)超链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法一：[链接文字](链接地址 &quot;链接描述&quot;)</span><br><span class="line">例如：[示例链接](https://www.example.com/ &quot;示例链接&quot;)</span><br><span class="line"></span><br><span class="line">方法二：&lt;链接地址&gt;</span><br><span class="line">例如：&lt;https://www.example.com/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>快捷键：<strong>（⌘ + k）</strong></p>
-<h3 id="10-插入图片"><a href="#10-插入图片" class="headerlink" title="(10)插入图片"></a>(10)插入图片</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![图片文字](图片地址 &quot;图片描述&quot;)</span><br><span class="line">例如：![示例图片](https://www.example.com/example.PNG &quot;示例图片&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>（鼠标直接拖拽）</p>
-<p>hexo博客</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![想输入的提示名字，可不输入](/images/xx.jpg)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="11-文章跳转"><a href="#11-文章跳转" class="headerlink" title="(11)文章跳转"></a>(11)文章跳转</h3><p>跳转至文章开头<em>（⌘ + 向上箭头）</em><br>跳转至文章结尾<em>（⌘ + 向下箭头）</em></p>
-<h3 id="12-选中英文单词-x2F-中文单词"><a href="#12-选中英文单词-x2F-中文单词" class="headerlink" title="(12)选中英文单词&#x2F;中文单词"></a>(12)选中英文单词&#x2F;中文单词</h3><p>选中英文单词或连续的中文 <em>（⌘ + d）</em><br>选中光标左边英文单词&#x2F;中文 <em>（⌘+⌥+左方向）</em><br>选中光标左边英文单词&#x2F;中文 <em>（⌘+⌥+右方向）</em></p>
-<h3 id="13-按行选中"><a href="#13-按行选中" class="headerlink" title="(13)按行选中"></a>(13)按行选中</h3><h2 id="（⌘-l）"><a href="#（⌘-l）" class="headerlink" title="（⌘ + l）"></a><strong>（⌘ + l）</strong></h2><h3 id><a href="#" class="headerlink" title></a></h3><h3 id="14-查找替换"><a href="#14-查找替换" class="headerlink" title="(14)查找替换"></a>(14)查找替换</h3><h2 id="（⌘-f）"><a href="#（⌘-f）" class="headerlink" title="（⌘ + f）"></a><strong>（⌘ + f）</strong></h2><h3 id="15-插入表情"><a href="#15-插入表情" class="headerlink" title="(15)插入表情"></a>(15)插入表情</h3><p>mac输入 *<strong>⌃ + ⌘ + space*</strong> 弹出符号对话框</p>
-<h3 id="16-新建文件"><a href="#16-新建文件" class="headerlink" title="(16)新建文件"></a>(16)新建文件</h3><h2 id="（⌘-n）"><a href="#（⌘-n）" class="headerlink" title="（⌘ + n）"></a><strong>（⌘ + n）</strong></h2><h3 id="17-显示和隐藏侧边栏"><a href="#17-显示和隐藏侧边栏" class="headerlink" title="(17)显示和隐藏侧边栏"></a>(17)显示和隐藏侧边栏</h3><h2 id="（⇧-⌘-L）"><a href="#（⇧-⌘-L）" class="headerlink" title="（⇧ + ⌘ + L）"></a><strong>（⇧ + ⌘ + L）</strong></h2><h3 id="18-标题居中"><a href="#18-标题居中" class="headerlink" title="(18)标题居中"></a>(18)标题居中</h3><p>支持html语言 h1表示一级标题，h6表示六级标题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 align = &quot;center&quot;&gt;居中的标题&lt;h1&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="19-文本居中"><a href="#19-文本居中" class="headerlink" title="(19)文本居中"></a>(19)文本居中</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div align = &quot;center&quot;&gt;文本居中&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h3><p>从网上查的文章结合自己使用的写出来的 日后还有补充 方便自己复习看</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945">https://blog.csdn.net/wsmrzx/article/details/81478945</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/354088977">https://zhuanlan.zhihu.com/p/354088977</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/13/Markdown%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/" data-id="cl0th5n220001b35w4nvp6nmc" data-title="Markdown使用介绍" class="article-share-link">Share</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -1095,7 +1190,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
     </div>
   </div>
 
@@ -1105,7 +1200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 15px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 10px;">酒</a>
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java-web/" style="font-size: 10px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 10px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.33px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 16.67px;">酒</a>
     </div>
   </div>
 
@@ -1127,23 +1222,23 @@
       <ul>
         
           <li>
-            <a href="/2022/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/">计算机的基本组成</a>
+            <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/">MQTT基础协议（上）</a>
           </li>
         
           <li>
-            <a href="/2022/03/16/Stream%E6%B5%81/">Stream流</a>
+            <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/">Junit和反射和注解</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E7%99%BE%E5%88%A9%E7%94%9C/">百利甜</a>
+            <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">操作系统概述</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/">计算机系统简介</a>
+            <a href="/2022/03/19/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
           </li>
         
           <li>
-            <a href="/2022/03/15/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">函数式接口</a>
+            <a href="/2022/03/19/%E9%87%8E%E6%A0%BC/">野格</a>
           </li>
         
       </ul>
