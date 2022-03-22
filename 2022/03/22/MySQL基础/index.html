@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据库的基本概念 数据库的英文单词： DataBase 简称 ： DB 什么数据库？ 用于存储和管理数据的仓库。   数据库的特点： 持久化存储数据的。其实数据库就是一个文件系统 方便存储和管理数据 使用了统一的方式操作数据库 – SQL   常见的数据库软件 MySQL  MySQL数据库软件Mac安装 参考文献：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;a8e4068a7a8a&#x2F; h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础">
+<meta property="og:url" content="http://example.com/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库的基本概念 数据库的英文单词： DataBase 简称 ： DB 什么数据库？ 用于存储和管理数据的仓库。   数据库的特点： 持久化存储数据的。其实数据库就是一个文件系统 方便存储和管理数据 使用了统一的方式操作数据库 – SQL   常见的数据库软件 MySQL  MySQL数据库软件Mac安装 参考文献：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;a8e4068a7a8a&#x2F; h">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-22T03:13:04.000Z">
+<meta property="article:modified_time" content="2022-03-22T15:42:42.423Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MySQL基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2022-03-22T03:13:04.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数据库的基本概念"><a href="#数据库的基本概念" class="headerlink" title="数据库的基本概念"></a>数据库的基本概念</h2><ol>
+<li>数据库的英文单词： DataBase 简称 ： DB</li>
+<li>什么数据库？<ul>
+<li>用于存储和管理数据的仓库。</li>
+</ul>
+</li>
+<li>数据库的特点：<ol>
+<li>持久化存储数据的。其实数据库就是一个文件系统</li>
+<li>方便存储和管理数据</li>
+<li>使用了统一的方式操作数据库 – SQL</li>
+</ol>
+</li>
+<li>常见的数据库软件</li>
+<li>MySQL</li>
+</ol>
+<h2 id="MySQL数据库软件"><a href="#MySQL数据库软件" class="headerlink" title="MySQL数据库软件"></a>MySQL数据库软件</h2><p>Mac安装</p>
+<p>参考文献：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a8e4068a7a8a/">https://www.jianshu.com/p/a8e4068a7a8a/</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360858309">https://zhuanlan.zhihu.com/p/360858309</a></p>
+<p>Mac卸载</p>
+<p>参考文献：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/276c1271ae14">https://www.jianshu.com/p/276c1271ae14</a></p>
+<p>配置</p>
+<ol>
+<li><p>手动。</p>
+<pre><code> 2. cmd--&gt; services.msc 打开服务的窗口
+ 3. 使用管理员打开cmd
+     * net start mysql : 启动mysql的服务
+     * net stop mysql:关闭mysql服务
+</code></pre>
+</li>
+</ol>
+<p>Mac参考文献：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36004521/article/details/80637886">https://blog.csdn.net/qq_36004521/article/details/80637886</a></p>
+<p>MySQL登录<br>        1. mysql -uroot -p密码<br>        2. mysql -hip -uroot -p连接目标的密码<br>        3. mysql –host&#x3D;ip –user&#x3D;root –password&#x3D;连接目标的密码<br>    * MySQL退出<br>        1. exit<br>        2. quit</p>
+<p>Mac mysql的命令参考文献：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c4756bcd6cbc">https://www.jianshu.com/p/c4756bcd6cbc</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19484963/article/details/80431703">https://blog.csdn.net/qq_19484963/article/details/80431703</a></p>
+<p>MySQL目录结构</p>
+<ol>
+<li>MySQL安装目录：basedir&#x3D;”D:&#x2F;develop&#x2F;MySQL&#x2F;“<br> 1. 配置文件 my.ini</li>
+<li>MySQL数据目录：datadir&#x3D;”C:&#x2F;ProgramData&#x2F;MySQL&#x2F;MySQL Server 5.5&#x2F;Data&#x2F;“<br> * 几个概念<br>     * 数据库：文件夹<br>     * 表：文件<br>     * 数据：数据</li>
+</ol>
+<h2 id="SQL基本概念"><a href="#SQL基本概念" class="headerlink" title="SQL基本概念"></a>SQL基本概念</h2><p>什么是SQL</p>
+<ul>
+<li>Structured Query Language：结构化查询语言</li>
+<li>其实就是定义了操作所有关系型数据库的规则。每一种数据库操作的方式存在不一样的地方，称为“方言”。</li>
+</ul>
+<p>SQL通用语法</p>
+<ul>
+<li>SQL 语句可以单行或多行书写，以分号结尾。</li>
+<li>可使用空格和缩进来增强语句的可读性。</li>
+<li>MySQL 数据库的 SQL 语句不区分大小写，关键字建议使用大写。</li>
+<li>3 种注释<ul>
+<li>单行注释: – 注释内容 或 # 注释内容(mysql 特有) </li>
+<li>多行注释: &#x2F;* 注释 *&#x2F;</li>
+</ul>
+</li>
+</ul>
+<p>SQL分类</p>
+<ul>
+<li>DDL(Data Definition Language)数据定义语言<ul>
+<li>用来定义数据库对象：数据库，表，列等。关键字：create, drop,alter 等</li>
+</ul>
+</li>
+<li>DML(Data Manipulation Language)数据操作语言<ul>
+<li>用来对数据库中表的数据进行增删改。关键字：insert, delete, update 等</li>
+</ul>
+</li>
+<li>DQL(Data Query Language)数据查询语言<ul>
+<li>用来查询数据库中表的记录(数据)。关键字：select, where 等</li>
+</ul>
+</li>
+<li>DCL(Data Control Language)数据控制语言(了解)<ul>
+<li>用来定义数据库的访问权限和安全级别，及创建用户。关键字：GRANT， REVOKE 等</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/" data-id="cl12bm1mn0004ep5w4dqk7w3m" data-title="MySQL基础" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/21/%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">注解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java-web/" style="font-size: 16.67px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 10px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.33px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 16.67px;">酒</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/21/%E6%B3%A8%E8%A7%A3/">注解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/">MQTT基础协议（上）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/">Junit和反射和注解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">操作系统概述</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
