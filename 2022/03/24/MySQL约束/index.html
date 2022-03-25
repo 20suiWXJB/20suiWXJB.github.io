@@ -1,37 +1,839 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>MySQL约束 | Hexo</title>
+  <meta name="description" content="DQL:查询语句1.排序查询 语法：order by 子句 order by 排序字段1 排序方式1 ，  排序字段2 排序方式2…   排序方式： ASC：升序，默认的。 DESC：降序。   注意 如果有多个排序条件，则当前边的条件值一样时，才会判断第二条件。    2.聚合函数将一列数据作为一个整体，进行纵向的计算。  count：计算个数 一般选择非空的列：主键 count(*)   ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL约束">
+<meta property="og:url" content="http://example.com/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DQL:查询语句1.排序查询 语法：order by 子句 order by 排序字段1 排序方式1 ，  排序字段2 排序方式2…   排序方式： ASC：升序，默认的。 DESC：降序。   注意 如果有多个排序条件，则当前边的条件值一样时，才会判断第二条件。    2.聚合函数将一列数据作为一个整体，进行纵向的计算。  count：计算个数 一般选择非空的列：主键 count(*)   ma">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-24T07:03:27.000Z">
+<meta property="article:modified_time" content="2022-03-25T07:44:57.979Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
 
-{% block page_class %}page-post-detail{% endblock %}
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
 
 
-{% block content %}
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    </nav>
+  </div>
+</header>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Java-web/" style="font-size: 13.75px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">22</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/" class="title">四级英语</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-24T14:36:21.000Z" itemprop="datePublished">2022-03-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/" class="title">MySQL约束</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-24T07:03:27.000Z" itemprop="datePublished">2022-03-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/" class="title">MySQL基础</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-22T03:13:04.000Z" itemprop="datePublished">2022-03-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/21/%E6%B3%A8%E8%A7%A3/" class="title">注解</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-21T03:06:08.000Z" itemprop="datePublished">2022-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/" class="title">MQTT基础协议（上）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-20T18:37:12.000Z" itemprop="datePublished">2022-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-MySQL约束" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL约束
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/" class="article-date">
+	  <time datetime="2022-03-24T07:03:27.000Z" itemprop="datePublished">2022-03-24</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="DQL-查询语句"><a href="#DQL-查询语句" class="headerlink" title="DQL:查询语句"></a>DQL:查询语句</h2><h4 id="1-排序查询"><a href="#1-排序查询" class="headerlink" title="1.排序查询"></a>1.排序查询</h4><ul>
+<li>语法：order by 子句<ul>
+<li>order by 排序字段1 排序方式1 ，  排序字段2 排序方式2…</li>
+</ul>
+</li>
+<li>排序方式：<ul>
+<li>ASC：升序，默认的。</li>
+<li>DESC：降序。</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>如果有多个排序条件，则当前边的条件值一样时，才会判断第二条件。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-聚合函数"><a href="#2-聚合函数" class="headerlink" title="2.聚合函数"></a>2.聚合函数</h4><p>将一列数据作为一个整体，进行纵向的计算。</p>
+<ul>
+<li>count：计算个数<ul>
+<li>一般选择非空的列：主键</li>
+<li>count(*)</li>
+</ul>
+</li>
+<li>max：计算最大值</li>
+<li>min：计算最小值</li>
+<li>sum：计算和</li>
+<li>avg：计算平均值</li>
+</ul>
+<p>注意</p>
+<ul>
+<li>聚合函数的计算，排除null值。</li>
+</ul>
+<p>解决方案</p>
+<ul>
+<li>选择不包含非空的列进行计算</li>
+<li>IFNULL函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(english) FROM student;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-分组查询"><a href="#3-分组查询" class="headerlink" title="3.分组查询"></a>3.分组查询</h4><ul>
+<li>语法：group by 分组字段；</li>
+<li>注意：<ul>
+<li>分组之后查询的字段：分组字段、聚合函数</li>
+<li>where 和 having 的区别？</li>
+<li>where 在分组之前进行限定，如果不满足条件，则不参与分组。having在分组之后进行限定，如果不满足结果，则不会被查询出来</li>
+<li>where 后不可以跟聚合函数，having可以进行聚合函数的判断。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- 按照性别分组。分别查询男、女同学的平均分</span><br><span class="line">SELECT sex , AVG(math) FROM student GROUP BY sex;</span><br><span class="line"></span><br><span class="line">-- 按照性别分组。分别查询男、女同学的平均分,人数</span><br><span class="line">SELECT sex , AVG(math),COUNT(id) FROM student GROUP BY sex;</span><br><span class="line"></span><br><span class="line">--  按照性别分组。分别查询男、女同学的平均分,人数 要求：分数低于70分的人，不参与分组</span><br><span class="line">SELECT sex , AVG(math),COUNT(id) FROM student WHERE math &gt; 70 GROUP BY sex;</span><br><span class="line"></span><br><span class="line">--  按照性别分组。分别查询男、女同学的平均分,人数 要求：分数低于70分的人，不参与分组,分组之后。人数要大于2个人</span><br><span class="line">SELECT sex , AVG(math),COUNT(id) FROM student WHERE math &gt; 70 GROUP BY sex HAVING COUNT(id) &gt; 2;</span><br><span class="line"></span><br><span class="line">SELECT sex , AVG(math),COUNT(id) 人数 FROM student WHERE math &gt; 70 GROUP BY sex HAVING 人数 &gt; 2;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-分页查询"><a href="#4-分页查询" class="headerlink" title="4.分页查询"></a>4.分页查询</h4><ul>
+<li>语法：limit 开始的索引,每页查询的条数;</li>
+<li>公式：开始的索引 &#x3D; （当前的页码 - 1） * 每页显示的条数</li>
+<li>limit 是一个MySQL”方言”</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 每页显示3条记录 </span><br><span class="line">		SELECT * FROM student LIMIT 0,3; -- 第1页</span><br><span class="line">		</span><br><span class="line">		SELECT * FROM student LIMIT 3,3; -- 第2页</span><br><span class="line">		</span><br><span class="line">		SELECT * FROM student LIMIT 6,3; -- 第3页</span><br></pre></td></tr></table></figure>
+
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><ul>
+<li>概念：对表中的数据进行限定，保证数据的正确性、有效性和完整性。</li>
+<li>分类：<ul>
+<li>主键约束：primary key</li>
+<li>非空约束：not null</li>
+<li>唯一约束：unique</li>
+<li>外键约束：foreign key</li>
+</ul>
+</li>
+<li>非空约束：not null，某一列的值不能为null<ul>
+<li>创建表时添加约束</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE stu(</span><br><span class="line">			id INT,</span><br><span class="line">			NAME VARCHAR(20) NOT NULL -- name为非空</span><br><span class="line">		);</span><br></pre></td></tr></table></figure>
+
+<p>- </p>
+<ul>
+<li>创建表完后，添加非空约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE stu MODIFY NAME VARCHAR(20) NOT NULL;</span><br></pre></td></tr></table></figure>
+
+<p>- </p>
+<ul>
+<li>删除name的非空约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE stu MODIFY NAME VARCHAR(20);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>唯一约束：unique，某一列的值不能重复</p>
+<ul>
+<li><p>注意</p>
+<ul>
+<li>唯一约束可以有NULL值，但是只能有一条记录为null</li>
+</ul>
+</li>
+<li><p>在创建表时，添加唯一约束</p>
+<ul>
+<li>&#96;&#96;&#96;<br>CREATE TABLE stu(<br>        id INT,<br>        phone_number VARCHAR(20) UNIQUE – 手机号<br>    );<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 删除唯一约束</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    ALTER TABLE stu DROP INDEX phone_number;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>在表创建完后，添加唯一约束</p>
+<ul>
+<li>&#96;&#96;&#96;<br>ALTER TABLE stu MODIFY phone_number VARCHAR(20) UNIQUE;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    - </span><br><span class="line"></span><br><span class="line">- 主键约束：primary key。</span><br><span class="line"></span><br><span class="line">  - 注意：</span><br><span class="line"></span><br><span class="line">    - 含义：非空且唯一</span><br><span class="line">    - 一张表只能有一个字段为主键</span><br><span class="line">    - 主键就是表中记录的唯一标识</span><br><span class="line"></span><br><span class="line">  - 在创建表时，添加主键约束</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    create table stu(</span><br><span class="line">    			id int primary key,-- 给id添加主键约束</span><br><span class="line">    			name varchar(20)</span><br><span class="line">    		);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>删除主键</p>
+</li>
+<li><pre><code>-- 错误 alter table stu modify id int ;
+        ALTER TABLE stu DROP PRIMARY KEY;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 创建完表后，添加主键</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  ALTER TABLE stu MODIFY id INT PRIMARY KEY;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>自动增长</p>
+<ul>
+<li><p>概念：如果某一列是数值类型的，使用 auto_increment 可以来完成值得自动增长</p>
+</li>
+<li><p>在创建表时，添加主键约束，并且完成主键自增长</p>
+</li>
+<li><pre><code>create table stu(
+            id int primary key auto_increment,-- 给id添加主键约束
+            name varchar(20)
+        );
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 删除自动增长</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  ALTER TABLE stu MODIFY id INT;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>添加自动增长</p>
+</li>
+<li><pre><code>ALTER TABLE stu MODIFY id INT AUTO_INCREMENT;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - </span><br><span class="line"></span><br><span class="line">- 外键约束</span><br><span class="line"></span><br><span class="line">  - foreign key,让表与表产生关系，从而保证数据的正确性。</span><br><span class="line"></span><br><span class="line">  - 在创建表时，可以添加外键</span><br><span class="line"></span><br><span class="line">    - ```</span><br><span class="line">      create table 表名(</span><br><span class="line">      				....</span><br><span class="line">      				--外键列</span><br><span class="line">      				constraint 外键名称 foreign key (外键列名称) references 主表名称(主表列名称)</span><br><span class="line">      			);</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>删除外键</p>
+<ul>
+<li>&#96;&#96;&#96;<br>ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 创建表之后，添加外键</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>级联操作</p>
+<ul>
+<li><p>添加级联操作</p>
+<ul>
+<li>&#96;&#96;&#96;<br>语法：ALTER TABLE 表名 ADD CONSTRAINT 外键名称<br>                FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称) ON UPDATE CASCADE ON DELETE CASCADE  ;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 分类：</span><br><span class="line"></span><br><span class="line">    - 级联更新：ON UPDATE CASCADE </span><br><span class="line">    - 级联删除：ON DELETE CASCADE </span><br><span class="line"></span><br><span class="line">## 数据库的设计</span><br><span class="line"></span><br><span class="line">1. 多表之间的关系</span><br><span class="line">   1. 分类：</span><br><span class="line">      1. 一对一(了解)：</span><br><span class="line">         - 如：人和身份证</span><br><span class="line">         - 分析：一个人只有一个身份证，一个身份证只能对应一个人</span><br><span class="line">      2. 一对多(多对一)：</span><br><span class="line">         - 如：部门和员工</span><br><span class="line">         - 分析：一个部门有多个员工，一个员工只能对应一个部门</span><br><span class="line">      3. 多对多：</span><br><span class="line">         -  如：学生和课程</span><br><span class="line">         - 分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择</span><br><span class="line">   2. 实现关系：</span><br><span class="line">      1. 一对多(多对一)：</span><br><span class="line">         - 如：部门和员工</span><br><span class="line">         - 实现方式：在多的一方建立外键，指向一的一方的主键。</span><br><span class="line">      2.  多对多：</span><br><span class="line">         - 如：学生和课程</span><br><span class="line">         - 实现方式：多对多关系实现需要借助第三张中间表。中间表至少包含两个字段，这两个字段作为第三张表的外键，分别指向两张表的主键</span><br><span class="line">      3.  一对一(了解)：</span><br><span class="line">         - 如：人和身份证</span><br><span class="line">         - 实现方式：一对一关系实现，可以在任意一方添加唯一（unique）外键指向另一方的主键。</span><br><span class="line">   3. 案例</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>多表之间的关系<ol>
+<li><p>分类：</p>
+<ol>
+<li>一对一(了解)：<ul>
+<li>如：人和身份证</li>
+<li>分析：一个人只有一个身份证，一个身份证只能对应一个人</li>
+</ul>
+</li>
+<li>一对多(多对一)：<ul>
+<li>如：部门和员工</li>
+<li>分析：一个部门有多个员工，一个员工只能对应一个部门</li>
+</ul>
+</li>
+<li>多对多：<ul>
+<li>如：学生和课程</li>
+<li>分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>实现关系：</p>
+<ol>
+<li>一对多(多对一)：<ul>
+<li>如：部门和员工</li>
+<li>实现方式：在多的一方建立外键，指向一的一方的主键。</li>
+</ul>
+</li>
+<li>多对多：<ul>
+<li>如：学生和课程</li>
+<li>实现方式：多对多关系实现需要借助第三张中间表。中间表至少包含两个字段，这两个字段作为第三张表的外键，分别指向两张表的主键</li>
+</ul>
+</li>
+<li>一对一(了解)：<ul>
+<li>如：人和身份证</li>
+<li>实现方式：一对一关系实现，可以在任意一方添加唯一外键指向另一方的主键。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>案例<br> – 创建旅游线路分类表 tab_category<br> – cid 旅游线路分类主键，自动增长<br> – cname 旅游线路分类名称非空，唯一，字符串 100<br> CREATE TABLE tab_category (<br> cid INT PRIMARY KEY AUTO_INCREMENT,<br> cname VARCHAR(100) NOT NULL UNIQUE<br> );</p>
+<p> – 创建旅游线路表 tab_route<br> &#x2F;*<br> rid 旅游线路主键，自动增长<br> rname 旅游线路名称非空，唯一，字符串 100<br> price 价格<br> rdate 上架时间，日期类型<br> cid 外键，所属分类<br> *&#x2F;<br> CREATE TABLE tab_route(<br> rid INT PRIMARY KEY AUTO_INCREMENT,<br> rname VARCHAR(100) NOT NULL UNIQUE,<br> price DOUBLE,<br> rdate DATE,<br> cid INT,<br> FOREIGN KEY (cid) REFERENCES tab_category(cid)<br> );</p>
+<p> &#x2F;*创建用户表 tab_user<br> uid 用户主键，自增长<br> username 用户名长度 100，唯一，非空<br> password 密码长度 30，非空<br> name 真实姓名长度 100<br> birthday 生日<br> sex 性别，定长字符串 1<br> telephone 手机号，字符串 11<br> email 邮箱，字符串长度 100<br> *&#x2F;<br> CREATE TABLE tab_user (<br> uid INT PRIMARY KEY AUTO_INCREMENT,<br> username VARCHAR(100) UNIQUE NOT NULL,<br> PASSWORD VARCHAR(30) NOT NULL,<br> NAME VARCHAR(100),<br> birthday DATE,<br> sex CHAR(1) DEFAULT ‘男’,<br> telephone VARCHAR(11),<br> email VARCHAR(100)<br> );</p>
+<p> &#x2F;*<br> 创建收藏表 tab_favorite<br> rid 旅游线路 id，外键<br> date 收藏时间<br> uid 用户 id，外键<br> rid 和 uid 不能重复，设置复合主键，同一个用户不能收藏同一个线路两次<br> *&#x2F;<br> CREATE TABLE tab_favorite (<br> rid INT, – 线路id<br> DATE DATETIME,<br> uid INT, – 用户id<br> – 创建复合主键<br> PRIMARY KEY(rid,uid), – 联合主键<br> FOREIGN KEY (rid) REFERENCES tab_route(rid),<br> FOREIGN KEY(uid) REFERENCES tab_user(uid)<br> );</p>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>
+2.数据库设计的范式
+
+- 概念：设计数据库时，需要遵循的一些规范。要遵循后边的范式要求，必须先遵循前边的所有范式要求
+- 设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同的范式，各种范式呈递次规范，越高的范式数据库冗余越小。
+- 目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）。
+
+- 分类
+  - 第一范式（1NF）：每一列都是不可分割的原子数据项
+  - 第二范式（2NF）：在1NF的基础上，非码属性必须完全依赖于码（在1NF基础上消除非主属性对主码的部分函数依赖）
+    - 几个概念：
+      1. 函数依赖：A--&gt;B,如果通过A属性(属性组)的值，可以确定唯一B属性的值。则称B依赖于A
+                             例如：学号--&gt;姓名。  （学号，课程名称） --&gt; 分数
+      2. 完全函数依赖：A--&gt;B， 如果A是一个属性组，则B属性值得确定需要依赖于A属性组中所有的属性值。
+                             例如：（学号，课程名称） --&gt; 分数
+      3. 部分函数依赖：A--&gt;B， 如果A是一个属性组，则B属性值得确定只需要依赖于A属性组中某一些值即可。
+                             例如：（学号，课程名称） -- &gt; 姓名
+      4. 传递函数依赖：A--&gt;B, B -- &gt;C . 如果通过A属性(属性组)的值，可以确定唯一B属性的值，在通过B属性（属性组）的值可以确定唯一C属性的值，则称 C 传递函数依赖于A
+                             例如：学号--&gt;系名，系名--&gt;系主任
+      5. 码：如果在一张表中，一个属性或属性组，被其他所有属性所完全依赖，则称这个属性(属性组)为该表的码
+                             例如：该表中码为：（学号，课程名称）
+         - 主属性：码属性组中的所有属性
+         - 非主属性：除过码属性组的属性
+  - 第三范式（3NF）：在2NF基础上，任何非主属性不依赖于其它非主属性（在2NF基础上消除传递依赖）
+
+## 数据库的备份与还原
+
+1. 命令行：
+   - 语法：
+     - 备份： mysqldump -u用户名 -p密码 数据库名称 &gt; 保存的路径
+     -  还原：
+       1. 登录数据库
+       2. 创建数据库
+       3. 使用数据库
+       4. 执行文件。source 文件路径
+2. 图形化工具：
+</code></pre>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/" title="MySQL约束" target="_blank" rel="external">http://example.com/2022/03/24/MySQL约束/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/" title="四级英语"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/" title="MySQL基础"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,37 +1,681 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>四级英语 | Hexo</title>
+  <meta name="description" content="四级词汇第一串词：view（看；被看见的）view        v.认为    n.观点；风景re - : 再一次 review    n.v.回顾；复习；评论  inter - : 相互 interview    n. v. 采访；面试；面谈 interviewee     n. 被面试者，被接见者，被访问者 interviewer     n.采访者；见面者；进行面试 employer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四级英语">
+<meta property="og:url" content="http://example.com/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="四级词汇第一串词：view（看；被看见的）view        v.认为    n.观点；风景re - : 再一次 review    n.v.回顾；复习；评论  inter - : 相互 interview    n. v. 采访；面试；面谈 interviewee     n. 被面试者，被接见者，被访问者 interviewer     n.采访者；见面者；进行面试 employer">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-24T14:36:21.000Z">
+<meta property="article:modified_time" content="2022-03-24T15:51:58.612Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="英语四级">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
 
-{% block page_class %}page-post-detail{% endblock %}
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
 
 
-{% block content %}
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    </nav>
+  </div>
+</header>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Java-web/" style="font-size: 13.75px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">22</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/" class="title">四级英语</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-24T14:36:21.000Z" itemprop="datePublished">2022-03-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/" class="title">MySQL约束</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-24T07:03:27.000Z" itemprop="datePublished">2022-03-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/22/MySQL%E5%9F%BA%E7%A1%80/" class="title">MySQL基础</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-22T03:13:04.000Z" itemprop="datePublished">2022-03-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/21/%E6%B3%A8%E8%A7%A3/" class="title">注解</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-21T03:06:08.000Z" itemprop="datePublished">2022-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/" class="title">MQTT基础协议（上）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-20T18:37:12.000Z" itemprop="datePublished">2022-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-四级单词1-6串词" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      四级英语
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/" class="article-date">
+	  <time datetime="2022-03-24T14:36:21.000Z" itemprop="datePublished">2022-03-24</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="四级词汇"><a href="#四级词汇" class="headerlink" title="四级词汇"></a>四级词汇</h2><h3 id="第一串词：view（看；被看见的）"><a href="#第一串词：view（看；被看见的）" class="headerlink" title="第一串词：view（看；被看见的）"></a>第一串词：view（看；被看见的）</h3><h4 id="view-v-认为-n-观点；风景"><a href="#view-v-认为-n-观点；风景" class="headerlink" title="view        v.认为    n.观点；风景"></a>view        v.认为    n.观点；风景</h4><h4 id="re-再一次"><a href="#re-再一次" class="headerlink" title="re - : 再一次"></a>re - : 再一次</h4><ul>
+<li>review    n.v.回顾；复习；评论</li>
+</ul>
+<h4 id="inter-相互"><a href="#inter-相互" class="headerlink" title="inter - : 相互"></a>inter - : 相互</h4><ul>
+<li>interview    n. v. 采访；面试；面谈</li>
+<li>interviewee     n. 被面试者，被接见者，被访问者</li>
+<li>interviewer     n.采访者；见面者；进行面试<ul>
+<li>employer    雇主</li>
+<li>employee    雇员</li>
+</ul>
+</li>
+</ul>
+<h3 id="第二串词：quire-x2F-quest-x2F-quer-to-ask-询问，to-seek-寻找"><a href="#第二串词：quire-x2F-quest-x2F-quer-to-ask-询问，to-seek-寻找" class="headerlink" title="第二串词：quire&#x2F;quest&#x2F;quer(to ask 询问，to seek 寻找)"></a>第二串词：quire&#x2F;quest&#x2F;quer(to ask 询问，to seek 寻找)</h3><h4 id="question-n-问题-v-质疑；怀疑"><a href="#question-n-问题-v-质疑；怀疑" class="headerlink" title="question    n.问题 v.质疑；怀疑"></a>question    n.问题 v.质疑；怀疑</h4><h5 id="tion-：名词词尾"><a href="#tion-：名词词尾" class="headerlink" title="-tion ：名词词尾"></a>-tion ：名词词尾</h5><h4 id="request-n-v-请求；需要（“请”）"><a href="#request-n-v-请求；需要（“请”）" class="headerlink" title="request    n. v. 请求；需要（“请”）"></a>request    n. v. 请求；需要（“请”）</h4><ul>
+<li>guest        客人（正式，客气）</li>
+</ul>
+<h5 id="re-：再"><a href="#re-：再" class="headerlink" title="re - ：再"></a>re - ：再</h5><ul>
+<li>restart    重启</li>
+<li>request sb to do sth    请求某人做某事</li>
+</ul>
+<h4 id="require-v-需要；要求（-x3D-need）"><a href="#require-v-需要；要求（-x3D-need）" class="headerlink" title="require    v.需要；要求（&#x3D; need）"></a>require    v.需要；要求（&#x3D; need）</h4><ul>
+<li>中性词</li>
+</ul>
+<h4 id="requirement-n-要求；必要条件"><a href="#requirement-n-要求；必要条件" class="headerlink" title="requirement    n. 要求；必要条件"></a>requirement    n. 要求；必要条件</h4><ul>
+<li>to meet&#x2F;satisfy the requirements<ul>
+<li>符合条件</li>
+</ul>
+</li>
+</ul>
+<h4 id="acquire-v-获得；取得；学到（技巧，学问）"><a href="#acquire-v-获得；取得；学到（技巧，学问）" class="headerlink" title="acquire    v. 获得；取得；学到（技巧，学问）"></a>acquire    v. 获得；取得；学到（技巧，学问）</h4><ul>
+<li><h5 id="ac-：强调"><a href="#ac-：强调" class="headerlink" title="ac - ：强调"></a>ac - ：强调</h5><ul>
+<li>技巧 kill</li>
+</ul>
+</li>
+</ul>
+<h4 id="inquire-v-询问；查究"><a href="#inquire-v-询问；查究" class="headerlink" title="inquire    v.询问；查究"></a>inquire    v.询问；查究</h4><ul>
+<li><h5 id="in-：进来，向内"><a href="#in-：进来，向内" class="headerlink" title="in - ：进来，向内"></a>in - ：进来，向内</h5><ul>
+<li>income 收入</li>
+</ul>
+</li>
+</ul>
+<h4 id="conquer-v-征服"><a href="#conquer-v-征服" class="headerlink" title="conquer    v. 征服"></a>conquer    v. 征服</h4><ul>
+<li><h5 id="con-：共同，强调"><a href="#con-：共同，强调" class="headerlink" title="con - ：共同，强调"></a>con - ：共同，强调</h5></li>
+<li><p>conquer your fear       克服恐惧</p>
+</li>
+<li><p>conquer the world       征服世界</p>
+</li>
+<li><p>overcome   克服小问题</p>
+</li>
+</ul>
+<h3 id="第3串词：duce-x2F-duct-x2F-duc（to-lead-引导；拉）"><a href="#第3串词：duce-x2F-duct-x2F-duc（to-lead-引导；拉）" class="headerlink" title="第3串词：duce&#x2F;duct&#x2F;duc（to lead 引导；拉）"></a>第3串词：duce&#x2F;duct&#x2F;duc（to lead 引导；拉）</h3><h4 id="produce-v-生产；引起；创作"><a href="#produce-v-生产；引起；创作" class="headerlink" title="produce    v.生产；引起；创作"></a>produce    v.生产；引起；创作</h4><ul>
+<li><h5 id="pro-：向前"><a href="#pro-：向前" class="headerlink" title="pro - ：向前"></a>pro - ：向前</h5></li>
+</ul>
+<h4 id="educate-v-教育；培养"><a href="#educate-v-教育；培养" class="headerlink" title="educate    v. 教育；培养"></a>educate    v. 教育；培养</h4><ul>
+<li><h5 id="e-（ex-）：出（out）"><a href="#e-（ex-）：出（out）" class="headerlink" title="e - （ex - ）：出（out）"></a>e - （ex - ）：出（out）</h5></li>
+<li><h5 id="ate：动词词尾"><a href="#ate：动词词尾" class="headerlink" title="-ate：动词词尾"></a>-ate：动词词尾</h5></li>
+<li><p>（正式）教育，内容比teach广泛（周围人言传身教，家庭的影响，熏陶）</p>
+</li>
+<li><p>train ：训练，培养</p>
+</li>
+<li><p>tutor：一对一</p>
+</li>
+<li><p>teach：“教”：最普通用语，教授具体知识，技能</p>
+</li>
+</ul>
+<h4 id="education-n-教育；培养"><a href="#education-n-教育；培养" class="headerlink" title="education    n. 教育；培养"></a>education    n. 教育；培养</h4><ul>
+<li>higher education  高等教育（指含大学以上的教育）</li>
+</ul>
+<h4 id="educational-adj-教育的；有教育意义的"><a href="#educational-adj-教育的；有教育意义的" class="headerlink" title="educational    adj.教育的；有教育意义的"></a>educational    adj.教育的；有教育意义的</h4><ul>
+<li>educational reform   教育改革</li>
+</ul>
+<h4 id="product-n-产品；产物"><a href="#product-n-产品；产物" class="headerlink" title="product    n. 产品；产物"></a>product    n. 产品；产物</h4><h4 id="production-n-生产；制造"><a href="#production-n-生产；制造" class="headerlink" title="production    n. 生产；制造"></a>production    n. 生产；制造</h4><h4 id="produce-v-生产；引起；创作-1"><a href="#produce-v-生产；引起；创作-1" class="headerlink" title="produce    v.生产；引起；创作"></a>produce    v.生产；引起；创作</h4><h4 id="producer-n-生产商"><a href="#producer-n-生产商" class="headerlink" title="producer    n. 生产商"></a>producer    n. 生产商</h4><h4 id="producetive-adj-多产的；有成效的"><a href="#producetive-adj-多产的；有成效的" class="headerlink" title="producetive    adj.多产的；有成效的"></a>producetive    adj.多产的；有成效的</h4><ul>
+<li>productive workers   高效（多产的）工人</li>
+<li>a productive meeting   有成效的会议</li>
+</ul>
+<h4 id="byproduct-n-副产品"><a href="#byproduct-n-副产品" class="headerlink" title="byproduct    n.副产品"></a>byproduct    n.副产品</h4><ul>
+<li>by your side<ul>
+<li>在你身边</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/03/24/%E5%9B%9B%E7%BA%A7%E5%8D%95%E8%AF%8D1-6%E4%B8%B2%E8%AF%8D/" title="四级英语" target="_blank" rel="external">http://example.com/2022/03/24/四级单词1-6串词/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/03/24/MySQL%E7%BA%A6%E6%9D%9F/" title="MySQL约束"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
