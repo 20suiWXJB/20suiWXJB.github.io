@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>HTML | mhy-blog</title>
+  <meta name="description" content="web概念概述 JavaWeb： 使用Java语言开发基于互联网的项目   软件架构： C&#x2F;S: Client&#x2F;Server 客户端&#x2F;服务器端 ​    在用户本地有一个客户端程序，在远程有一个服务器端程序 如：QQ，迅雷… 优点 用户体验好   缺点： 开发、安装，部署，维护 麻烦     只需要一个浏览器，用户通过不同的网址(URL)，客户访问不同的服务器端程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML">
+<meta property="og:url" content="http://example.com/2022/03/31/HTML/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="web概念概述 JavaWeb： 使用Java语言开发基于互联网的项目   软件架构： C&#x2F;S: Client&#x2F;Server 客户端&#x2F;服务器端 ​    在用户本地有一个客户端程序，在远程有一个服务器端程序 如：QQ，迅雷… 优点 用户体验好   缺点： 开发、安装，部署，维护 麻烦     只需要一个浏览器，用户通过不同的网址(URL)，客户访问不同的服务器端程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-31T00:42:45.000Z">
+<meta property="article:modified_time" content="2022-03-31T10:42:51.064Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/03/31/HTML/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.25px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/31/HTML/" class="title">HTML</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-31T00:42:45.000Z" itemprop="datePublished">2022-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%801-0/" class="title">计算机系统基础1.0</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-30T14:28:23.000Z" itemprop="datePublished">2022-03-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/30/JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0-JDBCTemplate/" class="title">JDBC连接池&amp;JDBCTemplate</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-30T00:33:17.000Z" itemprop="datePublished">2022-03-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84%E7%A8%8B%E5%BA%8F/" class="title">操作系统上的程序</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-29T13:27:57.000Z" itemprop="datePublished">2022-03-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/27/JDBC/" class="title">JDBC</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-27T07:22:27.000Z" itemprop="datePublished">2022-03-27</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-HTML" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/31/HTML/" class="article-date">
+	  <time datetime="2022-03-31T00:42:45.000Z" itemprop="datePublished">2022-03-31</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/31/HTML/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="web概念概述"><a href="#web概念概述" class="headerlink" title="web概念概述"></a>web概念概述</h2><ul>
+<li>JavaWeb：<ul>
+<li>使用Java语言开发基于互联网的项目</li>
+</ul>
+</li>
+<li>软件架构：<ol>
+<li>C&#x2F;S: Client&#x2F;Server 客户端&#x2F;服务器端<ul>
+<li>​    在用户本地有一个客户端程序，在远程有一个服务器端程序</li>
+<li>如：QQ，迅雷…</li>
+<li>优点<ol>
+<li>用户体验好</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>开发、安装，部署，维护 麻烦</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>只需要一个浏览器，用户通过不同的网址(URL)，客户访问不同的服务器端程序<ul>
+<li>优点<ol>
+<li>开发、安装，部署，维护 简单</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>如果应用过大，用户的体验可能会受到影响</li>
+<li>对硬件要求过高</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>B&#x2F;S架构详解<ul>
+<li>资源分类：<ol>
+<li>静态资源：<ul>
+<li>使用静态网页开发技术发布的资源。</li>
+<li>特点：<ul>
+<li>所有用户访问，得到的结果是一样的。</li>
+<li>如：文本，图片，音频、视频, HTML,CSS,JavaScript</li>
+<li>如果用户请求的是静态资源，那么服务器会直接将静态资源发送给浏览器。浏览器中内置了静态资源的解析引擎，可以展示静态资源</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>动态资源：<ul>
+<li>使用动态网页技术发布的资源。</li>
+<li>特点：<ul>
+<li>所有用户访问，得到的结果可能不一样。</li>
+<li>如：jsp&#x2F;servlet,php,asp…</li>
+<li>如果用户请求的是动态资源，那么服务器会执行动态资源，转换为静态资源，再发送给浏览器</li>
+</ul>
+</li>
+<li>我们要学习动态资源，必须先学习静态资源！</li>
+<li>静态资源：<ul>
+<li>HTML：用于搭建基础网页，展示页面的内容</li>
+<li>CSS：用于美化页面，布局页面</li>
+<li>JavaScript：控制页面的元素，让页面有一些动态的效果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><ol>
+<li><p>概念：是最基础的网页开发语言</p>
+<ul>
+<li>Hyper Text Markup Language 超文本标记语言<ul>
+<li>超文本:<ul>
+<li>超文本是用超链接的方法，将各种不同空间的文字信息组织在一起的网状文本.</li>
+</ul>
+</li>
+<li>标记语言:<ul>
+<li>由标签构成的语言。&lt;标签名称&gt; 如 html，xml</li>
+<li>标记语言不是编程语言</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>快速入门：</p>
+<ul>
+<li><p>语法：</p>
+<ol>
+<li><p>html文档后缀名 .html 或者 .htm</p>
+</li>
+<li><p>标签分为</p>
+<ol>
+<li>围堵标签：有开始标签和结束标签。如 <html> </html></li>
+<li>自闭和标签：开始标签和结束标签在一起。如 <br></li>
+</ol>
+</li>
+<li><p>标签可以嵌套：</p>
+<ul>
+<li>需要正确嵌套，不能你中有我，我中有你</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">错误：&lt;a&gt;&lt;b&gt;&lt;/a&gt;&lt;/b&gt;</span><br><span class="line">正确：&lt;a&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在开始标签中可以定义属性。属性是由键值对构成，值需要用引号(单双都可)引起来</p>
+</li>
+<li><p>html的标签不区分大小写，但是建议使用小写。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">* 代码：</span><br><span class="line">		&lt;html&gt;</span><br><span class="line">		</span><br><span class="line">			&lt;head&gt;</span><br><span class="line">				&lt;title&gt;title&lt;/title&gt;</span><br><span class="line">			&lt;/head&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;body&gt;</span><br><span class="line">				&lt;FONT color=&#x27;red&#x27;&gt;Hello World&lt;/font&gt;&lt;br/&gt;</span><br><span class="line">				</span><br><span class="line">				&lt;font color=&#x27;green&#x27;&gt;Hello World&lt;/font&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;/body&gt;</span><br><span class="line">	</span><br><span class="line">		&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>标签学习</p>
+<ol>
+<li><p>文件标签：构成html最基本的标签</p>
+<ul>
+<li>html:html文档的根标签</li>
+<li>head：头标签。用于指定html文档的一些属性。引入外部的资源</li>
+<li>title：标题标签。</li>
+<li>body：体标签</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;：html 5 中定义该文档是html文档</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文本标签：和文本有关的标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* 注释：&lt;!-- 注释内容 --&gt;</span><br><span class="line">		* &lt;h1&gt; to &lt;h6&gt;：标题标签</span><br><span class="line">			* h1~h6:字体大小逐渐递减</span><br><span class="line">		* &lt;p&gt;：段落标签</span><br><span class="line">		* &lt;br&gt;：换行标签</span><br><span class="line">		* &lt;hr/&gt;：展示一条水平线</span><br><span class="line">			* 属性：</span><br><span class="line">				* color：颜色</span><br><span class="line">				* width：宽度</span><br><span class="line">				* size：高度</span><br><span class="line">				* align：对其方式</span><br><span class="line">					* center：居中</span><br><span class="line">					* left：左对齐</span><br><span class="line">					* right：右对齐</span><br><span class="line">		* &lt;b&gt;：字体加粗</span><br><span class="line">		* &lt;i&gt;：字体斜体</span><br><span class="line">		* &lt;font&gt;:字体标签</span><br><span class="line">		* &lt;center&gt;:文本居中</span><br><span class="line">			* 属性：</span><br><span class="line">				* color：颜色</span><br><span class="line">				* size：大小</span><br><span class="line">				* face：字体</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 属性定义：</span><br><span class="line">			* color：</span><br><span class="line">				1. 英文单词：red,green,blue</span><br><span class="line">				2. rgb(值1，值2，值3)：值的范围：0~255  如  rgb(0,0,255)</span><br><span class="line">				3. #值1值2值3：值的范围：00~FF之间。如： #FF00FF</span><br><span class="line">			* width：</span><br><span class="line">				1. 数值：width=&#x27;20&#x27; ,数值的单位，默认是 px(像素)</span><br><span class="line">				2. 数值%：占比相对于父元素的比例</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">* 案例：公司简介</span><br><span class="line">			&lt;!DOCTYPE html&gt;</span><br><span class="line">			&lt;html lang=&quot;ch&quot;&gt;</span><br><span class="line">			&lt;head&gt;</span><br><span class="line">			    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">			    &lt;title&gt;黑马程序员简介&lt;/title&gt;</span><br><span class="line">			&lt;/head&gt;</span><br><span class="line">			&lt;body&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;h1&gt;</span><br><span class="line">			    公司简介</span><br><span class="line">			&lt;/h1&gt;</span><br><span class="line">			&lt;hr color=&quot;#ffd700&quot;&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">			&lt;font color=&quot;#FF0000&quot;&gt;&quot;中关村黑马程序员训练营&quot;&lt;/font&gt;是由&lt;b&gt;&lt;i&gt;传智播客&lt;/i&gt;&lt;/b&gt;联合中关村软件园、CSDN， 并委托传智播客进行教学实施的软件开发高端培训机构，致力于服务各大软件企业，解决当前软件开发技术飞速发展， 而企业招不到优秀人才的困扰。</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">			目前，“中关村黑马程序员训练营”已成长为行业“学员质量好、课程内容深、企业满意”的移动开发高端训练基地， 并被评为中关村软件园重点扶持人才企业。</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">			</span><br><span class="line">			黑马程序员的学员多为大学毕业后，有理想、有梦想，想从事IT行业，而没有环境和机遇改变自己命运的年轻人。 黑马程序员的学员筛选制度，远比现在90%以上的企业招聘流程更为严格。任何一名学员想成功入学“黑马程序员”， 必须经历长达2个月的面试流程，这些流程中不仅包括严格的技术测试、自学能力测试，还包括性格测试、压力测试、 品德测试等等测试。毫不夸张地说，黑马程序员训练营所有学员都是精挑细选出来的。百里挑一的残酷筛选制度确 保学员质量，并降低企业的用人风险。</span><br><span class="line">			中关村黑马程序员训练营不仅着重培养学员的基础理论知识，更注重培养项目实施管理能力，并密切关注技术革新， 不断引入先进的技术，研发更新技术课程，确保学员进入企业后不仅能独立从事开发工作，更能给企业带来新的技术体系和理念。</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">			</span><br><span class="line">			一直以来，黑马程序员以技术视角关注IT产业发展，以深度分享推进产业技术成长，致力于弘扬技术创新，倡导分享、 开放和协作，努力打造高质量的IT人才服务平台。</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;hr color=&quot;#ffd700&quot;&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;font color=&quot;gray&quot; size=&quot;2&quot;&gt;</span><br><span class="line">			    &lt;center&gt;</span><br><span class="line">			        江苏传智播客教育科技股份有限公司&lt;br&gt;</span><br><span class="line">			        版权所有Copyright 2006-2018&amp;copy;, All Rights Reserved 苏ICP备16007882</span><br><span class="line">			    &lt;/center&gt;</span><br><span class="line">			&lt;/font&gt;</span><br><span class="line">			&lt;/body&gt;</span><br><span class="line">			&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片标签：</p>
+<ul>
+<li>img：展示图片<ul>
+<li>属性：<ul>
+<li>src：指定图片的位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--展示一张图片 img--&gt;</span><br><span class="line">      </span><br><span class="line">  &lt;img src=&quot;image/jingxuan_2.jpg&quot; align=&quot;right&quot; alt=&quot;古镇&quot; width=&quot;500&quot; height=&quot;500&quot;/&gt;</span><br><span class="line">      		</span><br><span class="line">  &lt;!--</span><br><span class="line">      相对路径</span><br><span class="line">          * 以.开头的路径</span><br><span class="line">              * ./：代表当前目录  ./image/1.jpg</span><br><span class="line">              * ../:代表上一级目录</span><br><span class="line">   --&gt;</span><br><span class="line">      		</span><br><span class="line">  &lt;img src=&quot;./image/jiangwai_1.jpg&quot;&gt;</span><br><span class="line">      		</span><br><span class="line">  &lt;img src=&quot;../image/jiangwai_1.jpg&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表标签：</p>
+<ul>
+<li>有序列表：<ul>
+<li>ol:</li>
+<li>li:</li>
+</ul>
+</li>
+<li>无序列表：<ul>
+<li>ul:</li>
+<li>li:</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>链接标签：</p>
+<ul>
+<li><p>a:定义一个超链接</p>
+<ul>
+<li>属性：<ul>
+<li>href：指定访问资源的URL(统一资源定位符)</li>
+<li>target：指定打开资源的方式<ul>
+<li>_self:默认值，在当前页面打开</li>
+<li>_blank：在空白页面打开</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--超链接  a--&gt;</span><br><span class="line"></span><br><span class="line">		    &lt;a href=&quot;http://www.itcast.cn&quot;&gt;点我&lt;/a&gt;</span><br><span class="line">		    &lt;br&gt;</span><br><span class="line">		</span><br><span class="line">		    &lt;a href=&quot;http://www.itcast.cn&quot; target=&quot;_self&quot;&gt;点我&lt;/a&gt;</span><br><span class="line">		    &lt;br&gt;</span><br><span class="line">		    &lt;a href=&quot;http://www.itcast.cn&quot; target=&quot;_blank&quot;&gt;点我&lt;/a&gt;</span><br><span class="line">		</span><br><span class="line">		    &lt;br&gt;</span><br><span class="line">		</span><br><span class="line">		    &lt;a href=&quot;./5_列表标签.html&quot;&gt;列表标签&lt;/a&gt;&lt;br&gt;</span><br><span class="line">		    &lt;a href=&quot;mailto:itcast@itcast.cn&quot;&gt;联系我们&lt;/a&gt;</span><br><span class="line">		</span><br><span class="line">		    &lt;br&gt;</span><br><span class="line">		    &lt;a href=&quot;http://www.itcast.cn&quot;&gt;&lt;img src=&quot;image/jiangwai_1.jpg&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>div和span：</p>
+<ul>
+<li>div:每一个div占满一整行。块级标签<ul>
+<li>span：文本信息在一行展示，行内标签 内联标签</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>语义化标签：html5中为了提高程序的可读性，提供了一些标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. &lt;header&gt;：页眉</span><br><span class="line">2. &lt;footer&gt;：页脚</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/03/31/HTML/" title="HTML" target="_blank" rel="external">http://example.com/2022/03/31/HTML/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%801-0/" title="计算机系统基础1.0"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
