@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Javascript高级 | mhy-blog</title>
+  <meta name="description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容  获取页面标签(元素)对象：Element  document.getElementById(“id值”):通过元素的id获取元素对象   操作Element对象：  修改属性值：  明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置   修改标签体内容：  属性：innerHTML  获取元素对象  使用innerH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript高级">
+<meta property="og:url" content="http://example.com/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容  获取页面标签(元素)对象：Element  document.getElementById(“id值”):通过元素的id获取元素对象   操作Element对象：  修改属性值：  明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置   修改标签体内容：  属性：innerHTML  获取元素对象  使用innerH">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-04T10:22:35.000Z">
+<meta property="article:modified_time" content="2022-04-04T15:54:18.894Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.25px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/" class="title">Javascript高级</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-04T10:22:35.000Z" itemprop="datePublished">2022-04-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/04/2012%E5%B9%B4c-B%E7%BB%84%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98/" class="title">2012年c B组省赛真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-04T03:12:11.000Z" itemprop="datePublished">2022-04-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/JavaScript/" class="title">JavaScript</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T09:42:26.000Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/HTML-CSS/" class="title">HTML&amp;CSS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T07:31:37.000Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/31/HTML/" class="title">HTML</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-31T00:42:45.000Z" itemprop="datePublished">2022-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Javascript高级" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript高级
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/" class="article-date">
+	  <time datetime="2022-04-04T10:22:35.000Z" itemprop="datePublished">2022-04-04</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="DOM简单学习：为了满足案例要求"><a href="#DOM简单学习：为了满足案例要求" class="headerlink" title="DOM简单学习：为了满足案例要求"></a>DOM简单学习：为了满足案例要求</h2><ul>
+<li><p>功能：控制html文档的内容</p>
+</li>
+<li><p>获取页面标签(元素)对象：Element</p>
+<ul>
+<li>document.getElementById(“id值”):通过元素的id获取元素对象</li>
+</ul>
+</li>
+<li><p>操作Element对象：</p>
+<ul>
+<li><p>修改属性值：</p>
+<ul>
+<li>明确获取的对象是哪一个？</li>
+<li>查看API文档，找其中有哪些属性可以设置</li>
+</ul>
+</li>
+<li><p>修改标签体内容：</p>
+<ul>
+<li><p>属性：innerHTML</p>
+</li>
+<li><p>获取元素对象</p>
+</li>
+<li><p>使用innerHTML属性修改标签体内容</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件简单学习"><a href="#事件简单学习" class="headerlink" title="事件简单学习"></a>事件简单学习</h2><ul>
+<li>功能：某些组件被执行了某些操作后，触发某些代码的执行。<ul>
+<li>造句：xxx被xxx,我就xxx<ul>
+<li>我方水晶被摧毁后，我就责备对友。</li>
+<li>敌方水晶被摧毁后，我就夸奖自己。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何绑定事件<ol>
+<li>直接在html标签上，指定事件的属性(操作)，属性值就是js代码<ol>
+<li>事件：onclick— 单击事件</li>
+</ol>
+</li>
+<li>通过js获取元素对象，指定事件属性，设置一个函数</li>
+</ol>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">			&lt;img id=&quot;light&quot; src=&quot;img/off.gif&quot;  onclick=&quot;fun();&quot;&gt;</span><br><span class="line">			&lt;img id=&quot;light2&quot; src=&quot;img/off.gif&quot;&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;script&gt;</span><br><span class="line">			    function fun()&#123;</span><br><span class="line">			        alert(&#x27;我被点了&#x27;);</span><br><span class="line">			        alert(&#x27;我又被点了&#x27;);</span><br><span class="line">			    &#125;</span><br><span class="line">			</span><br><span class="line">			    function fun2()&#123;</span><br><span class="line">			        alert(&#x27;咋老点我？&#x27;);</span><br><span class="line">			    &#125;</span><br><span class="line">			</span><br><span class="line">			    //1.获取light2对象</span><br><span class="line">			    var light2 = document.getElementById(&quot;light2&quot;);</span><br><span class="line">			    //2.绑定事件</span><br><span class="line">			    light2.onclick = fun2;</span><br><span class="line">			    	&lt;/script&gt;</span><br><span class="line">		&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>案例1:电灯开关</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">	&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">	    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	    &lt;title&gt;电灯开关&lt;/title&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;img id=&quot;light&quot; src=&quot;img/off.gif&quot;&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	    /*</span><br><span class="line">	        分析：</span><br><span class="line">	            1.获取图片对象</span><br><span class="line">	            2.绑定单击事件</span><br><span class="line">	            3.每次点击切换图片</span><br><span class="line">	                * 规则：</span><br><span class="line">	                    * 如果灯是开的 on,切换图片为 off</span><br><span class="line">	                    * 如果灯是关的 off,切换图片为 on</span><br><span class="line">	                * 使用标记flag来完成</span><br><span class="line">	</span><br><span class="line">	     */</span><br><span class="line">	</span><br><span class="line">	    //1.获取图片对象</span><br><span class="line">	    var light = document.getElementById(&quot;light&quot;);</span><br><span class="line">	</span><br><span class="line">	    var flag = false;//代表灯是灭的。 off图片</span><br><span class="line">	</span><br><span class="line">	    //2.绑定单击事件</span><br><span class="line">	    light.onclick = function()&#123;</span><br><span class="line">	        if(flag)&#123;//判断如果灯是开的，则灭掉</span><br><span class="line">	            light.src = &quot;img/off.gif&quot;;</span><br><span class="line">	            flag = false;</span><br><span class="line">	</span><br><span class="line">	        &#125;else&#123;</span><br><span class="line">	            //如果灯是灭的，则打开</span><br><span class="line">	</span><br><span class="line">	            light.src = &quot;img/on.gif&quot;;</span><br><span class="line">	            flag = true;</span><br><span class="line">	        &#125;</span><br><span class="line">	          &#125;</span><br><span class="line">	    </span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">	&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM:"></a>BOM:</h2><ol>
+<li>概念：Browser Object Model 浏览器对象模型<ul>
+<li>将浏览器的各个组成部分封装成对象。</li>
+</ul>
+</li>
+<li>组成：<ul>
+<li>Window：窗口对象</li>
+<li>Navigator：浏览器对象</li>
+<li>Screen：显示器屏幕对象</li>
+<li>History：历史记录对象</li>
+<li>Location：地址栏对象</li>
+</ul>
+</li>
+<li>Window：窗口对象<ol>
+<li>创建<ol>
+<li>不需要创建</li>
+</ol>
+</li>
+<li>方法<ol>
+<li>与弹出框有关的方法：<ul>
+<li>alert()    显示带有一段消息和一个确认按钮的警告框。</li>
+<li>confirm()    显示带有一段消息以及确认按钮和取消按钮的对话框。<ul>
+<li>如果用户点击确定按钮，则方法返回true</li>
+<li>如果用户点击取消按钮，则方法返回false</li>
+</ul>
+</li>
+<li>prompt()    显示可提示用户输入的对话框。<ul>
+<li>返回值：获取用户输入的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>与打开关闭有关的方法：<ul>
+<li>close()    关闭浏览器窗口。<ul>
+<li>谁调用我 ，我关谁</li>
+</ul>
+</li>
+<li>open()    打开一个新的浏览器窗口<ul>
+<li>返回新的Window对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>与定时器有关的方式<ul>
+<li>setTimeout()    在指定的毫秒数后调用函数或计算表达式。<ul>
+<li>参数：<ol>
+<li>js代码或者方法对象</li>
+<li>毫秒值</li>
+</ol>
+</li>
+<li>返回值：唯一标识，用于取消定时器</li>
+</ul>
+</li>
+<li>clearTimeout()    取消由 setTimeout() 方法设置的 timeout。</li>
+<li>setInterval()    按照指定的周期（以毫秒计）来调用函数或计算表达式。</li>
+<li>clearInterval()    取消由 setInterval() 设置的 timeout。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>属性：<ol>
+<li>获取其他BOM对象：<ul>
+<li>history</li>
+<li>location</li>
+<li>Navigator</li>
+<li>Screen:</li>
+</ul>
+</li>
+<li>获取DOM对象<ul>
+<li>document</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>特点<ul>
+<li>Window对象不需要创建可以直接使用 window使用。 window.方法名();</li>
+<li>window引用可以省略。  方法名();</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Location：地址栏对象<ol>
+<li>创建(获取)：<ol>
+<li>window.location</li>
+<li>location</li>
+</ol>
+</li>
+<li>方法：<ul>
+<li>reload()    重新加载当前文档。刷新</li>
+</ul>
+</li>
+<li>属性<ul>
+<li>href    设置或返回完整的 URL。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>History：历史记录对象<ol>
+<li>创建(获取)：<ol>
+<li>window.history</li>
+<li>history</li>
+</ol>
+</li>
+<li>方法：<ul>
+<li>back()    加载 history 列表中的前一个 URL。</li>
+<li>forward()    加载 history 列表中的下一个 URL。</li>
+<li>go(参数)    加载 history 列表中的某个具体页面。<ul>
+<li>参数：<ul>
+<li>正数：前进几个历史记录</li>
+<li>负数：后退几个历史记录</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>属性：<ul>
+<li>length    返回当前窗口历史列表中的 URL 数量。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/" title="Javascript高级" target="_blank" rel="external">http://example.com/2022/04/04/Javascript高级/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/04/04/2012%E5%B9%B4c-B%E7%BB%84%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98/" title="2012年c B组省赛真题"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
