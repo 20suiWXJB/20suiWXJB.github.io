@@ -26,7 +26,7 @@
 <meta property="og:description" content="JavaScript： 概念：一门客户端脚本语言  运行在客户端浏览器中的。每一个浏览器都有JavaScript的解析引擎 脚本语言：不需要编译，直接就可以被浏览器解析执行了   功能  可以来增强用户和html页面的交互过程，可以来控制html元素，让页面有一些动态的效果，增强用户的体验。   JavaScript发展史：  1992年，Nombase公司，开发出第一门客户端脚本语言，专门用于表">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-02T09:42:26.000Z">
-<meta property="article:modified_time" content="2022-04-03T06:36:49.630Z">
+<meta property="article:modified_time" content="2022-04-04T03:06:45.946Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java-web">
 <meta name="twitter:card" content="summary">
@@ -398,14 +398,13 @@
 <ol>
 <li>基本语法：<ol>
 <li>与html结合方式<ol>
-<li>内部JS：<ul>
-<li>定义<script>，标签体内容就是js代码</li>
-</ul>
+<li><p>内部JS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">定义&lt;script&gt;，标签体内容就是js代码</span><br></pre></td></tr></table></figure>
+
+
 </li>
-<li>外部JS：<ul>
-<li>定义<script>，通过src属性引入外部的js文件</li>
-</ul>
-</li>
+<li><p>外部JS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">定义&lt;script&gt;，通过src属性引入外部的js文件</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ol>
@@ -426,8 +425,8 @@
 <li><p>数据类型：</p>
 <ol>
 <li>原始数据类型(基本数据类型)：<ol>
-<li>number：数字。 整数/小数/NaN(not a number 一个不是数字的数字类型)</li>
-<li>string：字符串。 字符串  "abc" "a" 'abc'</li>
+<li>number：数字。 整数&#x2F;小数&#x2F;NaN(not a number 一个不是数字的数字类型)</li>
+<li>string：字符串。 字符串  “abc” “a” ‘abc’</li>
 <li>boolean: true和false</li>
 <li>null：一个对象为空的占位符</li>
 <li>undefined：未定义。如果一个变量没有给初始化值，则会被默认赋值为undefined</li>
@@ -443,7 +442,7 @@
 <li>强类型：在开辟变量存储空间时，定义了空间将来存储的数据的数据类型。只能存储固定类型的数据</li>
 <li>弱类型：在开辟变量存储空间时，不定义空间将来的存储数据类型，可以存放任意类型的数据。</li>
 <li>语法：<ul>
-<li>var 变量名 = 初始化值;</li>
+<li>var 变量名 &#x3D; 初始化值;</li>
 </ul>
 </li>
 <li>typeof运算符：获取变量的类型。<ul>
@@ -455,11 +454,11 @@
 <li><p>运算符</p>
 <ol>
 <li><p>一元运算符：只有一个运算数的运算符</p>
-<p>​    ++，-- ， +(正号)  </p>
+<p>​    ++，– ， +(正号)  </p>
 <ul>
-<li>++ --: 自增(自减)<ul>
-<li>++(--) 在前，先自增(自减)，再运算</li>
-<li>++(--) 在后，先运算，再自增(自减)</li>
+<li>++ –: 自增(自减)<ul>
+<li>++(–) 在前，先自增(自减)，再运算</li>
+<li>++(–) 在后，先运算，再自增(自减)</li>
 </ul>
 </li>
 <li>+(-)：正负号<ul>
@@ -480,9 +479,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. ```</span><br><span class="line">   赋值运算符</span><br><span class="line">   				= += -+....</span><br></pre></td></tr></table></figure>
 </code></pre>
 </li>
-<li><p>```<br>比较运算符<br>            > < >= <= == ===(全等于)</p>
+<li><p>&#96;&#96;&#96;<br>比较运算符<br>            &gt; &lt; &gt;&#x3D; &lt;&#x3D; &#x3D;&#x3D; &#x3D;&#x3D;&#x3D;(全等于)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   - 比较方式</span><br><span class="line">     1. 类型相同：直接比较</span><br><span class="line">        - 字符串：按照字典顺序比较。按位逐一比较，直到得出大小为止。</span><br><span class="line">     2. 类型不同：先进行类型转换，再比较</span><br><span class="line">        - ===：全等于。在比较之前，先判断类型，如果类型不一样，则直接返回false</span><br><span class="line"></span><br><span class="line">5. 逻辑运算符</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&& || !</p>
+<p>&amp;&amp; || !</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   -  其他类型转boolean：</span><br><span class="line">     1. number：0或NaN为假，其他为真</span><br><span class="line">     2. string：除了空字符串(&quot;&quot;)，其他都是true</span><br><span class="line">     3. null&amp;undefined:都是false</span><br><span class="line">     4. 对象：所有对象都为true</span><br><span class="line"></span><br><span class="line">6. 三元运算符</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <pre><code>? : 表达式
     var a = 3;
@@ -627,12 +626,12 @@
 
         2.  量词符号：
 
-               ?：表示出现0次或1次
-               *：表示出现0次或多次
-               +：出现1次或多次
-               &#123;m,n&#125;:表示 m&lt;= 数量 &lt;= n
-               * m如果缺省： &#123;,n&#125;:最多n次
-               * n如果缺省：&#123;m,&#125; 最少m次
+                  ?：表示出现0次或1次
+                  *：表示出现0次或多次
+                  +：出现1次或多次
+                  &#123;m,n&#125;:表示 m&lt;= 数量 &lt;= n
+                  * m如果缺省： &#123;,n&#125;:最多n次
+                  * n如果缺省：&#123;m,&#125; 最少m次
 
         3. 开始结束符号
 
@@ -663,7 +662,7 @@
      3. URL编码
         1. 传智播客 =  %E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2
 </code></pre>
-</script></li></ul></li></ol></li></ol></li></ol></li></ul>
+
       
     </div>
     <div class="article-footer">
