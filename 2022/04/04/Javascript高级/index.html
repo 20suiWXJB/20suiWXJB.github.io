@@ -26,7 +26,7 @@
 <meta property="og:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容  获取页面标签(元素)对象：Element  document.getElementById(“id值”):通过元素的id获取元素对象   操作Element对象：  修改属性值：  明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置   修改标签体内容：  属性：innerHTML  获取元素对象  使用innerH">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-04T10:22:35.000Z">
-<meta property="article:modified_time" content="2022-04-05T02:13:34.485Z">
+<meta property="article:modified_time" content="2022-04-06T02:44:07.863Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java-web">
 <meta name="twitter:card" content="summary">
@@ -663,7 +663,10 @@
 </ol>
 </li>
 <li>焦点事件<ol>
-<li>onblur：失去焦点</li>
+<li>onblur：失去焦点<ul>
+<li>一般用于表单校验</li>
+</ul>
+</li>
 <li>onfocus:元素获得焦点。</li>
 </ol>
 </li>
@@ -672,7 +675,11 @@
 </ol>
 </li>
 <li>鼠标事件：<ol>
-<li>onmousedown    鼠标按钮被按下。</li>
+<li>onmousedown    鼠标按钮被按下。<ul>
+<li>定义方法时，定义一个形参，接受event对象</li>
+<li>event对象的button属性可以获取鼠标那个键被点击了</li>
+</ul>
+</li>
 <li>onmouseup    鼠标按键被松开。</li>
 <li>onmousemove    鼠标被移动。</li>
 <li>onmouseover    鼠标移到某元素之上。</li>
@@ -691,7 +698,13 @@
 </ol>
 </li>
 <li>表单事件：<ol>
-<li>onsubmit    确认按钮被点击。</li>
+<li>onsubmit    确认按钮被点击。<ul>
+<li>可以阻止表单的提交<ul>
+<li>方法返回false</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>onreset    重置按钮被点击。</li>
 </ol>
 </li>
