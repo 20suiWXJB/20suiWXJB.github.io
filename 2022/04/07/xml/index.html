@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>xml | mhy-blog</title>
+  <meta name="description" content="XML: 概念：Extensible Markup Language 可扩展标记语言  可扩展：标签都是自定义的。  1&lt;user&gt;  &lt;student&gt;   功能 存储数据 配置文件 在网络中传输     xml与html的区别   xml标签都是自定义的，html标签是预定义。 xml的语法严格，html语法松散 xml是存储数据的，html是展示数据   w3c:万维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xml">
+<meta property="og:url" content="http://example.com/2022/04/07/xml/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="XML: 概念：Extensible Markup Language 可扩展标记语言  可扩展：标签都是自定义的。  1&lt;user&gt;  &lt;student&gt;   功能 存储数据 配置文件 在网络中传输     xml与html的区别   xml标签都是自定义的，html标签是预定义。 xml的语法严格，html语法松散 xml是存储数据的，html是展示数据   w3c:万维">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-07T00:52:36.000Z">
+<meta property="article:modified_time" content="2022-04-07T15:36:56.924Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/04/07/xml/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.25px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.25px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/07/xml/" class="title">xml</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-07T00:52:36.000Z" itemprop="datePublished">2022-04-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/BootStrap/" class="title">BootStrap</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T07:38:24.000Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/05/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%877-12%E4%B8%B2%E8%AF%8D/" class="title">四级词汇7-12串词</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-05T03:30:39.000Z" itemprop="datePublished">2022-04-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/04/Javascript%E9%AB%98%E7%BA%A7/" class="title">Javascript高级</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-04T10:22:35.000Z" itemprop="datePublished">2022-04-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/04/2012%E5%B9%B4c-B%E7%BB%84%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98/" class="title">2012年c B组省赛真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-04T03:12:11.000Z" itemprop="datePublished">2022-04-04</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-xml" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      xml
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/07/xml/" class="article-date">
+	  <time datetime="2022-04-07T00:52:36.000Z" itemprop="datePublished">2022-04-07</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/07/xml/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="XML"><a href="#XML" class="headerlink" title="XML:"></a>XML:</h2><ol>
+<li><p>概念：Extensible Markup Language 可扩展标记语言</p>
+<ul>
+<li>可扩展：标签都是自定义的。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;user&gt;  &lt;student&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>功能<ul>
+<li>存储数据<ol>
+<li>配置文件</li>
+<li>在网络中传输</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>xml与html的区别</li>
+</ul>
+<ol>
+<li>xml标签都是自定义的，html标签是预定义。</li>
+<li>xml的语法严格，html语法松散</li>
+<li>xml是存储数据的，html是展示数据</li>
+</ol>
+<ul>
+<li>w3c:万维网联盟</li>
+</ul>
+</li>
+<li><p>语法：</p>
+<ul>
+<li>基本语法：<ol>
+<li>xml文档的后缀名 .xml</li>
+<li>xml第一行必须定义为文档声明</li>
+<li>xml文档中有且仅有一个根标签</li>
+<li>属性值必须使用引号(单双都可)引起来</li>
+<li>标签必须正确关闭</li>
+<li>xml标签名称区分大小写</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&#x27;1.0&#x27; ?&gt;</span><br><span class="line">		&lt;users&gt;</span><br><span class="line">			&lt;user id=&#x27;1&#x27;&gt;</span><br><span class="line">				&lt;name&gt;zhangsan&lt;/name&gt;</span><br><span class="line">				&lt;age&gt;23&lt;/age&gt;</span><br><span class="line">				&lt;gender&gt;male&lt;/gender&gt;</span><br><span class="line">				&lt;br/&gt;</span><br><span class="line">			&lt;/user&gt;</span><br><span class="line">			</span><br><span class="line">			&lt;user id=&#x27;2&#x27;&gt;</span><br><span class="line">				&lt;name&gt;lisi&lt;/name&gt;</span><br><span class="line">				&lt;age&gt;24&lt;/age&gt;</span><br><span class="line">				&lt;gender&gt;female&lt;/gender&gt;</span><br><span class="line">			&lt;/user&gt;</span><br><span class="line">		&lt;/users&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>组成部分：</p>
+<ol>
+<li><p>文档声明</p>
+<ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml 属性列表 ?&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>属性列表：</p>
+<ul>
+<li>version：版本号，必须的属性</li>
+<li>encoding：编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1</li>
+<li>standalone：是否独立<ul>
+<li>取值：<ul>
+<li>yes：不依赖其他文件</li>
+<li>no：依赖其他文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>指令(了解)：结合css的</p>
+<ul>
+<li>&#96;&#96;&#96;<?xml-stylesheet type="text/css" href="a.css" ?>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 标签：标签名称自定义的</span><br><span class="line"></span><br><span class="line">  - 规则：</span><br><span class="line">    - 名称可以包含字母、数字以及其他的字符 </span><br><span class="line">    - 名称不能以数字或者标点符号开始 </span><br><span class="line">    - 名称不能以字母 xml（或者 XML、Xml 等等）开始 </span><br><span class="line">    - 名称不能包含空格 </span><br><span class="line"></span><br><span class="line">- 属性：</span><br><span class="line"></span><br><span class="line">  - id属性值唯一</span><br><span class="line"></span><br><span class="line">- 文本：</span><br><span class="line"></span><br><span class="line">  - CDATA区：在该区域中的数据会被原样展示</span><br><span class="line"></span><br><span class="line">    - ```</span><br><span class="line">      格式：  &lt;![CDATA[ 数据 ]]&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>约束：规定xml文档的书写规则</p>
+<ul>
+<li><p>作为框架的使用者(程序员)：</p>
+<ol>
+<li>能够在xml中引入约束文档</li>
+<li>能够简单的读懂约束文档</li>
+</ol>
+</li>
+<li><p>分类：</p>
+<ol>
+<li>DTD:一种简单的约束技术</li>
+<li>Schema:一种复杂的约束技术</li>
+</ol>
+</li>
+<li><p>DTD:</p>
+<ul>
+<li><p>引入dtd文档到xml文档中</p>
+<ul>
+<li><p>内部dtd：将约束规则定义在xml文档中</p>
+</li>
+<li><p>外部dtd：将约束的规则定义在外部的dtd文件中</p>
+<ul>
+<li>&#96;&#96;&#96;<br>本地：<!DOCTYPE 根标签名 SYSTEM "dtd文件的位置"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  网络：&lt;!DOCTYPE 根标签名 PUBLIC &quot;dtd文件名字&quot; &quot;dtd文件的位置URL&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Schema:</p>
+<ul>
+<li><p>引入：</p>
+<ol>
+<li><p>填写xml文档的根元素</p>
+</li>
+<li><p>引入xsi前缀. </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入xsd文件命名空间.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为每一个xsd约束声明一个前缀,作为标识  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns=&quot;http://www.itcast.cn/xml&quot; </span><br></pre></td></tr></table></figure></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;students   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">				xmlns=&quot;http://www.itcast.cn/xml&quot;</span><br><span class="line">				xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>解析：操作xml文档，将文档中的数据读取到内存中</p>
+<ul>
+<li><p>操作xml文档</p>
+<ol>
+<li>解析(读取)：将文档中的数据读取到内存中</li>
+<li>写入：将内存中的数据保存到xml文档中。持久化的存储</li>
+</ol>
+</li>
+<li><p>解析xml的方式：</p>
+<ol>
+<li>DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树<ul>
+<li>优点：操作方便，可以对文档进行CRUD的所有操作</li>
+<li>缺点：占内存</li>
+</ul>
+</li>
+<li>SAX：逐行读取，基于事件驱动的。<ul>
+<li>优点：不占内存。</li>
+<li>缺点：只能读取，不能增删改</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>xml常见的解析器：</p>
+<ol>
+<li>JAXP：sun公司提供的解析器，支持dom和sax两种思想</li>
+<li>DOM4J：一款非常优秀的解析器</li>
+<li>Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</li>
+<li>PULL：Android操作系统内置的解析器，sax方式的。</li>
+</ol>
+</li>
+<li><p>Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</p>
+<ul>
+<li>快速入门：<ul>
+<li>步骤：<ol>
+<li>导入jar包</li>
+<li>获取Document对象</li>
+<li>获取对应的标签Element对象</li>
+<li>获取数据</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//2.1获取student.xml的path</span><br><span class="line">	        String path = JsoupDemo1.class.getClassLoader().getResource(&quot;student.xml&quot;).getPath();</span><br><span class="line">	        //2.2解析xml文档，加载文档进内存，获取dom树---&gt;Document</span><br><span class="line">	        Document document = Jsoup.parse(new File(path), &quot;utf-8&quot;);</span><br><span class="line">	        //3.获取元素对象 Element</span><br><span class="line">	        Elements elements = document.getElementsByTag(&quot;name&quot;);</span><br><span class="line">	</span><br><span class="line">	        System.out.println(elements.size());</span><br><span class="line">	        //3.1获取第一个name的Element对象</span><br><span class="line">	        Element element = elements.get(0);</span><br><span class="line">	        //3.2获取数据</span><br><span class="line">	        String name = element.text();</span><br><span class="line">	        System.out.println(name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象的使用：</p>
+<ol>
+<li><p>Jsoup：工具类，可以解析html或xml文档，返回Document</p>
+<ul>
+<li>parse：解析html或xml文档，返回Document<ul>
+<li>parse(File in, String charsetName)：解析xml或html文件的。</li>
+<li>parse(String html)：解析xml或html字符串</li>
+<li>parse(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Document：文档对象。代表内存中的dom树</p>
+<ul>
+<li>获取Element对象<ul>
+<li>getElementById(String id)：根据id属性值获取唯一的element对象</li>
+<li>getElementsByTag(String tagName)：根据标签名称获取元素对象集合</li>
+<li>getElementsByAttribute(String key)：根据属性名称获取元素对象集合</li>
+<li>getElementsByAttributeValue(String key, String value)：根据对应的属性名和属性值获取元素对象集合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Elements：元素Element对象的集合。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以当做 ArrayList&lt;Element&gt;来使用</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Element：元素对象</p>
+<ol>
+<li>获取子元素对象<ul>
+<li>getElementById(String id)：根据id属性值获取唯一的element对象</li>
+<li>getElementsByTag(String tagName)：根据标签名称获取元素对象集合</li>
+<li>getElementsByAttribute(String key)：根据属性名称获取元素对象集合</li>
+<li>getElementsByAttributeValue(String key, String value)：根据对应的属性名和属性值获取元素对象集合</li>
+</ul>
+</li>
+<li>获取属性值<ul>
+<li>String attr(String key)：根据属性名称获取属性值</li>
+</ul>
+</li>
+<li>获取文本内容<ul>
+<li>String text():获取文本内容</li>
+<li>String html():获取标签体的所有内容(包括字标签的字符串内容)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Node：节点对象</p>
+<ul>
+<li>是Document和Element的父类</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>快捷查询方式：</p>
+<ol>
+<li><p>selector:选择器</p>
+<ul>
+<li>使用的方法：Elements    select(String cssQuery)<ul>
+<li>语法：参考Selector类中定义的语法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言</p>
+<ul>
+<li>使用Jsoup的Xpath需要额外导入jar包。</li>
+<li>查询w3cshool参考手册，使用xpath的语法完成查询</li>
+<li>代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//1.获取student.xml的path</span><br><span class="line">		        String path = JsoupDemo6.class.getClassLoader().getResource(&quot;student.xml&quot;).getPath();</span><br><span class="line">		        //2.获取Document对象</span><br><span class="line">		        Document document = Jsoup.parse(new File(path), &quot;utf-8&quot;);</span><br><span class="line">		</span><br><span class="line">		        //3.根据document对象，创建JXDocument对象</span><br><span class="line">		        JXDocument jxDocument = new JXDocument(document);</span><br><span class="line">		</span><br><span class="line">		        //4.结合xpath语法查询</span><br><span class="line">		        //4.1查询所有student标签</span><br><span class="line">		        List&lt;JXNode&gt; jxNodes = jxDocument.selN(&quot;//student&quot;);</span><br><span class="line">		        for (JXNode jxNode : jxNodes) &#123;</span><br><span class="line">		            System.out.println(jxNode);</span><br><span class="line">		        &#125;</span><br><span class="line">		</span><br><span class="line">		        System.out.println(&quot;--------------------&quot;);</span><br><span class="line">		</span><br><span class="line">		        //4.2查询所有student标签下的name标签</span><br><span class="line">		        List&lt;JXNode&gt; jxNodes2 = jxDocument.selN(&quot;//student/name&quot;);</span><br><span class="line">		        for (JXNode jxNode : jxNodes2) &#123;</span><br><span class="line">		            System.out.println(jxNode);</span><br><span class="line">		        &#125;</span><br><span class="line">		</span><br><span class="line">		        System.out.println(&quot;--------------------&quot;);</span><br><span class="line">		</span><br><span class="line">		        //4.3查询student标签下带有id属性的name标签</span><br><span class="line">		        List&lt;JXNode&gt; jxNodes3 = jxDocument.selN(&quot;//student/name[@id]&quot;);</span><br><span class="line">		        for (JXNode jxNode : jxNodes3) &#123;</span><br><span class="line">		            System.out.println(jxNode);</span><br><span class="line">		        &#125;</span><br><span class="line">		        System.out.println(&quot;--------------------&quot;);</span><br><span class="line">		        //4.4查询student标签下带有id属性的name标签 并且id属性值为itcast</span><br><span class="line">		</span><br><span class="line">		        List&lt;JXNode&gt; jxNodes4 = jxDocument.selN(&quot;//student/name[@id=&#x27;itcast&#x27;]&quot;);</span><br><span class="line">		        for (JXNode jxNode : jxNodes4) &#123;</span><br><span class="line">		            System.out.println(jxNode);</span><br><span class="line">		        &#125; </span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/04/07/xml/" title="xml" target="_blank" rel="external">http://example.com/2022/04/07/xml/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/04/06/BootStrap/" title="BootStrap"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
