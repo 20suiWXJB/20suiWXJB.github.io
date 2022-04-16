@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>JSP&amp;&amp;MVC&amp;&amp;EL&amp;&amp;JSTL | mhy-blog</title>
+  <meta name="description" content="主要内容 JSP： 指令 注释 内置对象   MVC开发模式 EL表达式 JSTL标签 三层架构  JSP： 指令  作用：用于配置JSP页面，导入资源文件  格式： 1&lt;%@ 指令名称 属性名1&#x3D;属性值1 属性名2&#x3D;属性值2 ... %&gt;  分类：  page        ： 配置JSP页面的  contentType：等同于response.setContentType() 设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP&amp;&amp;MVC&amp;&amp;EL&amp;&amp;JSTL">
+<meta property="og:url" content="http://example.com/2022/04/15/JSP-MVC-EL-JSTL/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="主要内容 JSP： 指令 注释 内置对象   MVC开发模式 EL表达式 JSTL标签 三层架构  JSP： 指令  作用：用于配置JSP页面，导入资源文件  格式： 1&lt;%@ 指令名称 属性名1&#x3D;属性值1 属性名2&#x3D;属性值2 ... %&gt;  分类：  page        ： 配置JSP页面的  contentType：等同于response.setContentType() 设置">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-15T08:46:01.000Z">
+<meta property="article:modified_time" content="2022-04-16T15:35:30.283Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/04/15/JSP-MVC-EL-JSTL/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.25px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13.25px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.5px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.25px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.5px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/15/JSP-MVC-EL-JSTL/" class="title">JSP&amp;&amp;MVC&amp;&amp;EL&amp;&amp;JSTL</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-15T08:46:01.000Z" itemprop="datePublished">2022-04-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/13/Cookie-Session/" class="title">Cookie&amp;Session</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-13T00:36:58.000Z" itemprop="datePublished">2022-04-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/12/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%8713-20%E4%B8%B2%E8%AF%8D/" class="title">四级词汇13-20串词</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-12T15:13:05.000Z" itemprop="datePublished">2022-04-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/11/Response/" class="title">Response</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-11T06:28:08.000Z" itemprop="datePublished">2022-04-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/10/LeetCode%E9%A2%98/" class="title">LeetCode题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-10T15:21:43.000Z" itemprop="datePublished">2022-04-10</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-JSP-MVC-EL-JSTL" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JSP&amp;&amp;MVC&amp;&amp;EL&amp;&amp;JSTL
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/15/JSP-MVC-EL-JSTL/" class="article-date">
+	  <time datetime="2022-04-15T08:46:01.000Z" itemprop="datePublished">2022-04-15</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/15/JSP-MVC-EL-JSTL/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h1><ul>
+<li>JSP：<ol>
+<li>指令</li>
+<li>注释</li>
+<li>内置对象</li>
+</ol>
+</li>
+<li>MVC开发模式</li>
+<li>EL表达式</li>
+<li>JSTL标签</li>
+<li>三层架构</li>
+</ul>
+<h2 id="JSP："><a href="#JSP：" class="headerlink" title="JSP："></a>JSP：</h2><ol>
+<li><p>指令</p>
+<ul>
+<li><p>作用：用于配置JSP页面，导入资源文件</p>
+</li>
+<li><p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ 指令名称 属性名1=属性值1 属性名2=属性值2 ... %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分类：</p>
+<ol>
+<li><p>page        ： 配置JSP页面的</p>
+<ul>
+<li>contentType：等同于response.setContentType()<ol>
+<li>设置响应体的mime类型以及字符集</li>
+<li>设置当前jsp页面的编码（只能是高级的IDE才能生效，如果使用低级工具，则需要设置pageEncoding属性设置当前页面的字符集）</li>
+</ol>
+</li>
+<li>import：导包</li>
+<li>errorPage：当前页面发生异常后，会自动跳转到指定的错误页面</li>
+<li>isErrorPage：标识当前也是是否是错误页面。<ul>
+<li>true：是，可以使用内置对象exception</li>
+<li>false：否。默认值。不可以使用内置对象exception</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>include    ： 页面包含的。导入页面的资源文件</p>
+<ul>
+<li>&lt;%@include file&#x3D;”top.jsp”%&gt;</li>
+</ul>
+</li>
+<li><p>taglib    ： 导入资源</p>
+<ul>
+<li>&#96;&#96;&#96;<br>&lt;%@ taglib prefix&#x3D;”c” uri&#x3D;”<a target="_blank" rel="noopener" href="http://java.sun.com/jsp/jstl/core&quot;">http://java.sun.com/jsp/jstl/core&quot;</a> %&gt;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">          - prefix：前缀，自定义的</span><br><span class="line">   </span><br><span class="line">2. 注释:</span><br><span class="line"></span><br><span class="line">   1.  html注释：</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+ <!-- -->:只能注释html代码片段
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. jsp注释：推荐使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> &lt;%– –%&gt;：可以注释所有<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 内置对象</span><br><span class="line"></span><br><span class="line">   - 在jsp页面中不需要创建，直接使用的对象</span><br><span class="line"></span><br><span class="line">   -  一共有9个：</span><br><span class="line"></span><br><span class="line">      变量名					真实类型						作用</span><br><span class="line"></span><br><span class="line">      - pageContext				PageContext					当前页面共享数据，还可以获取其他八个内置对象</span><br><span class="line">      - request					HttpServletRequest			一次请求访问的多个资源(转发)</span><br><span class="line">      - session					HttpSession					一次会话的多个请求间</span><br><span class="line">      - application				ServletContext				所有用户间共享数据</span><br><span class="line">      - response					HttpServletResponse			响应对象</span><br><span class="line">      - page						Object						当前页面(Servlet)的对象  this</span><br><span class="line">      - out						JspWriter					输出对象，数据输出到页面上</span><br><span class="line">      - config					ServletConfig				Servlet的配置对象</span><br><span class="line">      - exception					Throwable					异常对象</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## MVC：开发模式	</span><br><span class="line"></span><br><span class="line">1. jsp演变历史</span><br><span class="line">   1. 早期只有servlet，只能使用response输出标签数据，非常麻烦</span><br><span class="line">   2. 后来又jsp，简化了Servlet的开发，如果过度使用jsp，在jsp中即写大量的java代码，有写html表，造成难于维护，难于分工协作</span><br><span class="line">   3. 再后来，java的web开发，借鉴mvc开发模式，使得程序的设计更加合理性</span><br><span class="line">2. MVC：</span><br><span class="line">   1.  M：Model，模型。JavaBean</span><br><span class="line">      - 完成具体的业务操作，如：查询数据库，封装对象</span><br><span class="line">   2.  V：View，视图。JSP</span><br><span class="line">      - 展示数据</span><br><span class="line">   3. C：Controller，控制器。Servlet</span><br><span class="line">      - 获取用户的输入</span><br><span class="line">      - 调用模型</span><br><span class="line">      - 将数据交给视图进行展示</span><br><span class="line"></span><br><span class="line">- 优缺点：</span><br><span class="line">  1. 优点：</span><br><span class="line">     1. 耦合性低，方便维护，可以利于分工协作</span><br><span class="line">     2. 重用性高</span><br><span class="line">  2. 缺点：</span><br><span class="line">     1. 使得项目架构变得复杂，对开发人员要求高</span><br><span class="line"></span><br><span class="line">## EL表达式</span><br><span class="line"></span><br><span class="line">1. 概念：Expression Language 表达式语言</span><br><span class="line"></span><br><span class="line">2. 作用：替换和简化jsp页面中java代码的编写</span><br><span class="line"></span><br><span class="line">3. 语法：$&#123;表达式&#125;</span><br><span class="line"></span><br><span class="line">4. 注意：</span><br><span class="line"></span><br><span class="line">   - jsp默认支持el表达式的。如果要忽略el表达式</span><br><span class="line"></span><br><span class="line">     1. 设置jsp中page指令中：isELIgnored=&quot;true&quot; 忽略当前jsp页面中所有的el表达式</span><br><span class="line"></span><br><span class="line">     2. ```</span><br><span class="line">        \$&#123;表达式&#125; ：忽略当前这个el表达式</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+</li>
+<li><p>使用：</p>
+<ol>
+<li><p>运算：</p>
+<ul>
+<li><p>运算符：</p>
+<ol>
+<li><pre><code>算数运算符： + - * /(div) %(mod)
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. ```</span><br><span class="line">   比较运算符： &gt; &lt; &gt;= &lt;= == !=</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;<br>逻辑运算符： &amp;&amp;(and) ||(or) !(not)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. ```</span><br><span class="line">   空运算符： empty</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>功能：用于判断字符串、集合、数组对象是否为null或者长度是否为0</p>
+</li>
+<li><p>&#96;&#96;&#96;<br> ${empty list}:判断字符串、集合、数组对象是否为null或者长度为0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  $&#123;not empty str&#125;:表示判断字符串、集合、数组对象是否不为null 并且 长度&gt;0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>获取值</p>
+<ol>
+<li><p>el表达式只能从域对象中获取值</p>
+</li>
+<li><p>语法：</p>
+<ol>
+<li><pre><code> $&#123;域名称.键名&#125;：从指定域中获取指定键的值
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 域名称：</span><br><span class="line"></span><br><span class="line">  1. pageScope		--&gt; pageContext</span><br><span class="line">  2. requestScope 	--&gt; request</span><br><span class="line">  3. sessionScope 	--&gt; session</span><br><span class="line">  4. applicationScope --&gt; application（ServletContext）</span><br><span class="line"></span><br><span class="line">- 举例：在request域中存储了name=张三</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  获取：$&#123;requestScope.name&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;<br>${键名}：表示依次从最小的域中查找是否有该键对应的值，直到找到为止。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 获取对象、List集合、Map集合的值</span><br><span class="line"></span><br><span class="line">   1. ```</span><br><span class="line">      对象：$&#123;域名称.键名.属性名&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>本质上会去调用对象的getter方法</li>
+</ul>
+<ol start="2">
+<li><p>List集合：${域名称.键名[索引]}</p>
+</li>
+<li><p>Map集合：</p>
+<ul>
+<li>&#96;&#96;&#96;<br>${域名称.键名.key名称}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  $&#123;域名称.键名[&quot;key名称&quot;]&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>隐式对象：</p>
+</li>
+</ol>
+<ul>
+<li><p>el表达式中有11个隐式对象</p>
+</li>
+<li><p>pageContext：</p>
+<ul>
+<li><p>获取jsp其他八个内置对象</p>
+<ul>
+<li>&#96;&#96;&#96;<br>${pageContext.request.contextPath}：动态获取虚拟目录<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## JSTL</span><br><span class="line"></span><br><span class="line">1. 概念：JavaServer Pages Tag Library  JSP标准标签库</span><br><span class="line"></span><br><span class="line">   - 是由Apache组织提供的开源的免费的jsp标签		&lt;标签&gt;</span><br><span class="line"></span><br><span class="line">2.  作用：用于简化和替换jsp页面上的java代码		</span><br><span class="line"></span><br><span class="line">3. 使用步骤：</span><br><span class="line"></span><br><span class="line">   1. 导入jstl相关jar包</span><br><span class="line">   2.  引入标签库：taglib指令：  &lt;%@ taglib %&gt;</span><br><span class="line">   3. 使用标签</span><br><span class="line"></span><br><span class="line">4. 常用的JSTL标签</span><br><span class="line"></span><br><span class="line">   1. if:相当于java代码的if语句</span><br><span class="line"></span><br><span class="line">      1.  属性：</span><br><span class="line"></span><br><span class="line">         - test 必须属性，接受boolean表达式</span><br><span class="line"></span><br><span class="line">           - 如果表达式为true，则显示if标签体内容，如果为false，则不显示标签体内容</span><br><span class="line"></span><br><span class="line">           - 一般情况下，test属性值会结合el表达式一起使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+&lt;c:if test&#x3D;”${not empty list}”&gt;<br>  遍历集合<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">          </span><br><span class="line"></span><br><span class="line">   2. 注意：</span><br><span class="line"></span><br><span class="line">      - c:if标签没有else情况，想要else情况，则可以在定义一个c:if标签</span><br><span class="line"></span><br><span class="line">2. choose:相当于java代码的switch语句</span><br><span class="line"></span><br><span class="line">   1.  使用choose标签声明         			相当于switch声明</span><br><span class="line">   2. 使用when标签做判断         			相当于case</span><br><span class="line">   3. 使用otherwise标签做其他情况的声明    	相当于default</span><br><span class="line"></span><br><span class="line">3. foreach:相当于java代码的for语句</span><br><span class="line"></span><br><span class="line">   1. 完成重复操作：</span><br><span class="line"></span><br><span class="line">      - 属性</span><br><span class="line">        1. begin: 开始值</span><br><span class="line">        2. end：结束值</span><br><span class="line">        3. var：临时变量</span><br><span class="line">        4. step：步长</span><br><span class="line">        5. varstatus:循环状态对家</span><br><span class="line">           1. index:容器中元素的素引，从e开始</span><br><span class="line">           2. count:循环次数，从1开始</span><br><span class="line"></span><br><span class="line">   2. 遍历容器</span><br><span class="line"></span><br><span class="line">      1. ```</span><br><span class="line">         List&lt;User&gt; list;</span><br><span class="line">         for (User user : list)&#123;</span><br><span class="line">         </span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>属性</p>
+<ol>
+<li>items：容器对象</li>
+<li>var：容器中临时变量</li>
+<li>varstatus:循环状态对家<ol>
+<li>index:容器中元素的素引，从e开始</li>
+<li>count:循环次数，从1开始</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach begin=&quot;1&quot; end=&quot;10&quot; var=&quot;i&quot; step=&quot;1&quot;&gt;</span><br><span class="line">        $&#123;i&#125;&lt;br&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach items=&quot;$&#123;list&#125;&quot; var=&quot;str&quot; varStatus=&quot;s&quot;&gt;</span><br><span class="line">        $&#123;s.index&#125; $&#123;s.count&#125; $&#123;str&#125;</span><br><span class="line">    &lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>练习：<ul>
+<li>需求：在request域中有一个存有User对象的List集合。需要使用jstl+el将list集合数据展示到jsp页面的表格table中</li>
+</ul>
+</li>
+</ol>
+<h2 id="三层架构：软件设计架构"><a href="#三层架构：软件设计架构" class="headerlink" title="三层架构：软件设计架构"></a>三层架构：软件设计架构</h2><ol>
+<li><p>界面层(表示层)：用户看的得界面。用户可以通过界面上的组件和服务器进行交互</p>
+</li>
+<li><p>业务逻辑层：处理业务逻辑的。</p>
+</li>
+<li><p>数据访问层：操作数据存储文件。</p>
+<p>![截屏2022-04-16 17.49.03](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;JSP-MVC-EL-STL&#x2F;截屏2022-04-16 17.49.03.png)</p>
+</li>
+</ol>
+<h2 id="案例：用户信息列表展示"><a href="#案例：用户信息列表展示" class="headerlink" title="案例：用户信息列表展示"></a>案例：用户信息列表展示</h2><ol>
+<li><p>需求：用户信息的增删改查操作</p>
+</li>
+<li><p>设计：</p>
+<ol>
+<li><p>技术选型：</p>
+<p>Servlet+JSP+MySQL+JDBCTempleat+Duird+BeanUtilS+tomcat</p>
+</li>
+<li><p>数据库设计：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create database day17; -- 创建数据库</span><br><span class="line">		use day17; 			   -- 使用数据库</span><br><span class="line">		create table user(   -- 创建表</span><br><span class="line">			id int primary key auto_increment,</span><br><span class="line">			name varchar(20) not null,</span><br><span class="line">			gender varchar(5),</span><br><span class="line">			age int,</span><br><span class="line">			address varchar(32),</span><br><span class="line">			qq	varchar(20),</span><br><span class="line">			email varchar(50)</span><br><span class="line">		);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>开发：</p>
+<ol>
+<li>环境搭建<ol>
+<li>创建数据库环境</li>
+<li>创建项目，导入需要的jar包</li>
+</ol>
+</li>
+<li>编码</li>
+</ol>
+</li>
+<li><p>测试</p>
+</li>
+<li><p>部署运维</p>
+<p>![截屏2022-04-16 22.44.42](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;JSP-MVC-EL-STL&#x2F;截屏2022-04-16 22.44.42.png)</p>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/04/15/JSP-MVC-EL-JSTL/" title="JSP&amp;&amp;MVC&amp;&amp;EL&amp;&amp;JSTL" target="_blank" rel="external">http://example.com/2022/04/15/JSP-MVC-EL-JSTL/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/04/13/Cookie-Session/" title="Cookie&amp;Session"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
