@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Junit和反射和注解 | mhy-blog</title>
-  <meta name="description" content="Junit单元测试：测试分类：  黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望的值。  白盒测试：需要写代码的。关注程序具体的执行流程。   Junit使用：白盒测试 步骤 1.定义一个测试类(测试用例) * 建议：         * 测试类名：被测试的类名Test        CalculatorTest         * 包名：xxx.xxx.xx.test        c">
+  <title>MQTT1-3连接MQTT服务端 | mhy-blog</title>
+  <meta name="description" content="MQTT客户端连接服务端一共有两步 首先MQTT客户端将会向服务端发送连接请求。该请求实际上是一个包含有连接请求信息的数据包。这个数据包的官方名称为CONNECT。 MQTT服务端收到客户端连接请求后，会向客户端发送连接确认。同样的，该确认也是一个数据包。这个数据包官方名称为CONNACK。  CONNECT – 连接服务端（客户端） clientId – 客户端ID  ClientId是MQTT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Junit和反射和注解">
-<meta property="og:url" content="http://example.com/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:title" content="MQTT1-3连接MQTT服务端">
+<meta property="og:url" content="http://example.com/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/index.html">
 <meta property="og:site_name" content="mhy-blog">
-<meta property="og:description" content="Junit单元测试：测试分类：  黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望的值。  白盒测试：需要写代码的。关注程序具体的执行流程。   Junit使用：白盒测试 步骤 1.定义一个测试类(测试用例) * 建议：         * 测试类名：被测试的类名Test        CalculatorTest         * 包名：xxx.xxx.xx.test        c">
+<meta property="og:description" content="MQTT客户端连接服务端一共有两步 首先MQTT客户端将会向服务端发送连接请求。该请求实际上是一个包含有连接请求信息的数据包。这个数据包的官方名称为CONNECT。 MQTT服务端收到客户端连接请求后，会向客户端发送连接确认。同样的，该确认也是一个数据包。这个数据包官方名称为CONNACK。  CONNECT – 连接服务端（客户端） clientId – 客户端ID  ClientId是MQTT">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-20T08:54:35.000Z">
-<meta property="article:modified_time" content="2022-03-20T13:39:55.668Z">
+<meta property="article:published_time" content="2022-04-22T14:21:03.000Z">
+<meta property="article:modified_time" content="2022-04-22T15:17:05.975Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Java-web">
+<meta property="article:tag" content="物联网">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/index.html">
+  <link rel="canonical" href="http://example.com/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/index.html">
   
     <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
   
@@ -337,14 +337,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Junit和反射和注解" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-MQTT1-3连接MQTT服务端" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Junit和反射和注解
+      MQTT1-3连接MQTT服务端
     </h1>
   
 
@@ -352,176 +352,84 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/" class="article-date">
-	  <time datetime="2022-03-20T08:54:35.000Z" itemprop="datePublished">2022-03-20</time>
+	<a href="/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/" class="article-date">
+	  <time datetime="2022-04-22T14:21:03.000Z" itemprop="datePublished">2022-04-22</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+	<a class="article-tag-link-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Junit单元测试："><a href="#Junit单元测试：" class="headerlink" title="Junit单元测试："></a>Junit单元测试：</h1><p>测试分类：</p>
-<ul>
-<li><p>黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望的值。</p>
-</li>
-<li><p>白盒测试：需要写代码的。关注程序具体的执行流程。</p>
-</li>
-</ul>
-<p>Junit使用：白盒测试</p>
-<p>步骤</p>
-<p>1.定义一个测试类(测试用例)</p>
-<pre><code>* 建议：
-        * 测试类名：被测试的类名Test        CalculatorTest
-        * 包名：xxx.xxx.xx.test        cn.itcast.test
-</code></pre>
-<p>2.定义测试方法：可以独立运行</p>
-<pre><code>* 建议：
-        * 方法名：test测试的方法名        testAdd()  
-        * 返回值：void
-        * 参数列表：空参
-</code></pre>
-<p>3.给方法加@Test</p>
-<p>4.导入junit依赖环境</p>
-<ul>
-<li>判定结果：<br>  * 红色：失败<br>  * 绿色：成功<br><br>  * 一般我们会使用断言操作来处理结果<br>      <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assert.assertEquals(期望的结果,运算的结果);</span><br></pre></td></tr></table></figure><ul>
-<li>补充：<ul>
-<li>@Before:<ul>
-<li>修饰的方法会在测试方法之前被自动执行</li>
-<li>用于资源的申请</li>
-</ul>
-</li>
-<li>@After:<ul>
-<li>修饰的方法会在测试方法执行之后自动被执行</li>
-<li>用于资源的释放</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="反射：框架设计的灵魂"><a href="#反射：框架设计的灵魂" class="headerlink" title="反射：框架设计的灵魂"></a>反射：框架设计的灵魂</h1><p>框架：半成品软件。可以在框架的基础上进行软件开发，简化编码</p>
-<p>反射：将类的各个组成部分封装为其他对象，这就是反射机制</p>
-<p>​    好处</p>
-<ul>
-<li>可以在程序运行过程中，操作这些对象。代码提示也是利用特性</li>
-<li>可以解耦，提高程序的可扩展性。</li>
-</ul>
-<p>获取Class对象的方法：</p>
-<ul>
-<li>Class.forName(“全类名”)：将字节码文件加载进内存，返回Class对象<ul>
-<li>多用于配置文件，将类名定义在配置文件中。读取文件，加载类</li>
-</ul>
-</li>
-<li>类名.class：通过类名的属性class获取<ul>
-<li>多用于参数的传递</li>
-</ul>
-</li>
-<li>对象.getClass()：getClass()方法在Object类中定义着。<ul>
-<li>多用于对象的获取字节码的方式</li>
-</ul>
-</li>
-</ul>
-<p>结论</p>
-<ul>
-<li>同一个字节码文件(*.class)在一次程序运行过程中，只会被加载一次，不论通过哪一种方式获取的Class对象都是同一个。</li>
-</ul>
-<p>Class对象功能：</p>
-<p>​    获取功能：</p>
-<pre><code>1. 获取成员变量们
-</code></pre>
-<ul>
-<li><p>Field[] getFields() ：获取所有public修饰的成员变量</p>
-</li>
-<li><p>Field getField(String name)   获取指定名称的 public修饰的成员变量</p>
-</li>
-<li><p>Field[] getDeclaredFields()  获取所有的成员变量，不考虑修饰符</p>
-</li>
-<li><p>Field getDeclaredField(String name)</p>
-</li>
-</ul>
-<ol start="2">
-<li>获取构造方法们</li>
+        <h2 id="MQTT客户端连接服务端一共有两步"><a href="#MQTT客户端连接服务端一共有两步" class="headerlink" title="MQTT客户端连接服务端一共有两步"></a>MQTT客户端连接服务端一共有两步</h2><ol>
+<li>首先MQTT客户端将会向服务端发送连接请求。该请求实际上是一个包含有连接请求信息的数据包。这个数据包的官方名称为<strong>CONNECT</strong>。</li>
+<li>MQTT服务端收到客户端连接请求后，会向客户端发送连接确认。同样的，该确认也是一个数据包。这个数据包官方名称为<strong>CONNACK</strong>。</li>
 </ol>
-<ul>
-<li><p>Constructor&lt;?&gt;[] getConstructors()  </p>
-</li>
-<li><p>Constructor<T> getConstructor(类&lt;?&gt;… parameterTypes)</T></p>
-</li>
-<li><p>Constructor<T> getDeclaredConstructor(类&lt;?&gt;… parameterTypes) </T></p>
-</li>
-<li><p>Constructor&lt;?&gt;[] getDeclaredConstructors()</p>
-</li>
+<h2 id="CONNECT-–-连接服务端（客户端）"><a href="#CONNECT-–-连接服务端（客户端）" class="headerlink" title="CONNECT – 连接服务端（客户端）"></a>CONNECT – 连接服务端（客户端）</h2><ul>
+<li><h3 id="clientId-–-客户端ID"><a href="#clientId-–-客户端ID" class="headerlink" title="clientId – 客户端ID"></a>clientId – 客户端ID</h3></li>
 </ul>
-<ol start="3">
-<li>获取成员方法们：</li>
-</ol>
+<p>ClientId是MQTT客户端的标识。MQTT服务端用该标识来识别客户端。因此ClientId必须是独立的。如果两个MQTT客户端使用相同ClientId标识，服务端会把它们当成同一个客户端来处理。</p>
 <ul>
-<li><p>Method[] getMethods()  </p>
-</li>
-<li><p>Method getMethod(String name, 类&lt;?&gt;… parameterTypes)  </p>
-</li>
-<li><p>Method[] getDeclaredMethods()  </p>
-</li>
-<li><p>Method getDeclaredMethod(String name, 类&lt;?&gt;… parameterTypes)</p>
-</li>
+<li><h3 id="cleanSession-–-清除会话"><a href="#cleanSession-–-清除会话" class="headerlink" title="cleanSession – 清除会话"></a>cleanSession – 清除会话</h3></li>
 </ul>
-<ol start="4">
-<li>获取全类名</li>
-</ol>
+<p>如果<strong>cleanSession</strong> 被设置为“true”。那么服务端不需要客户端确认收到报文，也不会保存任何报文。在这种情况下，即使客户端错过了服务端发来的报文，也没办法让服务端再次发送报文。</p>
+<p>如果我们将<strong>cleanSession</strong> 设置为”false”。那么服务端就知道，后续通讯中，客户端可能会要求我保存没有收到的报文。</p>
+<p><strong>如果想让服务器记住重要报文，那么客户端在连接服务端时，需要把cleanSession中设置为false</strong>。</p>
 <ul>
-<li>String getName()</li>
+<li><h3 id="keepAlive-–-心跳时间间隔"><a href="#keepAlive-–-心跳时间间隔" class="headerlink" title="keepAlive – 心跳时间间隔"></a>keepAlive – 心跳时间间隔</h3></li>
 </ul>
-<p>1.获取成员变量方法参数</p>
-<p>Field：成员变量</p>
-<p>​    操作：</p>
-<ol>
-<li>设置值</li>
-</ol>
+<p><strong>KeepAlive</strong>用于服务端实时了解客户端是否与其保持连接的情况。</p>
+<h2 id="CONNACK-–-确认连接请求（服务端）"><a href="#CONNACK-–-确认连接请求（服务端）" class="headerlink" title="CONNACK – 确认连接请求（服务端）"></a>CONNACK – 确认连接请求（服务端）</h2><ul>
+<li><h3 id="returnCode-–-连接返回码"><a href="#returnCode-–-连接返回码" class="headerlink" title="returnCode – 连接返回码"></a>returnCode – 连接返回码</h3></li>
+</ul>
+<p>当服务端收到了客户端的连接请求后，会向客户端发送returnCode(连接返回码)，用以说明连接情况。</p>
+<table>
+<thead>
+<tr>
+<th>返回码</th>
+<th>返回码描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>成功连接</td>
+</tr>
+<tr>
+<td>1</td>
+<td>连接被服务端拒绝，原因是不支持客户端的MQTT协议版本</td>
+</tr>
+<tr>
+<td>2</td>
+<td>连接被服务端拒绝，原因是不支持客户端标识符的编码。可能造成此原因的是客户端标识符编码是UTF-8，但是服务端不允许使用此编码。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>连接被服务端拒绝，原因是服务端不可用。<br>即，网络连接已经建立，但MQTT服务不可用。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>连接被服务端拒绝，原因是用户名或密码无效。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>连接被服务端拒绝，原因是客户端未被授权连接到此服务端。</td>
+</tr>
+</tbody></table>
 <ul>
-<li>void set(Object obj, Object value)</li>
+<li><h3 id="sessionPresent-–-当前会话"><a href="#sessionPresent-–-当前会话" class="headerlink" title="sessionPresent – 当前会话"></a>sessionPresent – 当前会话</h3></li>
 </ul>
-<ol start="2">
-<li>获取值</li>
-</ol>
-<ul>
-<li>get(Object obj)</li>
-</ul>
-<ol start="3">
-<li>忽略访问权限修饰符的安全检查</li>
-</ol>
-<ul>
-<li>setAccessible(true):暴力反射</li>
-</ul>
-<p>2.获取构造方法参数</p>
-<p>Constructor:构造方法</p>
-<p>​    创建对象：</p>
-<ul>
-<li>T newInstance(Object… initargs)  </li>
-<li>如果使用空参数构造方法创建对象，操作可以简化：Class对象的newInstance方法</li>
-</ul>
-<p>3.获取成员方法参数</p>
-<p>Method：方法对象</p>
-<p>​    执行方法：</p>
-<ul>
-<li>Object invoke(Object obj, Object… args)  （参数，实参列表）</li>
-</ul>
-<p>获取方法名称：</p>
-<ul>
-<li>String getName:获取方法名</li>
-</ul>
+<p>其作用是客户端发送连接请求时，服务端告知客户端有没有保存报文信息。这个被服务端保存的报文信息是来自于上一次客户端连接时，服务端曾经发送此报文给客户端，但是发送后没有收到客户端接收确认。</p>
 
       
     </div>
@@ -531,7 +439,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2022/03/20/Junit%E5%92%8C%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%A8%E8%A7%A3/" title="Junit和反射和注解" target="_blank" rel="external">http://example.com/2022/03/20/Junit和反射和注解/</a>
+      <a href="http://example.com/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/" title="MQTT1-3连接MQTT服务端" target="_blank" rel="external">http://example.com/2022/04/22/MQTT1-3连接MQTT服务端/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -578,12 +486,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2022/03/21/MQTT%E5%9F%BA%E7%A1%80%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%8A%EF%BC%89/" title="MQTT基础协议（上）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2022/04/23/Redis/" title="Redis"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2022/03/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" title="操作系统概述"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/04/22/AJAX-Json/" title="AJAX&amp;Json"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
