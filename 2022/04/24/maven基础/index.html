@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>maven基础 | mhy-blog</title>
+  <meta name="description" content="maven概述 什么是maven  Maven的正确发音是[ˈmevən]，而不是“马瘟”以及其他什么瘟。Maven在美国是一个口语化的词语，代表专家、内行的意思。 一个对Maven比较正式的定义是这么说的：Maven是一个项目管理工具，它包含了一个**项目对象模型(POM：Project Object Model)**，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven基础">
+<meta property="og:url" content="http://example.com/2022/04/24/maven%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="maven概述 什么是maven  Maven的正确发音是[ˈmevən]，而不是“马瘟”以及其他什么瘟。Maven在美国是一个口语化的词语，代表专家、内行的意思。 一个对Maven比较正式的定义是这么说的：Maven是一个项目管理工具，它包含了一个**项目对象模型(POM：Project Object Model)**，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-24T02:05:15.000Z">
+<meta property="article:modified_time" content="2022-04-24T15:21:27.220Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/04/24/maven%E5%9F%BA%E7%A1%80/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.8px;">Java</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.2px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13.4px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13.2px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.6px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.2px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.4px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/24/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%8721-25%E4%B8%B2%E8%AF%8D/" class="title">四级词汇21-25串词</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-24T15:23:04.000Z" itemprop="datePublished">2022-04-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/24/maven%E5%9F%BA%E7%A1%80/" class="title">maven基础</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-24T02:05:15.000Z" itemprop="datePublished">2022-04-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/23/Redis/" class="title">Redis</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-23T03:00:23.000Z" itemprop="datePublished">2022-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/22/MQTT1-3%E8%BF%9E%E6%8E%A5MQTT%E6%9C%8D%E5%8A%A1%E7%AB%AF/" class="title">MQTT1-3连接MQTT服务端</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-22T14:21:03.000Z" itemprop="datePublished">2022-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/22/AJAX-Json/" class="title">AJAX&amp;Json</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-22T03:11:42.000Z" itemprop="datePublished">2022-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-maven基础" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      maven基础
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/24/maven%E5%9F%BA%E7%A1%80/" class="article-date">
+	  <time datetime="2022-04-24T02:05:15.000Z" itemprop="datePublished">2022-04-24</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/24/maven%E5%9F%BA%E7%A1%80/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="maven概述"><a href="#maven概述" class="headerlink" title="maven概述"></a>maven概述</h2><ul>
+<li>什么是maven</li>
+</ul>
+<p>Maven的正确发音是[ˈmevən]，而不是“马瘟”以及其他什么瘟。Maven在美国是一个口语化的词语，代表专家、内行的意思。</p>
+<p>一个对Maven比较正式的定义是这么说的：Maven是一个项目管理工具，它包含了一个**项目对象模型(POM：Project Object Model)**，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。</p>
+<ul>
+<li>能干什么</li>
+</ul>
+<p>现在有一种工具，可以把你从上面的繁琐工作中解放出来，能帮你构建工程，管理jar包，编译代码，还能帮你自动运行单元测试，打包，生成报表，甚至能帮你部署项目，生成Web站点，meven就能解决以上问题</p>
+<h2 id="maven经典作用"><a href="#maven经典作用" class="headerlink" title="maven经典作用"></a>maven经典作用</h2><h3 id="1-2-1-Maven的依赖管理"><a href="#1-2-1-Maven的依赖管理" class="headerlink" title="1.2.1 Maven的依赖管理"></a>1.2.1 Maven的依赖管理</h3><p>概念：maven工程对jar包的管理过程</p>
+<p>通过pom.xml文件配置要引入的jar包的坐标，再读取坐标并到仓库中加载jar包，这样我们就可以直接使用jar包了</p>
+<h3 id="1-2-2-项目的一键构建"><a href="#1-2-2-项目的一键构建" class="headerlink" title="1.2.2 项目的一键构建"></a>1.2.2 项目的一键构建</h3><p>构建是指项目从编译、测试、运行、打包、安装，部署整个过程都交给maven进行管理，这个过程称为构建。</p>
+<p>一键构建指的是整个构建过程，使用maven一个命令可以轻松完成整个工作。</p>
+<h2 id="maven的安装"><a href="#maven的安装" class="headerlink" title="maven的安装"></a>maven的安装</h2><h3 id="mac安装："><a href="#mac安装：" class="headerlink" title="mac安装："></a>mac安装：</h3><h4 id="https-blog-csdn-net-wang-jing-jing-article-details-120403123"><a href="#https-blog-csdn-net-wang-jing-jing-article-details-120403123" class="headerlink" title="https://blog.csdn.net/wang_jing_jing/article/details/120403123"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/wang_jing_jing/article/details/120403123">https://blog.csdn.net/wang_jing_jing/article/details/120403123</a></h4><h4 id="https-blog-csdn-net-u011374856-article-details-116648311"><a href="#https-blog-csdn-net-u011374856-article-details-116648311" class="headerlink" title="https://blog.csdn.net/u011374856/article/details/116648311"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011374856/article/details/116648311">https://blog.csdn.net/u011374856/article/details/116648311</a></h4><p>关闭终端有报错：解决文字</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/momo-nancy/p/nancy_0688.html">https://www.cnblogs.com/momo-nancy/p/nancy_0688.html</a></p>
+<h2 id="maven仓库"><a href="#maven仓库" class="headerlink" title="maven仓库"></a>maven仓库</h2><h3 id="2-2-1-仓库分类"><a href="#2-2-1-仓库分类" class="headerlink" title="2.2.1 仓库分类"></a>2.2.1 仓库分类</h3><ul>
+<li>本地仓库<ul>
+<li>用来存储从远程仓库或中央仓库下载的插件和jar包，项目使用一些插件或jar包，优先从本地仓库查找默认本地仓库位置在${user.dir}&#x2F;.m2&#x2F;repository，${user.dir}表示windows用户目录。</li>
+</ul>
+</li>
+<li>远程仓库<ul>
+<li>如果本地需要插件或者jar包，本地仓库没有，默认去远程仓库下载。远程仓库可以在互联网内也可以在局域网内。</li>
+</ul>
+</li>
+<li>中央仓库<ul>
+<li>在maven软件中内置一个远程仓库地址<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2%EF%BC%8C%E5%AE%83%E6%98%AF%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%EF%BC%8C%E6%9C%8D%E5%8A%A1%E4%BA%8E%E6%95%B4%E4%B8%AA%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AE%83%E6%98%AF%E7%94%B1Maven%E5%9B%A2%E9%98%9F%E8%87%AA%E5%B7%B1%E7%BB%B4%E6%8A%A4%EF%BC%8C%E9%87%8C%E9%9D%A2%E5%AD%98%E5%82%A8%E4%BA%86%E9%9D%9E%E5%B8%B8%E5%85%A8%E7%9A%84jar%E5%8C%85%EF%BC%8C%E5%AE%83%E5%8C%85%E5%90%AB%E4%BA%86%E4%B8%96%E7%95%8C%E4%B8%8A%E5%A4%A7%E9%83%A8%E5%88%86%E6%B5%81%E8%A1%8C%E7%9A%84%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%9E%84%E4%BB%B6%E3%80%82">http://repo1.maven.org/maven2，它是中央仓库，服务于整个互联网，它是由Maven团队自己维护，里面存储了非常全的jar包，它包含了世界上大部分流行的开源项目构件。</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-2-Maven本地仓库的配置"><a href="#2-2-2-Maven本地仓库的配置" class="headerlink" title="2.2.2 Maven本地仓库的配置"></a>2.2.2 Maven本地仓库的配置</h3><p>打开settings.xml文件，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;loaclRepository&gt;本地仓路径&lt;/loaclRepository&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3-全局setting与用户setting"><a href="#2-2-3-全局setting与用户setting" class="headerlink" title="2.2.3 全局setting与用户setting"></a>2.2.3 全局setting与用户setting</h3><p>maven仓库地址、私服等配置信息需要在setting.xml文件中配置，分为全局配置和用户配置。</p>
+<h2 id="Maven-工程的认识"><a href="#Maven-工程的认识" class="headerlink" title="Maven 工程的认识"></a>Maven 工程的认识</h2><h3 id="2-3-1-Maven工程的目录结构"><a href="#2-3-1-Maven工程的目录结构" class="headerlink" title="2.3.1 Maven工程的目录结构"></a>2.3.1 Maven工程的目录结构</h3><p>作为一个maven工程，它的src目录和pom.xml是必备的。</p>
+<h4 id="src目录"><a href="#src目录" class="headerlink" title="src目录"></a>src目录</h4><p>src&#x2F;main&#x2F;java——存放项目的.java文件</p>
+<p>src&#x2F;main&#x2F;resources——存放项目资源文件，如spring, hibernate配置文件</p>
+<p>src&#x2F;test&#x2F;java——存放所有单元测试.java文件，如JUnit测试类</p>
+<p>src&#x2F;test&#x2F;resources——测试资源文件</p>
+<p>target——项目输出位置，编译后的class文件会输出到此目录</p>
+<p>pom.xml——maven项目核心配置文件</p>
+<p>注意：如果是普通的java项目，那么就没有webapp目录。</p>
+<h2 id="Maven-常用命令"><a href="#Maven-常用命令" class="headerlink" title="Maven 常用命令"></a>Maven 常用命令</h2><ul>
+<li>compile<ul>
+<li>compile是maven工程的编译命令，作用是将src&#x2F;main&#x2F;java下的文件编译为class文件输出到target目录下。</li>
+</ul>
+</li>
+<li>test<ul>
+<li>test是maven工程的测试命令mvn test，会执行src&#x2F;test&#x2F;java下的单元测试类。</li>
+</ul>
+</li>
+<li>clean<ul>
+<li>clean是maven工程的清理命令，执行clean会删除target目录及内容。</li>
+</ul>
+</li>
+<li>package<ul>
+<li>package是maven工程的打包命令，对于java工程执行package打成jar包，对于web工程打成war包。</li>
+</ul>
+</li>
+<li>install<ul>
+<li>install是maven工程的安装命令，执行install将maven打成jar包或war包发布到本地仓库。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a>Maven 生命周期</h2><p>maven对项目构建过程分为三套相互独立的生命周期，请注意这里说的是“三套”，而且“相互独立”，这三套生命周期分别是：</p>
+<ul>
+<li>Clean Lifecycle在进行真正的构建之前进行一些清理工作。</li>
+<li>Default Lifecycle构建的核心部分，编译，测试，打包，部署等等。（默认生命周期）</li>
+<li>Site Lifecycle生成项目报告，站点，发布站点。</li>
+</ul>
+<h2 id="Maven-概念模型"><a href="#Maven-概念模型" class="headerlink" title="Maven 概念模型"></a>Maven 概念模型</h2><p>Maven包含了一个项目对象模型(Project Object Model)，一组标准集合，一个项目生命周期(ProjectLifecycle)，一个依赖管理系统(DependencyManagementSystem)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。</p>
+<ul>
+<li>项目概念模型<ul>
+<li>一个maven工程都有一个pom.xml文件，通过pom.xml文件定义项目的坐标、项目依赖、项目信息、插件目标等。</li>
+</ul>
+</li>
+<li>依赖管理系统<ul>
+<li>通过maven的依赖管理对项目所依赖的jar包进行统一管理。<ul>
+<li>必须包含<ul>
+<li>项目名称</li>
+<li>版本名称</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一个项目生命周期<ul>
+<li>使用maven完成项目的构建，项目构建包括：清理、编译、测试、部署等过程，maven将这些过程规范为一个生命周期，</li>
+<li>maven通过执行一些简单命令即可实现上边生命周期的各各过程，比如执行mvn compile执行编译、执行mvn clean执行清理。</li>
+</ul>
+</li>
+<li>一组标准集合<ul>
+<li>maven将整个项目管理过程定义一组标准，比如：通过maven构建工程有标准的目录结构，有标准的生命周期阶段、依赖管理有标准的坐标定义等。</li>
+</ul>
+</li>
+<li>插件目标<ul>
+<li>maven管理项目生命周期过程都是基于插件完成的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="idea开发maven项目"><a href="#idea开发maven项目" class="headerlink" title="idea开发maven项目"></a>idea开发maven项目</h2><ul>
+<li>idea的maven配置<ul>
+<li>打开-&gt; File-&gt; Settings配置maven</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/04/24/maven%E5%9F%BA%E7%A1%80/" title="maven基础" target="_blank" rel="external">http://example.com/2022/04/24/maven基础/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/04/24/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%8721-25%E4%B8%B2%E8%AF%8D/" title="四级词汇21-25串词"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/04/23/Redis/" title="Redis"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
