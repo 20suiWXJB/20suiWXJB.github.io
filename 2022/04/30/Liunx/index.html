@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Liunx | mhy-blog</title>
+  <meta name="description" content="Linux的概述:学习Linux之前先了解Unixlinux的历史Linux系统的应用服务器系统Web应用服务器、数据库服务器、接口服务器、DNS、FTP等等；  嵌入式系统路由器、防火墙、手机、PDA、IP 分享器、交换器、家电用品的微电脑控制器等等， 高性能运算、计算密集型应用Linux有强大的运算能力。 桌面应用系统 移动手持系统 Linux的版本Linux的版本分为两种：内核版本和发行版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Liunx">
+<meta property="og:url" content="http://example.com/2022/04/30/Liunx/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="Linux的概述:学习Linux之前先了解Unixlinux的历史Linux系统的应用服务器系统Web应用服务器、数据库服务器、接口服务器、DNS、FTP等等；  嵌入式系统路由器、防火墙、手机、PDA、IP 分享器、交换器、家电用品的微电脑控制器等等， 高性能运算、计算密集型应用Linux有强大的运算能力。 桌面应用系统 移动手持系统 Linux的版本Linux的版本分为两种：内核版本和发行版本">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-30T01:23:45.000Z">
+<meta property="article:modified_time" content="2022-04-30T05:35:50.506Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/04/30/Liunx/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Spring/" rel="tag">Java-Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jave-Spring/" rel="tag">Jave-Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%87/" rel="tag">四级词汇</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.67px;">Java</a> <a href="/tags/Java-Spring/" style="font-size: 13px;">Java-Spring</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/Jave-Spring/" style="font-size: 13px;">Jave-Spring</a> <a href="/tags/%E5%9B%9B%E7%BA%A7%E8%AF%8D%E6%B1%87/" style="font-size: 13px;">四级词汇</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.17px;">小程序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.17px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13.83px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13.17px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 13px;">英语</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.5px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.17px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.33px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/04/MQTT1-8ESP8266%E8%AE%A2%E9%98%85MQTT%E4%B8%BB%E9%A2%98/" class="title">MQTT1-8ESP8266订阅MQTT主题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-04T07:56:49.000Z" itemprop="datePublished">2022-05-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/04/Spring%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" class="title">Spring注解开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-04T00:59:40.000Z" itemprop="datePublished">2022-05-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/03/Spring%E7%AE%80%E4%BB%8B%E5%92%8C%E9%85%8D%E7%BD%AE/" class="title">Spring简介和配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-03T01:14:29.000Z" itemprop="datePublished">2022-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/01/MQTT1-7%E4%B8%BB%E9%A2%98%E8%BF%9B%E9%98%B6/" class="title">MQTT1-7主题进阶</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-01T06:11:25.000Z" itemprop="datePublished">2022-05-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/01/Liunx-Nginx/" class="title">Liunx&amp;Nginx</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-01T02:44:37.000Z" itemprop="datePublished">2022-05-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Liunx" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Liunx
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/30/Liunx/" class="article-date">
+	  <time datetime="2022-04-30T01:23:45.000Z" itemprop="datePublished">2022-04-30</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-web/" rel="tag">Java-web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/30/Liunx/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Linux的概述"><a href="#Linux的概述" class="headerlink" title="Linux的概述:"></a>Linux的概述:</h1><h2 id="学习Linux之前先了解Unix"><a href="#学习Linux之前先了解Unix" class="headerlink" title="学习Linux之前先了解Unix"></a>学习Linux之前先了解Unix</h2><h2 id="linux的历史"><a href="#linux的历史" class="headerlink" title="linux的历史"></a>linux的历史</h2><h2 id="Linux系统的应用"><a href="#Linux系统的应用" class="headerlink" title="Linux系统的应用"></a>Linux系统的应用</h2><p>服务器系统Web应用服务器、数据库服务器、接口服务器、DNS、FTP等等； </p>
+<p>嵌入式系统路由器、防火墙、手机、PDA、IP 分享器、交换器、家电用品的微电脑控制器等等，</p>
+<p>高性能运算、计算密集型应用Linux有强大的运算能力。</p>
+<p>桌面应用系统</p>
+<p>移动手持系统</p>
+<h2 id="Linux的版本"><a href="#Linux的版本" class="headerlink" title="Linux的版本"></a>Linux的版本</h2><p>Linux的版本分为两种：内核版本和发行版本；内核版本是指在Linus领导下的内核小组开发维护的系统内核的版本号 ；</p>
+<h2 id="Linux的主流版本"><a href="#Linux的主流版本" class="headerlink" title="Linux的主流版本"></a>Linux的主流版本</h2><h2 id="Liunx安装"><a href="#Liunx安装" class="headerlink" title="Liunx安装"></a>Liunx安装</h2><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><p>VMware</p>
+<h1 id="Liunx的目录结构"><a href="#Liunx的目录结构" class="headerlink" title="Liunx的目录结构"></a>Liunx的目录结构</h1><p>树状结构：</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-system-contents.html">https://www.runoob.com/linux/linux-system-contents.html</a></p>
+<p>![截屏2022-04-30 10.06.14](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;Liunx&#x2F;截屏2022-04-30 10.06.14.png)</p>
+<p><strong>&#x2F;bin</strong>：bin 是 Binaries (二进制文件) 的缩写, 这个目录存放着最经常使用的命令。</p>
+<p><strong>&#x2F;boot：</strong>这里存放的是启动 Linux 时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+<p><strong>&#x2F;dev ：</strong>dev 是 Device(设备) 的缩写, 该目录下存放的是 Linux 的外部设备，在 Linux 中访问设备的方式和访问文件的方式是相同的。</p>
+<p><strong>&#x2F;etc：</strong>etc 是 Etcetera(等等) 的缩写,这个目录用来存放所有的系统管理所需要的配置文件和子目录。</p>
+<p><strong>&#x2F;home</strong>：用户的主目录，在 Linux 中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的，如上图中的 alice、bob 和 eve。</p>
+<p><strong>&#x2F;lib</strong>：lib 是 Library(库) 的缩写这个目录里存放着系统最基本的动态连接共享库，其作用类似于 Windows 里的 DLL 文件。几乎所有的应用程序都需要用到这些共享库。</p>
+<p><strong>&#x2F;lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+<p><strong>&#x2F;media</strong>：</p>
+<h1 id="Liunx常用命令"><a href="#Liunx常用命令" class="headerlink" title="Liunx常用命令"></a>Liunx常用命令</h1><h3 id="列出文件列表-ls-ll"><a href="#列出文件列表-ls-ll" class="headerlink" title="列出文件列表 ls ll"></a>列出文件列表 ls ll</h3><p>ls(list)是一个非常有用的命令，用来显示当前目录下的内容。配合参数的使用，能以不同的方式显示目录内容。 </p>
+<p> 格式：ls[参数] [路径或文件名]</p>
+<p>常用：</p>
+<p>在linux中以 . 开头的文件都是隐藏的文件</p>
+<ul>
+<li>ls</li>
+<li>ls -a  显示所有文件或目录（包含隐藏的文件）</li>
+<li>ls -l  缩写成ll</li>
+</ul>
+<h3 id="切换目录指令cd："><a href="#切换目录指令cd：" class="headerlink" title="切换目录指令cd："></a>切换目录指令cd：</h3><ul>
+<li><p>使用cd app    切换到app目录</p>
+</li>
+<li><p>cd ..    切换到上一层目录</p>
+</li>
+<li><p>cd &#x2F;        切换到系统根目录</p>
+</li>
+<li><p>cd ~        切换到用户主目录</p>
+</li>
+<li><p>cd -        切换到上一个所在目录</p>
+</li>
+</ul>
+<p> 使用tab键来补全文件路径</p>
+<h3 id="创建目录和移除目录：mkdir-rmdir"><a href="#创建目录和移除目录：mkdir-rmdir" class="headerlink" title="创建目录和移除目录：mkdir rmdir"></a>创建目录和移除目录：mkdir rmdir</h3><ul>
+<li>mkdir(make directory)命令可用来创建子目录。</li>
+<li>mkdir app  è 在当前目录下创建app目录</li>
+<li>mkdir –p app2&#x2F;test  è 级联创建aap2以及test目</li>
+<li>rmdir(remove directory)命令可用来删除“空”的子目录：</li>
+<li>rmdir app  è 删除app目录</li>
+</ul>
+<p>当有些命令不知道怎么办，命令 –help 查询此命令文档</p>
+<h3 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h3><ul>
+<li><h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><ul>
+<li>用于显示文件的内容。格式：cat[参数]&lt;文件名&gt;<ul>
+<li>cat yum.conf</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>more</strong></p>
+<ul>
+<li>一般用于要显示的内容会超过一个画面长度的情况。按空格键显示下一个画面。回车显示下一行内容。</li>
+<li>按 q 键退出查看。<ul>
+<li>more yum.conf<ul>
+<li>空格显示下一页数据 回车显示下一行的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>less</strong></p>
+<ul>
+<li>less用法和more类似，不同的是less可以通过PgUp、PgDn键来控制。<ul>
+<li>less yum.conf<ul>
+<li>PgUp 和 PgDn 进行上下翻页.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>tail</strong></p>
+<ul>
+<li>tail命令是在实际使用过程中使用非常多的一个命令，它的功能是：用于显示文件后几行的内容。<ul>
+<li>用法<ul>
+<li>tail -10 &#x2F;etc&#x2F;passwd  è 查看后10行数据</li>
+<li>tail -f catalina.log  è 动态查看日志(*****)</li>
+</ul>
+</li>
+<li>ctrl+c 结束查看</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><ul>
+<li><strong>rm</strong><ul>
+<li>删除文件</li>
+<li>用法：rm [选项]… 文件…<ul>
+<li>rm a.txt      删除a.txt文件</li>
+<li>删除需要用户确认，y&#x2F;nrm 删除不询问</li>
+<li>rm -f a.txt    不询问，直接删除rm 删除目录</li>
+<li>rm -r a     递归删除不询问递归删除（慎用）</li>
+<li>rm -rf  a   不询问递归删除</li>
+<li>rm -rf *    删除所有文件</li>
+<li>rm -rf &#x2F;*    自杀</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>cp</strong> &amp; <strong>mv</strong><ul>
+<li>cp(copy)命令可以将文件从一处复制到另一处。一般在使用cp命令时将一个文件复制成另一个文件或复制到某目录时，需要指定源文件名与目标文件名或目录。<ul>
+<li>cp a.txt b.txt     将a.txt复制为b.txt文件</li>
+<li>cp a.txt ..&#x2F;    将a.txt文件复制到上一层目录中</li>
+</ul>
+</li>
+<li>mv 移动或者重命名<ul>
+<li>mv a.txt ..&#x2F;    将a.txt文件移动到上一层目录中</li>
+<li>mv a.txt b.txt    将a.txt文件重命名为b.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>tar</strong>打包或解压<ul>
+<li>tar命令位于&#x2F;bin目录下，它能够将用户所指定的文件或目录打包成一个文件，但不做压缩。一般Linux上常用的压缩方式是选用tar将许多文件打包成一个文件，再以gzip压缩命令压缩成xxx.tar.gz(或称为xxx.tgz)的文件。常用参数：<ul>
+<li>-c：创建一个新tar文件</li>
+<li>-v：显示运行过程的信息</li>
+<li>-f：指定文件名</li>
+<li>-z：调用gzip压缩命令进行压缩</li>
+<li>查看压缩文件的内容</li>
+<li>-x：解开tar文件</li>
+</ul>
+</li>
+<li>打包<ul>
+<li>tar –cvf xxx.tar .&#x2F;*</li>
+</ul>
+</li>
+<li>打包并且压缩：<ul>
+<li>tar –zcvf xxx.tar.gz .&#x2F;*</li>
+</ul>
+</li>
+<li>解压<ul>
+<li>tar –xvf xxx.tar</li>
+<li>tar -zxvf xxx.tar.gz -C &#x2F;usr&#x2F;aaa</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>find</strong><ul>
+<li>find指令用于查找符合条件的文件</li>
+<li>示例<ul>
+<li>find &#x2F; -name “ins*” 查找文件名称是以ins开头的文件</li>
+<li>find &#x2F; -name “ins*” –ls </li>
+<li>find &#x2F; –user itcast –ls 查找用户itcast的文件</li>
+<li>find &#x2F; –user itcast –type d –ls 查找用户itcast的目录</li>
+<li>find &#x2F;-perm -777 –type d-ls 查找权限是777的文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>grep</strong><ul>
+<li>查找文件里符合条件的字符串。</li>
+<li>用法: grep [选项]… PATTERN [FILE]…<ul>
+<li>示例<ul>
+<li>grep lang anaconda-ks.cfg  在文件中查找lang</li>
+<li>grep lang anaconda-ks.cfg –color 高亮显示</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他常见命令"><a href="#其他常见命令" class="headerlink" title="其他常见命令"></a>其他常见命令</h3><ul>
+<li><strong>pwd</strong><ul>
+<li>显示当前所在目录</li>
+</ul>
+</li>
+<li><strong>touch</strong><ul>
+<li>创建一个空文件<ul>
+<li>touch a.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>clear&#x2F;crtl + L</strong><ul>
+<li>清屏</li>
+</ul>
+</li>
+</ul>
+<h2 id="vi和vim编辑器"><a href="#vi和vim编辑器" class="headerlink" title="vi和vim编辑器"></a>vi和vim编辑器</h2><h3 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h3><ul>
+<li>在Linux下一般使用vi编辑器来编辑文件。vi既可以查看文件也可以编辑文件。三种模式：命令行、插入、底行模式。<ul>
+<li>切换到命令行模式：按Esc键；</li>
+<li>切换到插入模式：按 i 、o、a键；<ul>
+<li>i 在当前位置前插入</li>
+<li>I 在当前行首插入</li>
+<li>a 在当前位置后插入</li>
+<li>A 在当前行尾插入</li>
+<li>o 在当前行之后插入一行</li>
+<li>O 在当前行之前插入一行</li>
+</ul>
+</li>
+<li>切换到底行模式：按 :（冒号）；更多详细用法，查询文档《Vim命令合集.docx》和《vi使用方法详细介绍.docx》</li>
+</ul>
+</li>
+<li>常见命令<ul>
+<li>打开文件：vim file</li>
+<li>退出：esc -&gt; :q</li>
+<li>修改文件：输入i进入插入模式</li>
+<li>保存并退出：esc-&gt;:wq</li>
+<li>不保存退出：esc-&gt;:q!</li>
+</ul>
+</li>
+<li>三种进入插入模式：<ul>
+<li>i:在当前的光标所在处插入</li>
+<li>o:在当前光标所在的行的下一行插入</li>
+<li>a:在光标所在的下一个字符插入</li>
+</ul>
+</li>
+<li>快捷键：<ul>
+<li>dd – 快速删除一行</li>
+<li>yy - 复制当前行</li>
+<li>nyy - 从当前行向后复制几行</li>
+<li>p - 粘贴</li>
+<li>R – 替换</li>
+</ul>
+</li>
+</ul>
+<h3 id="重定向输出-gt-和-gt-gt"><a href="#重定向输出-gt-和-gt-gt" class="headerlink" title="重定向输出&gt;和&gt;&gt;"></a>重定向输出&gt;和&gt;&gt;</h3><ul>
+<li>&gt;重定向输出，覆盖原有内容</li>
+<li>&gt;&gt;重定向输出，又追见功能</li>
+<li>示例<ul>
+<li>cat &#x2F;etc&#x2F;passwd &gt; a.txt  将输出定向到a.txt中</li>
+<li>cat &#x2F;etc&#x2F;passwd &gt;&gt; a.txt  输出并且追加</li>
+</ul>
+</li>
+</ul>
+<p>ifconfig &gt; ifconfig.txt</p>
+<h3 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h3><ul>
+<li>ps 正在运行的某个进程的状态<ul>
+<li>ps –ef  查看所有进程</li>
+<li>ps –ef | grep ssh 查找某一进程</li>
+<li>kill 2868  杀掉2868编号的进程</li>
+<li>kill -9 2868  强制杀死进程</li>
+</ul>
+</li>
+</ul>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><ul>
+<li>管道是Linux命令中重要的一个概念，其作用是将一个命令的输出用作另一个命令的输入。<ul>
+<li>ls –help | more  分页查询帮助信息</li>
+<li>ps –ef | grep java  查询名称中包含java的进程</li>
+<li></li>
+<li>ifconfig | more</li>
+<li>cat index.html | more</li>
+<li>ps –ef | grep aio</li>
+</ul>
+</li>
+</ul>
+<h2 id="Liunx的权限命令"><a href="#Liunx的权限命令" class="headerlink" title="Liunx的权限命令"></a>Liunx的权限命令</h2><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>![截屏2022-04-30 12.49.31](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;Liunx&#x2F;截屏2022-04-30 12.49.31.png)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-   ---   ---   ---</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><ul>
+<li>-表示文件</li>
+<li>d表示文件夹</li>
+<li>l表示链接</li>
+</ul>
+</li>
+<li><h3 id="当前用户具有该文件的权限"><a href="#当前用户具有该文件的权限" class="headerlink" title="当前用户具有该文件的权限"></a>当前用户具有该文件的权限</h3><ul>
+<li>r：read 读             4</li>
+<li>w：write 写           2</li>
+<li>x：excute 执行      1</li>
+</ul>
+</li>
+<li><h3 id="当前组内其他用户具有该文件的权限"><a href="#当前组内其他用户具有该文件的权限" class="headerlink" title="当前组内其他用户具有该文件的权限"></a>当前组内其他用户具有该文件的权限</h3><ul>
+<li>r：read 读</li>
+<li>w：write 写</li>
+<li>x：excute 执行</li>
+</ul>
+</li>
+<li><h3 id="其他组的用户具有该文件的权限"><a href="#其他组的用户具有该文件的权限" class="headerlink" title="其他组的用户具有该文件的权限"></a>其他组的用户具有该文件的权限</h3><ul>
+<li>r：read 读</li>
+<li>w：write 写</li>
+<li>x：excute 执行</li>
+</ul>
+</li>
+<li><h3 id="Linux三种文件类型"><a href="#Linux三种文件类型" class="headerlink" title="Linux三种文件类型"></a>Linux三种文件类型</h3><ul>
+<li>普通文件：包括文本文件、数据文件、可执行的二进制程序文件等。</li>
+<li>目录文件：Linux系统把目录看成是一种特殊的文件，利用它构成文件系统的树型结构。</li>
+<li>设备文件：Linux系统把每一个设备都看成是一个文件</li>
+</ul>
+</li>
+<li><h3 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h3><ul>
+<li>chmod 变更文件或目录的权限。</li>
+<li>chmod 755 a.txt</li>
+<li>chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;rx a.txt</li>
+</ul>
+</li>
+</ol>
+<h2 id="Liunx上常用网络操作"><a href="#Liunx上常用网络操作" class="headerlink" title="Liunx上常用网络操作"></a>Liunx上常用网络操作</h2><ol>
+<li><h3 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h3><ul>
+<li>hostname 查看主机名</li>
+<li>hostname xxx 修改主机名 重启后无效</li>
+<li>如果想要永久生效，可以修改&#x2F;etc&#x2F;sysconfig&#x2F;network文件</li>
+</ul>
+</li>
+<li><h3 id="IP地址配置"><a href="#IP地址配置" class="headerlink" title="IP地址配置"></a>IP地址配置</h3><ul>
+<li>ifconfig 查看(修改)ip地址(重启后无效)</li>
+<li>ifconfig eth0 192.168.12.22 修改ip地址<ul>
+<li>如果想要永久生效 修改 &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0文件</li>
+</ul>
+</li>
+<li>DEVICE&#x3D;eth0 #网卡名称</li>
+<li>BOOTPROTO&#x3D;static #获取ip的方式(static&#x2F;dhcp&#x2F;bootp&#x2F;none)</li>
+<li>HWADDR&#x3D;00:0C:29:B5:B2:69 #MAC地址</li>
+<li>IPADDR&#x3D;12.168.177.129 #IP地址</li>
+<li>NETMASK&#x3D;255.255.255.0 #子网掩码</li>
+<li>NETWORK&#x3D;192.168.177.0 #网络地址</li>
+<li>BROADCAST&#x3D;192.168.0.255 #广播地址</li>
+<li>NBOOT&#x3D;yes # 系统启动时是否设置此网络接口，设置为yes时，系统启动时激活此设备。</li>
+</ul>
+</li>
+<li><h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><ul>
+<li>&#x2F;etc&#x2F;hosts文件用于在通过主机名进行访问时做ip地址解析之用,相当于windows系统的C:\Windows\System32\drivers\etc\hosts文件的功能</li>
+</ul>
+</li>
+<li><h3 id="网络服务管理"><a href="#网络服务管理" class="headerlink" title="网络服务管理"></a>网络服务管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">service network status 查看指定服务的状态</span><br><span class="line">service network stop 停止指定服务</span><br><span class="line">service network start 启动指定服务</span><br><span class="line">service network restart 重启指定服务</span><br><span class="line"></span><br><span class="line">service --status–all 查看系统中所有后台服务</span><br><span class="line">netstat –nltp 查看系统中网络进程的端口监听情况</span><br><span class="line"></span><br><span class="line">防火墙设置</span><br><span class="line">防火墙根据配置文件/etc/sysconfig/iptables来控制本机的”出”、”入”网络访问行为。</span><br><span class="line">service iptables status 查看防火墙状态</span><br><span class="line">service iptables stop 关闭防火墙</span><br><span class="line">service iptables start 启动防火墙</span><br><span class="line">chkconfig  iptables off 禁止防火墙自启</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/04/30/Liunx/" title="Liunx" target="_blank" rel="external">http://example.com/2022/04/30/Liunx/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/04/30/MQTT1-6-ESP8266%E5%8F%91%E5%B8%83%E6%B6%88%E6%81%AF/" title="MQTT1-6 ESP8266发布消息"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/04/30/MQTT1-5%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E5%92%8C%E5%8F%96%E6%B6%88%E8%AE%A2%E9%98%85/" title="MQTT1-5发布,订阅和取消订阅"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
