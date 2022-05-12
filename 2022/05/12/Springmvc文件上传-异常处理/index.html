@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Springmvc文件上传&amp;异常处理 | mhy-blog</title>
+  <meta name="description" content="SpringMVC的文件上传1-SpringMVC的请求-文件上传-客户端表单实现(应用)文件上传客户端表单需要满足： 表单项type&#x3D;“file” 表单的提交方式是post   表单的enctype属性是多部分表单形式，及enctype&#x3D;“multipart&#x2F;form-data” 12345&lt;form action&#x3D;&quot;$&amp;#123;pageConte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springmvc文件上传&amp;异常处理">
+<meta property="og:url" content="http://example.com/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="SpringMVC的文件上传1-SpringMVC的请求-文件上传-客户端表单实现(应用)文件上传客户端表单需要满足： 表单项type&#x3D;“file” 表单的提交方式是post   表单的enctype属性是多部分表单形式，及enctype&#x3D;“multipart&#x2F;form-data” 12345&lt;form action&#x3D;&quot;$&amp;#123;pageConte">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-12T01:47:42.000Z">
+<meta property="article:modified_time" content="2022-05-12T10:03:07.119Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java-spring">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Spring/" rel="tag">Java-Spring</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-spring/" rel="tag">Java-spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java/" style="font-size: 13.67px;">Java</a> <a href="/tags/Java-Spring/" style="font-size: 13.5px;">Java-Spring</a> <a href="/tags/Java-spring/" style="font-size: 13.17px;">Java-spring</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.33px;">小程序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.17px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13.83px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13.17px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 13px;">英语</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.5px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.17px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.33px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="title">Springmvc文件上传&amp;异常处理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-12T01:47:42.000Z" itemprop="datePublished">2022-05-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/10/SpringMVC%E7%9A%84%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" class="title">SpringMVC的请求和响应</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-10T03:08:13.000Z" itemprop="datePublished">2022-05-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E8%A7%86%E5%9B%BE%E4%B8%8E%E9%80%BB%E8%BE%91/" class="title">小程序-视图与逻辑</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-09T12:55:12.000Z" itemprop="datePublished">2022-05-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/09/Spring%E9%9B%86%E6%88%90web%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="title">Spring集成web开发环境</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-09T00:40:41.000Z" itemprop="datePublished">2022-05-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/08/spring-jdbcTemplate/" class="title">spring jdbcTemplate</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-08T02:40:58.000Z" itemprop="datePublished">2022-05-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Springmvc文件上传-异常处理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Springmvc文件上传&amp;异常处理
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="article-date">
+	  <time datetime="2022-05-12T01:47:42.000Z" itemprop="datePublished">2022-05-12</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Java-spring/" rel="tag">Java-spring</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="SpringMVC的文件上传"><a href="#SpringMVC的文件上传" class="headerlink" title="SpringMVC的文件上传"></a>SpringMVC的文件上传</h2><h3 id="1-SpringMVC的请求-文件上传-客户端表单实现-应用"><a href="#1-SpringMVC的请求-文件上传-客户端表单实现-应用" class="headerlink" title="1-SpringMVC的请求-文件上传-客户端表单实现(应用)"></a>1-SpringMVC的请求-文件上传-客户端表单实现(应用)</h3><p>文件上传客户端表单需要满足：</p>
+<p>表单项type&#x3D;“file”</p>
+<p>表单的提交方式是post  </p>
+<p>表单的enctype属性是多部分表单形式，及enctype&#x3D;“multipart&#x2F;form-data”</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/user/quick22&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">        名称&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span>&gt;&lt;br/&gt;</span><br><span class="line">        文件<span class="number">1</span>&lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;uploadFile&quot;</span>&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-SpringMVC的请求-文件上传-文件上传的原理-理解"><a href="#2-SpringMVC的请求-文件上传-文件上传的原理-理解" class="headerlink" title="2-SpringMVC的请求-文件上传-文件上传的原理(理解)"></a>2-SpringMVC的请求-文件上传-文件上传的原理(理解)</h3><p>![截屏2022-05-12 09.56.09](&#x2F;Users&#x2F;mhy&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;Springmvc文件上传-异常处理&#x2F;截屏2022-05-12 09.56.09.png)</p>
+<h3 id="3-SpringMVC的请求-文件上传-单文件上传的代码实现1-应用"><a href="#3-SpringMVC的请求-文件上传-单文件上传的代码实现1-应用" class="headerlink" title="3-SpringMVC的请求-文件上传-单文件上传的代码实现1(应用)"></a>3-SpringMVC的请求-文件上传-单文件上传的代码实现1(应用)</h3><p>添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置多媒体解析器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置文件上传解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;multipartResolver&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;defaultEncoding&quot;</span> <span class="attr">value</span>=<span class="string">&quot;UYF-8&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxUploadSize&quot;</span> <span class="attr">value</span>=<span class="string">&quot;500000&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>后台程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value=&quot;/quick22&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save22</span><span class="params">(String username, MultipartFile uploadFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        System.out.println(username);</span><br><span class="line">       	System.out.println(uploadFile);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-SpringMVC的请求-文件上传-单文件上传的代码实现2-应用"><a href="#4-SpringMVC的请求-文件上传-单文件上传的代码实现2-应用" class="headerlink" title="4-SpringMVC的请求-文件上传-单文件上传的代码实现2(应用)"></a>4-SpringMVC的请求-文件上传-单文件上传的代码实现2(应用)</h3><p>完成文件上传</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value=&quot;/quick22&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save22</span><span class="params">(String username, MultipartFile uploadFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        System.out.println(username);</span><br><span class="line">        <span class="comment">//获得上传文件的名称</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> uploadFile.getOriginalFilename();</span><br><span class="line">        uploadFile.transferTo(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\upload\\&quot;</span>+originalFilename));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-SpringMVC的请求-文件上传-多文件上传的代码实现-应用"><a href="#5-SpringMVC的请求-文件上传-多文件上传的代码实现-应用" class="headerlink" title="5-SpringMVC的请求-文件上传-多文件上传的代码实现(应用)"></a>5-SpringMVC的请求-文件上传-多文件上传的代码实现(应用)</h3><p>多文件上传，只需要将页面修改为多个文件上传项，将方法参数MultipartFile类型修改为MultipartFile[]即可</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/user/quick23&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">        名称&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span>&gt;&lt;br/&gt;</span><br><span class="line">        文件<span class="number">1</span>&lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;uploadFile&quot;</span>&gt;&lt;br/&gt;</span><br><span class="line">        文件<span class="number">2</span>&lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;uploadFile&quot;</span>&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value=&quot;/quick23&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save23</span><span class="params">(String username, MultipartFile[] uploadFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        System.out.println(username);</span><br><span class="line">        <span class="keyword">for</span> (MultipartFile multipartFile : uploadFile) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> multipartFile.getOriginalFilename();</span><br><span class="line">            multipartFile.transferTo(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\upload\\&quot;</span>+originalFilename));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-SpringMVC的请求-知识要点-理解，记忆"><a href="#6-SpringMVC的请求-知识要点-理解，记忆" class="headerlink" title="6-SpringMVC的请求-知识要点(理解，记忆)"></a>6-SpringMVC的请求-知识要点(理解，记忆)</h3><p>MVC实现数据请求方式</p>
+<ul>
+<li>基本类型参数</li>
+<li>POJO类型参数</li>
+<li>数组类型参数</li>
+<li>集合类型参数</li>
+</ul>
+<p>MVC获取数据细节</p>
+<ul>
+<li>中文乱码问题</li>
+<li>@RequestParam和@PathVariable</li>
+<li>自定义类型转换器</li>
+<li>获得Servlet相关API</li>
+<li>@RequestHeader和@CookieValue</li>
+<li>文件上传</li>
+</ul>
+<h1 id="SpringMVC的拦截器"><a href="#SpringMVC的拦截器" class="headerlink" title="SpringMVC的拦截器"></a>SpringMVC的拦截器</h1><h3 id="01-SpringMVC拦截器-拦截器的作用-理解"><a href="#01-SpringMVC拦截器-拦截器的作用-理解" class="headerlink" title="01-SpringMVC拦截器-拦截器的作用(理解)"></a>01-SpringMVC拦截器-拦截器的作用(理解)</h3><p>Spring MVC 的拦截器类似于 Servlet  开发中的过滤器 Filter，用于对处理器进行预处理和后处理。</p>
+<p>将拦截器按一定的顺序联结成一条链，这条链称为拦截器链（InterceptorChain）。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。拦截器也是AOP思想的具体实现。</p>
+<h3 id="02-SpringMVC拦截器-interceptor和filter区别-理解，记忆"><a href="#02-SpringMVC拦截器-interceptor和filter区别-理解，记忆" class="headerlink" title="02-SpringMVC拦截器-interceptor和filter区别(理解，记忆)"></a>02-SpringMVC拦截器-interceptor和filter区别(理解，记忆)</h3><p>关于interceptor和filter的区别，如图所示：</p>
+<table>
+<thead>
+<tr>
+<th>区别</th>
+<th>过滤器</th>
+<th>拦截器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用范围</td>
+<td>是 servlet 规范中的一部分，任何Java Web 工程都可以使用</td>
+<td>是 SpringMVC 框架自己的，只有使用了SpringMVC 框架的工程才能用</td>
+</tr>
+<tr>
+<td>拦截范围</td>
+<td>在 url-pattern 中配置了&#x2F;*之后，可以对所有要访问的资源拦截</td>
+<td>只会拦截访问的控制器方法，如果访问的是 jsp，html,css,image 或者 js 是不会进行拦截的</td>
+</tr>
+</tbody></table>
+<h3 id="03-SpringMVC拦截器-快速入门-应用"><a href="#03-SpringMVC拦截器-快速入门-应用" class="headerlink" title="03-SpringMVC拦截器-快速入门(应用)"></a>03-SpringMVC拦截器-快速入门(应用)</h3><p>自定义拦截器很简单，只有如下三步：</p>
+<p>①创建拦截器类实现HandlerInterceptor接口</p>
+<p>②配置拦截器</p>
+<p>③测试拦截器的拦截效果</p>
+<p>编写拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor1</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//在目标方法执行之前 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;preHandle.....&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//在目标方法执行之后 视图对象返回之前执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> &#123;</span><br><span class="line">System.out.println(<span class="string">&quot;postHandle...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在流程都执行完毕后 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterCompletion....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置：在SpringMVC的配置文件中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--对哪些资源执行拦截操作--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/**&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.interceptor.MyInterceptor1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>编写测试程序测试：</p>
+<p>编写Controller,发请求到controller,跳转页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TargetController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/target&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;目标资源执行......&quot;</span>);</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;itcast&quot;</span>);</span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>页面</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;Hello World! $&#123;name&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="04-SpringMVC拦截器-快速入门详解-应用"><a href="#04-SpringMVC拦截器-快速入门详解-应用" class="headerlink" title="04-SpringMVC拦截器-快速入门详解(应用)"></a>04-SpringMVC拦截器-快速入门详解(应用)</h3><p>拦截器在预处理后什么情况下会执行目标资源，什么情况下不执行目标资源，以及在有多个拦截器的情况下拦截器的执行顺序是什么?</p>
+<p>再编写一个拦截器2</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor2</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//在目标方法执行之前 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;preHandle22222.....&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在目标方法执行之后 视图对象返回之前执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;postHandle2222...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在流程都执行完毕后 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterCompletion2222....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置拦截器2</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--对哪些资源执行拦截操作--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/**&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.interceptor.MyInterceptor2&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--对哪些资源执行拦截操作--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/**&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.interceptor.MyInterceptor1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结论：</p>
+<p>当拦截器的preHandle方法返回true则会执行目标资源，如果返回false则不执行目标资源</p>
+<p>多个拦截器情况下，配置在前的先执行，配置在后的后执行</p>
+<p>拦截器中的方法执行顺序是：preHandler——-目标资源—-postHandle—- afterCompletion</p>
+<h3 id="05-SpringMVC拦截器-知识小结-记忆"><a href="#05-SpringMVC拦截器-知识小结-记忆" class="headerlink" title="05-SpringMVC拦截器-知识小结(记忆)"></a>05-SpringMVC拦截器-知识小结(记忆)</h3><p>拦截器中的方法说明如下</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>preHandle()</td>
+<td>方法将在请求处理之前进行调用，该方法的返回值是布尔值Boolean类型的，当它返回为false时，表示请求结束，后续的Interceptor 和Controller 都不会再执行；当返回值为true时就会继续调用下一个Interceptor 的preHandle 方法</td>
+</tr>
+<tr>
+<td>postHandle()</td>
+<td>该方法是在当前请求进行处理之后被调用，前提是preHandle 方法的返回值为true 时才能被调用，且它会在DispatcherServlet 进行视图返回渲染之前被调用，所以我们可以在这个方法中对Controller 处理之后的ModelAndView 对象进行操作</td>
+</tr>
+<tr>
+<td>afterCompletion()</td>
+<td>该方法将在整个请求结束之后，也就是在DispatcherServlet 渲染了对应的视图之后执行，前提是preHandle 方法的返回值为true 时才能被调用</td>
+</tr>
+</tbody></table>
+<h3 id="06-SpringMVC拦截器-用户登录权限控制分析-理解"><a href="#06-SpringMVC拦截器-用户登录权限控制分析-理解" class="headerlink" title="06-SpringMVC拦截器-用户登录权限控制分析(理解)"></a>06-SpringMVC拦截器-用户登录权限控制分析(理解)</h3><p>在day06-Spring练习案例的基础之上：用户没有登录的情况下，不能对后台菜单进行访问操作，点击菜单跳转到登录页面，只有用户登录成功后才能进行后台功能的操作</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/05/12/Springmvc%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="Springmvc文件上传&amp;异常处理" target="_blank" rel="external">http://example.com/2022/05/12/Springmvc文件上传-异常处理/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/05/10/SpringMVC%E7%9A%84%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/" title="SpringMVC的请求和响应"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
