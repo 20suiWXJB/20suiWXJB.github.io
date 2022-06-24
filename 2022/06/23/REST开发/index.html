@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>REST开发 | mhy-blog</title>
+  <meta name="description" content="REST风格REST简介 REST，表现形式状态转换（访问网络资源的格式） 传统风格资源描述形式 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;getById?id&#x3D;1 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;saveUser   REST风格描述形式 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;1 http:&#x2F;&#x2F;localhost&#x2F;user     优点 隐藏资源的访问行为，无法通过地址得知对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REST开发">
+<meta property="og:url" content="http://example.com/2022/06/23/REST%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="mhy-blog">
+<meta property="og:description" content="REST风格REST简介 REST，表现形式状态转换（访问网络资源的格式） 传统风格资源描述形式 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;getById?id&#x3D;1 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;saveUser   REST风格描述形式 http:&#x2F;&#x2F;localhost&#x2F;user&#x2F;1 http:&#x2F;&#x2F;localhost&#x2F;user     优点 隐藏资源的访问行为，无法通过地址得知对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-23T02:29:12.000Z">
+<meta property="article:modified_time" content="2022-06-23T15:13:25.881Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="REST风格">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2022/06/23/REST%E5%BC%80%E5%8F%91/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="mhy-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/20suiWXJB" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">马宏跃</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> DaLian, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Spring/" rel="tag">Java-Spring</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-web/" rel="tag">Java-web</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybastic/" rel="tag">Mybastic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis-plus/" rel="tag">Mybatis-plus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REST%E9%A3%8E%E6%A0%BC/" rel="tag">REST风格</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Cloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91/" rel="tag">Spring Cloud(微服务开发)</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E6%80%9D/" rel="tag">反思</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" rel="tag">物联网</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" rel="tag">算法题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD/" rel="tag">英语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" rel="tag">英语四级</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag">计算机系统基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%92/" rel="tag">酒</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/Java/" style="font-size: 13.67px;">Java</a> <a href="/tags/Java-web/" style="font-size: 13px;">Java web</a> <a href="/tags/Java-Spring/" style="font-size: 13.83px;">Java-Spring</a> <a href="/tags/Java-web/" style="font-size: 14px;">Java-web</a> <a href="/tags/Maven/" style="font-size: 13px;">Maven</a> <a href="/tags/Mybastic/" style="font-size: 13px;">Mybastic</a> <a href="/tags/Mybatis/" style="font-size: 13.5px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 13px;">Mybatis-plus</a> <a href="/tags/REST%E9%A3%8E%E6%A0%BC/" style="font-size: 13px;">REST风格</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 13px;">Spring Boot</a> <a href="/tags/Spring-Cloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91/" style="font-size: 13px;">Spring Cloud(微服务开发)</a> <a href="/tags/SpringBoot/" style="font-size: 13px;">SpringBoot</a> <a href="/tags/%E5%8F%8D%E6%80%9D/" style="font-size: 13px;">反思</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.33px;">小程序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13.17px;">操作系统</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 13.83px;">物联网</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 13.17px;">算法题</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 13.33px;">经验</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 13px;">英语</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7/" style="font-size: 13.67px;">英语四级</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">计算机系统基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13.17px;">计算机组成原理</a> <a href="/tags/%E9%85%92/" style="font-size: 13.33px;">酒</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/23/spring%E6%B3%A8%E8%A7%A3%E7%AC%94%E8%AE%B0/" class="title">spring注解笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-23T05:09:16.000Z" itemprop="datePublished">2022-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/23/REST%E5%BC%80%E5%8F%91/" class="title">REST开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-23T02:29:12.000Z" itemprop="datePublished">2022-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/23/SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87/" class="title">SpringBoot基础篇</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-23T01:17:52.000Z" itemprop="datePublished">2022-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/21/Mybatis-plus%E5%85%A5%E9%97%A82/" class="title">Mybatis-plus入门2</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-21T03:29:41.000Z" itemprop="datePublished">2022-06-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/19/%E5%8F%8D%E6%80%9D%EF%BC%88%E4%B8%8E%E9%95%BF%E8%BE%88%E4%BA%89%E5%90%B5%EF%BC%89/" class="title">反思（与长辈争吵）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-19T15:02:09.000Z" itemprop="datePublished">2022-06-19</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-REST开发" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      REST开发
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/06/23/REST%E5%BC%80%E5%8F%91/" class="article-date">
+	  <time datetime="2022-06-23T02:29:12.000Z" itemprop="datePublished">2022-06-23</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/REST%E9%A3%8E%E6%A0%BC/" rel="tag">REST风格</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/06/23/REST%E5%BC%80%E5%8F%91/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="REST风格"><a href="#REST风格" class="headerlink" title="REST风格"></a>REST风格</h1><h3 id="REST简介"><a href="#REST简介" class="headerlink" title="REST简介"></a>REST简介</h3><ul>
+<li>REST，表现形式状态转换（访问网络资源的格式）<ul>
+<li>传统风格资源描述形式<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost/user/getById?id=1">http://localhost/user/getById?id=1</a></li>
+<li><a target="_blank" rel="noopener" href="http://localhost/user/saveUser">http://localhost/user/saveUser</a></li>
+</ul>
+</li>
+<li>REST风格描述形式<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost/user/1">http://localhost/user/1</a></li>
+<li><a target="_blank" rel="noopener" href="http://localhost/user">http://localhost/user</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>隐藏资源的访问行为，无法通过地址得知对资源是何种操作</li>
+<li>书写简化</li>
+</ul>
+</li>
+</ul>
+<h3 id="REST风格书写"><a href="#REST风格书写" class="headerlink" title="REST风格书写"></a>REST风格书写</h3><ul>
+<li>按照REST风格访问资源时使用行为动作区分对资源进行了何种操作<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost/users">http://localhost/users</a>    <ul>
+<li>查询全部用户信息  GET（查询）</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://localhost/users/1">http://localhost/users/1</a><ul>
+<li>查询指定用户信息 GET（查询）</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://localhost/users">http://localhost/users</a>    <ul>
+<li>添加用户信息 POST（新增&#x2F;保存）</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://localhost/users">http://localhost/users</a>    <ul>
+<li>修改用户信息 PUT（修改&#x2F;更新）</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="http://localhost/users/1">http://localhost/users/1</a><ul>
+<li>删除用户信息 DELETE（删除）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>根据REST风格对资源进行访问称为RESTful</li>
+</ul>
+<p>注意事项：</p>
+<p>上述行为是约定方式，约定不是规范，可以打破，所以称REST风格，而不是REST规范</p>
+<p>描述模块的名称通常使用负数，也就是加s的格式描述，表示此类资源，例如：users，books….</p>
+<h3 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h3><ul>
+<li>设定http请求动作（动词）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/users&quot;,method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">save</span><span class="params">()</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;user save...&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;module&#x27;:&#x27;user save&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设定请求参数（路径变量）</li>
+</ul>
+<h5 id="PathVariable-从路径中取值"><a href="#PathVariable-从路径中取值" class="headerlink" title="@PathVariable:从路径中取值"></a>@PathVariable:从路径中取值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/users/&#123;id&#125;&quot;,method = RequestMethod.DELETE)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">save</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;user delete...&quot;</span> + id);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;module&#x27;:&#x27;user delete&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注解解析"><a href="#注解解析" class="headerlink" title="注解解析"></a>注解解析</h4><h5 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h5><ul>
+<li><p>名称：@RequestMapping</p>
+</li>
+<li><p>类型：方法注解</p>
+</li>
+<li><p>位置：SpringMVC控制器方法定义上方</p>
+</li>
+<li><p>作用：设置当前控制器方法请求访问路径</p>
+</li>
+<li><p>范例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/users&quot;,method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">save</span><span class="params">()</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;user save...&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;module&#x27;:&#x27;user save&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性</p>
+<ul>
+<li>value(默认)：请求访问路径</li>
+<li>method：http请求动作，标准动作（GET&#x2F;POST&#x2F;PUT&#x2F;DELETE）</li>
+</ul>
+</li>
+</ul>
+<h5 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h5><ul>
+<li><p>@PathVariable</p>
+</li>
+<li><p>类型：形参注解</p>
+</li>
+<li><p>位置：SpringMVC控制器方法形参定义前面</p>
+</li>
+<li><p>作用：绑定路径参数与处理器方法形参间的关系，要求路径参数名与形参名一一对应</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/users/&#123;id&#125;&quot;,method = RequestMethod.DELETE)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">save</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;user delete...&quot;</span> + id);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;module&#x27;:&#x27;user delete&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="RequestBody-RequestParam-PathVariable"><a href="#RequestBody-RequestParam-PathVariable" class="headerlink" title="@RequestBody    @RequestParam    @PathVariable"></a>@RequestBody    @RequestParam    @PathVariable</h4><ul>
+<li>区别<ul>
+<li>@RequestParam用于接收url地址传参或表单传参</li>
+<li>@RequestBody用于接收json数据</li>
+<li>@PathVariable用于接收路径参数，使用{参数名称}描述路径参数</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>后期开发中，发送请求参数超过1个时，以json格式为主，@RequestBody应用较广</li>
+<li>如果发送非json格式数据，选用@RequestParam接收请求数据</li>
+<li>采用RESTful进行开发，当参数数量较少时，例如1个，可以采用@PathVariable接收请求路径变量，通常用于传递id值</li>
+</ul>
+</li>
+</ul>
+<h2 id="RESTful快速开发"><a href="#RESTful快速开发" class="headerlink" title="RESTful快速开发"></a>RESTful快速开发</h2><h4 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h4><ul>
+<li><p>名称：@RestController</p>
+</li>
+<li><p>类型：类注解</p>
+</li>
+<li><p>位置：基于SpringMVC的RESTful开发控制器类定义上方</p>
+</li>
+<li><p>作用：设置当前控制器为RESTful风格，等同于@Controller与@ResponseBody两个注解组合</p>
+</li>
+<li><p>范例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookController</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="GetMapping-PostMapping-PutMapping-DeleteMapping"><a href="#GetMapping-PostMapping-PutMapping-DeleteMapping" class="headerlink" title="@GetMapping    @PostMapping    @PutMapping    @DeleteMapping"></a>@GetMapping    @PostMapping    @PutMapping    @DeleteMapping</h4><ul>
+<li><p>名称：@GetMapping    @PostMapping    @PutMapping    @DeleteMapping</p>
+</li>
+<li><p>类型：方法注解</p>
+</li>
+<li><p>位置：基于SpringMVC的RESTful开发控制器方法定义上方</p>
+</li>
+<li><p>作用：设置当前控制器方法请求访问路径与请求动作，每种对应一个请求动作，例如@GetMapping对应GET请求</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">		System.out.ptintln(<span class="string">&quot;book getById...&quot;</span>+id);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;module&#x27;:&#x27;book getById&#x27;&#125;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性</p>
+<ul>
+<li>value(默认)：请求访问路径</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2022/06/23/REST%E5%BC%80%E5%8F%91/" title="REST开发" target="_blank" rel="external">http://example.com/2022/06/23/REST开发/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/20suiWXJB" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/20suiWXJB" target="_blank"><span class="text-dark">马宏跃</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/06/23/spring%E6%B3%A8%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="spring注解笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/06/23/SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87/" title="SpringBoot基础篇"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/20suiWXJB" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/6628545823" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
